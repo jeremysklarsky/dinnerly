@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# name, list of ingredients, instructions, cuisine type(s), meal categories
+
+["RecipeID", "Title", "Description", "Cuisine", "Category", "Subcategory", "PrimaryIngredient", "StarRating", "WebURL", "ImageURL", "ReviewCount", "Ingredients", "Instructions", "YieldNumber", "YieldUnit", "TotalMinutes"]

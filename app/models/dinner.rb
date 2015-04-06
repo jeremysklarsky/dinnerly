@@ -5,6 +5,6 @@ class Dinner < ActiveRecord::Base
   belongs_to :host, :class_name => "User"
   has_one :menu
 
-  validates_presence_of :host, :name, :datetime, :location
+  validates_presence_of :host_id, :name, :datetime, :location
 
 end
