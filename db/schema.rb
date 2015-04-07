@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406202344) do
+ActiveRecord::Schema.define(version: 20150407151802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,12 +44,6 @@ ActiveRecord::Schema.define(version: 20150406202344) do
     t.string   "name"
     t.datetime "datetime"
     t.string   "location"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredients", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,23 +90,22 @@ ActiveRecord::Schema.define(version: 20150406202344) do
   add_index "recipe_cuisines", ["recipe_id", "cuisine_id"], name: "index_recipe_cuisines_on_recipe_id_and_cuisine_id", unique: true, using: :btree
   add_index "recipe_cuisines", ["recipe_id"], name: "index_recipe_cuisines_on_recipe_id", using: :btree
 
-  create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer  "recipe_id"
-    t.integer  "ingredient_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id", using: :btree
-  add_index "recipe_ingredients", ["recipe_id", "ingredient_id"], name: "index_recipe_ingredients_on_recipe_id_and_ingredient_id", unique: true, using: :btree
-  add_index "recipe_ingredients", ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id", using: :btree
-
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.string   "source_url"
     t.text     "instructions"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "cuisine"
+    t.string   "primary_ingredient"
+    t.float    "rating"
+    t.string   "image_url"
+    t.integer  "review_count"
+    t.integer  "cook_time"
+    t.string   "servings"
+    t.text     "ingredients"
+    t.string   "description"
+    t.string   "big_oven_id"
   end
 
   create_table "users", force: :cascade do |t|
