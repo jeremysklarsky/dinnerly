@@ -21,12 +21,13 @@ end
 recipe_ids.each do |recipe_id|
 
   recipe_response = Unirest.get("http://api.bigoven.com/recipe/#{recipe_id}?api_key=#{ENV["big_oven_key"]}", headers:{ "Accept" => "application/json"})
-  if !Recipe.find_by(:big_oven_id => recipe_response.body["RecipeID"])
+  if !Recipe.find_by(:big_oven_id => recipe_response.body["RecipeID"]) && ((recipe_response.body["Ingredients"] != "") && (recipe_response.body["Ingredients"] != nil)) && ((recipe_response.body["Instructions"] != "") && (recipe_response.body["Instructions"] != nil)) && ((recipe_response.body["Cuisine"] != "") && (recipe_response.body["Cuisine"] != nil))
+
     recipe = Recipe.new
     recipe.name = recipe_response.body["Title"]
     recipe.big_oven_id = recipe_response.body["RecipeID"]
     recipe.description = recipe_response.body["Description"]
-    recipe.cuisine = recipe_response.body["Cuisine"]
+    recipe.cuisine = Cuisine.find_or_create_by(:name => recipe_response.body["Cuisine"])
     recipe.primary_ingredient = recipe_response.body["PrimaryIngredient"]     
     recipe.rating = recipe_response.body["StarRating"]
     recipe.source_url = recipe_response.body["WebURL"]    
