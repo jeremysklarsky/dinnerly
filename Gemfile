@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'yummly'
 gem 'figaro'
 gem 'pg'
 gem "rails-erd"

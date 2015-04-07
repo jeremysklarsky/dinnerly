@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "Successfully logged in. Welcome #{@user.name}!"
       redirect_to '/'
     else
+      binding.pry
       flash.now[:notice] = "User name or password is not valid."
       render 'new'
     end
