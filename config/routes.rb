@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     resources :dinners
   end
 
+  get 'login' => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
+  post 'sessions' => 'sessions#create'
+
   get 'signup' => 'users#new', :as => 'signup' 
 
   root 'welcome#index'
