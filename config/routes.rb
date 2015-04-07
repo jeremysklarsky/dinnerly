@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :users, :except => ['new'] do 
-    resources :dinners
+    resources :dinners, :controller => "users/dinners"
   end
 
   get 'login' => 'sessions#new'
@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'sessions' => 'sessions#create'
 
   get 'signup' => 'users#new', :as => 'signup' 
+
+  resources :menus
 
   root 'welcome#index'
 

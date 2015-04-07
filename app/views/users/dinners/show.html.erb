@@ -1,0 +1,5 @@
+<%= @dinner.name %><br>
+<%= @dinner.location %><br>
+<%= @dinner.datetime.strftime('%A, %d %b %Y %l:%M %p') %>
+
+<%= link_to "Create Menu", new_menu_path(dinner_id: @dinner.id), :class => "button", :method => :get  %><br />
