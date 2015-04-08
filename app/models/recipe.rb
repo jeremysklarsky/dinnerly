@@ -9,3 +9,6 @@ class Recipe < ActiveRecord::Base
   belongs_to :cuisine
   
 end
+
+
+Recipe.includes(:courses).where('course.name = ?', 'Chinese').references(:courses)

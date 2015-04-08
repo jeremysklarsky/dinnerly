@@ -11,18 +11,21 @@ class MenusController < ApplicationController
     @menu = @dinner.build_menu
     @dinner.save
 
+    cuisines =[]
+
     if params['menu']['cuisine1'] != "-Surprise Me!-"
-      cuisines = Cuisine::CUISINES[params['menu']['cuisine1']]
+
+      cuisines << Cuisine::CUISINES[params['menu']['cuisine1']]
     else
       cuisines_with_surprises = Cuisine::CUISINES.dup
       cuisines_with_surprises.delete['-Surprise Me!-']
       cuisine_keys = cuisines_with_surprises.keys
-      cuisines = []
       3.times do 
         surprise_cuisine = cuisine_keys.sample
         cuisines << surprise_cuisine
         cuisines_with_surprises.delete[surprise_cuisine]
       end
+
     end
 
     if params['menu']['cuisine2'] != "-Surprise Me!-"
@@ -37,6 +40,7 @@ class MenusController < ApplicationController
         cuisines_with_surprises.delete[surprise_cuisine]
       end
     end
+    binding.pry
     @cuisines = cuisines.flatten.uniq
 
 
@@ -49,7 +53,6 @@ class MenusController < ApplicationController
     appetizers = Course::COURSES['Appetizers']
     num_appetizers.times do
       recipe = Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', appetizers.sample).references(:courses)
-      binding.pry
       recipe.menu_recipes.build(menu_id: @menu.id, course_name: "Appetizer")
     end
 
