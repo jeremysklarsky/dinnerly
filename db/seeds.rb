@@ -10,7 +10,6 @@
 
 keywords_list = ["dessert", "appetizer", "bread", "main dish", "salad", "side dish", "soup", "marinade", "pasta", "casserole", "rice", "risotto", "chicken", "beef", "fish", "lamb", "pork", "grilled"]
 
-
 search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list.sample}&api_key=#{ENV["big_oven_key"]}&pg=1&rpp=10", headers:{ "Accept" => "application/json"})
 
 
