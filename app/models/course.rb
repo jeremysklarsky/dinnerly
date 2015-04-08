@@ -8,5 +8,4 @@ class Course < ActiveRecord::Base
               "Side Dishes" =>  ["Rice", "Salad", "Potato Salads", "Grains", "Beans and Legumes", "Vegetable", "Casseroles", "Pasta", "Vegetable Salads"],
               "Desserts" =>  ["Cookies", "Desserts", "Desserts - Other", "Frozen Treats", "Custards and Puddings"]
             }
-
 end

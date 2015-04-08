@@ -8,6 +8,8 @@ class MenusController < ApplicationController
 
   def create
     @dinner = Dinner.find(params[:dinner_id])
+    @menu = @dinner.build_menu
+    @dinner.save
 
     if params['menu']['cuisine1'] != "-Surprise Me!-"
       cuisines = Cuisine::CUISINES[params['menu']['cuisine1']]
@@ -44,40 +46,35 @@ class MenusController < ApplicationController
     num_mains = params['menu']['mains'].to_i * 2
     num_desserts = params['menu']['desserts'].to_i * 2
 
-    @appetizers_recipes = []
     appetizers = Course::COURSES['Appetizers']
     num_appetizers.times do
-      @appetizers_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', appetizers.sample).references(:courses)
+      recipe = Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', appetizers.sample).references(:courses)
+      binding.pry
+      recipe.menu_recipes.build(menu_id: @menu.id, course_name: "Appetizer")
     end
 
-    @sides_recipes = []
     sides = Course::COURSES['Side Dishes']
     num_sides.times do
-      @sides_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', sides.sample).references(:courses)
+      recipe = Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', sides.sample).references(:courses)
+      recipe.menu_recipes.build(menu_id: @menu.id, course_name: "Side")
     end
 
-    @mains_recipes = []
     mains = Course::COURSES['Main Dishes']
     num_mains.times do
-      @mains_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', mains.sample).references(:courses)
+      recipe = Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', mains.sample).references(:courses)
+      recipe.menu_recipes.build(menu_id: @menu.id, course_name: "Main")
     end
 
-    @desserts_recipes = []
     desserts = Course::COURSES['Desserts']
     num_desserts.times do
-      @desserts_recipes << Recipe.includes(:courses).where('courses.name=?', desserts.sample).references(:courses)
+      recipe = Recipe.includes(:courses).where('courses.name = ?', desserts.sample).references(:courses)
+      recipe.menu_recipes.build(menu_id: @menu.id, course_name: "Dessert")
     end
 
-    @dinner.build_menu(menu_params)
     if @dinner.save
       redirect_to "/users/#{current_user.id}/dinners/#{@dinner.id}"
     else
       render 'dinners/show'
     end
-  end
-
-  private
-  def menu_params
-    params.require(:menu).permit(:name)
   end
 end
