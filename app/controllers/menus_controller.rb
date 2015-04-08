@@ -1,13 +1,12 @@
 class MenusController < ApplicationController
 
-  def new
-    @menu = Menu.new
-    @dinner = Dinner.find(params[:dinner_id])
-    @cuisines = Cuisine::CUISINES.keys.sort
-  end
+  # def new
+  #   @menu = Menu.new
+  #   @dinner = Dinner.find(params[:dinner_id])
+  #   @cuisines = Cuisine::CUISINES.keys.sort
+  # end
 
   def create
-    binding.pry
     @dinner = Dinner.find(params[:dinner_id])
 
     if params['menu']['cuisine1'] != "-Surprise Me!-"
@@ -45,10 +44,10 @@ class MenusController < ApplicationController
     num_mains = params['menu']['mains'].to_i * 2
     num_desserts = params['menu']['desserts'].to_i * 2
 
-    @appetizer_recipes = []
+    @appetizers_recipes = []
     appetizers = Course::COURSES['Appetizers']
     num_appetizers.times do
-      @appetizer_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', appetizers.sample).references(:courses)
+      @appetizers_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', appetizers.sample).references(:courses)
     end
 
     @sides_recipes = []
@@ -73,7 +72,7 @@ class MenusController < ApplicationController
     if @dinner.save
       redirect_to "/users/#{current_user.id}/dinners/#{@dinner.id}"
     else
-      render 'new'
+      render 'dinners/show'
     end
   end
 
