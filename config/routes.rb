@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+
+  resources :users, :except => ['new'] do 
+    resources :dinners, :controller => "users/dinners"
+  end
+
+  get 'login' => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
+  post 'sessions' => 'sessions#create'
+
+  get 'signup' => 'users#new', :as => 'signup' 
+
+  resources :menus
+
+  root 'welcome#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

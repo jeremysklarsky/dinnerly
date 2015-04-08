@@ -1,0 +1,31 @@
+New Menu Page
+<%= form_tag menus_path, :method => 'post', :class => "form-inline search-center" do %>
+  <div class="form-group">
+    <%= label_tag('menu[cuisine1]', "Cuisine 1") %><br>
+    <%= select_tag 'menu[cuisine1]', options_for_select(@cuisines, selected: "Surprise Me!"), class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag('menu[cuisine2]', "Cuisine 2") %><br>
+    <%= select_tag 'menu[cuisine2]', options_for_select(@cuisines, selected: "Surprise Me!",), class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag('menu[appetizers]', "Number of Appetizers") %><br>
+    <%= number_field_tag 'menu[appetizers]', nil, in: 0...11, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= label_tag('menu[sides]', "Number of Sides") %><br>
+    <%= number_field_tag 'menu[sides]', nil, in: 0...11, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= label_tag('menu[mains]', "Number of Main Dishes") %><br>
+    <%= number_field_tag 'menu[mains]', nil, in: 0...11, class: "form-control" %>
+  </div>
+   <div class="form-group">
+    <%= label_tag('menu[desserts]', "Number of Desserts") %><br>
+    <%= number_field_tag 'menu[desserts]', nil, in: 0...11, class: "form-control" %>
+  </div>
+  <%= hidden_field_tag 'dinner_id', @dinner.id %>
+  <div class="form-group">
+    <%= submit_tag "Create Menu!", class: "btn btn-warning search-btn" %>
+  </div>
+<% end %>
