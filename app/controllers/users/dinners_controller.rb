@@ -8,7 +8,7 @@ class Users::DinnersController < ApplicationController
     # binding.pry
     @dinner = Dinner.new(name: params[:dinner][:name], location: params[:dinner][:location], datetime: params[:dinner][:datetime], host_id: params[:user_id]) 
     if @dinner.save
-      binding.pry
+      # binding.pry
       redirect_to "/users/#{current_user.id}/dinners/#{@dinner.id}"
     else
       flash.now[:notice] = "That didn't work!"
