@@ -6,7 +6,7 @@ class Cuisine < ActiveRecord::Base
   CUISINES = {"-Surprise Me!-" => ["Surprise Me!"],
               "Mexican" =>  ["Mexican"],
               "Italian" =>  ["Italian"],
-              "American" =>  ["American", "american"],
+              "American" =>  ["American", "american", "American-South"],
               "African" =>  ["African"],
               "Hungary" =>  ["Hungary"],
               "Southern" => ["American-South"],
