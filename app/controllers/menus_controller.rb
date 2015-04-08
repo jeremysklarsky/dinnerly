@@ -3,6 +3,7 @@ class MenusController < ApplicationController
   def new
     @menu = Menu.new
     @dinner = Dinner.find(params[:dinner_id])
+    @cuisines = Cuisine::CUISINES
   end
 
   def create

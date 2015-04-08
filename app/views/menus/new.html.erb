@@ -1,13 +1,12 @@
 New Menu Page
-<% binding.pry %>
 <%= form_tag menus_path, :method => 'post', :class => "form-inline search-center" do %>
   <div class="form-group">
     <%= label_tag('menu[cuisine1]', "Cuisine 1") %><br>
-    <%= select_tag('menu[cuisine1]', options_for_select([["Surprise me!",""],["Mexican","Mexican"],["Italian", "Italian"], ["American", "American"]]), class: "form-control") %>
+    <%= select_tag 'menu[cuisine1]', options_for_select(@cuisines), class: "form-control" %>
   </div>
   <div class="form-group">
     <%= label_tag('menu[cuisine2]', "Cuisine 2") %><br>
-    <%= select_tag('menu[cuisine2]', options_for_select([["Surprise me!",""],["Mexican","Mexican"],["Italian", "Italian"], ["American", "American"]]), class: "form-control") %>
+    <%= select_tag 'menu[cuisine2]', options_for_select(@cuisines), class: "form-control" %>
   </div>
   <div class="form-group">
     <%= label_tag('menu[appetizers]', "Number of Appetizers") %><br>

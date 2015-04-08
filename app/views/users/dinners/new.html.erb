@@ -2,18 +2,16 @@ Create a beautiful, lavish dinner party:
 
 <%=form_for([current_user, @dinner]) do |f| %>
 
-<%= f.label :name %>
-<%= f.text_field :name %><br>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
 
-<%= f.label :location %>
-<%= f.text_field :location %><br>
+  <%= f.label :location %>
+  <%= f.text_field :location %><br>
 
-<%= f.label :date %>
-<%= f.datetime_field :datetime %><br>
+  <%= f.label :date %>
+  <%= f.datetime_field :datetime %><br>
 
-
-
-<%= f.submit %>
+  <%= f.submit %>
 <%end%>
 
 
