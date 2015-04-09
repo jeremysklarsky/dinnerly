@@ -34,6 +34,15 @@ class Recipe < ActiveRecord::Base
       :locals => { :recipe => self})
   end
 
+  def short_name
+    if self.name.length > 35
+      "#{self.name[0..32]}..."
+    else
+      self.name
+    end
+
+  end
+
 end
 
 

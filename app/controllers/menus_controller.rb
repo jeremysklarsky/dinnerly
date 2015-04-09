@@ -96,6 +96,7 @@ class MenusController < ApplicationController
     if @dinner.save
       respond_to do |format|
         format.js
+        format.html
       end
     else
       render 'dinners/show'
