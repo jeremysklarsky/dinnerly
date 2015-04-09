@@ -1,18 +1,22 @@
 <div class="final-menu">
   <h3>Appetizers</h3>
-    <% @dinner.menu.appetizers.each do |a| %>
-    <%= link_to a.name, recipe_path(a) %><br>
+    <% @dinner.menu.appetizers.each do |recipe| %>
+    <%= link_to recipe.name, recipe_path(recipe) %><br>
+    <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
     <% end %>
   <h3>Sides</h3>
-    <% @dinner.menu.sides.each do |a| %>
-    <%= link_to a.name, recipe_path(a) %><br>
+    <% @dinner.menu.sides.each do |recipe| %>
+    <%= link_to recipe.name, recipe_path(recipe) %><br>
+    <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id)  %><br>
     <% end %>
   <h3>Mains</h3>
-    <% @dinner.menu.mains.each do |a| %>
-    <%= link_to a.name, recipe_path(a) %><br>
+    <% @dinner.menu.mains.each do |recipe| %>
+    <%= link_to recipe.name, recipe_path(recipe) %><br>
+    <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id)  %><br>
     <% end %>
   <h3>Desserts</h3>
-    <% @dinner.menu.desserts.each do |a| %>
-    <%= link_to a.name, recipe_path(a) %><br>
+    <% @dinner.menu.desserts.each do |recipe| %>
+    <%= link_to recipe.name, recipe_path(recipe) %><br>
+    <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
     <% end %>
 </div>
