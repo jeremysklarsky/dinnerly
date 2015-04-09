@@ -20,4 +20,20 @@ class Users::DinnersController < ApplicationController
     @cuisines = Cuisine::CUISINES.keys.sort
     @dinner = Dinner.find(params[:id])
   end
+
+  def invite
+    
+    dinner_page = "http://localhost:3000/users/#{current_user.id}/dinners/#{params[:id]}"
+    user_email = current_user.email
+    subject = "You've got potluck"
+    recipients = params[:guest][:emails]
+    
+    GuestMailer.invite_guests(user_email, recipients, subject, dinner_page).deliver
+
+    respond_to do |f|
+      f.js 
+    end
+
+  end
+
 end
