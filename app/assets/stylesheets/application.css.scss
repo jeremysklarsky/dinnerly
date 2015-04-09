@@ -51,3 +51,11 @@ body {
 .theme-showcase > p > .btn {
   margin: 5px 0;
 }
+
+.horizontal-scroll {
+  height: 300px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: visible;
+  display: inline-block;
+}

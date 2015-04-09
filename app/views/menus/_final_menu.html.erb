@@ -1,0 +1,18 @@
+<div class="final-menu">
+  <h3>Appetizers</h3>
+    <% @dinner.menu.appetizers.each do |a| %>
+    <%= link_to a.name, recipe_path(a) %><br>
+    <% end %>
+  <h3>Sides</h3>
+    <% @dinner.menu.sides.each do |a| %>
+    <%= link_to a.name, recipe_path(a) %><br>
+    <% end %>
+  <h3>Mains</h3>
+    <% @dinner.menu.mains.each do |a| %>
+    <%= link_to a.name, recipe_path(a) %><br>
+    <% end %>
+  <h3>Desserts</h3>
+    <% @dinner.menu.desserts.each do |a| %>
+    <%= link_to a.name, recipe_path(a) %><br>
+    <% end %>
+</div>
