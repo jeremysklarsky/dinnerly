@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :menus
 
+  resources :recipes, :only => ['show']
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

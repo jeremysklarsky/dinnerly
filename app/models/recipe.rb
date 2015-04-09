@@ -4,8 +4,6 @@ class Recipe < ActiveRecord::Base
   has_many :menus, through: :menu_recipes
   has_many :recipe_courses
   has_many :courses, through: :recipe_courses
-  # has_many :recipe_cuisines
-  # has_many :cuisines, through: :recipe_cuisines
   belongs_to :cuisine
   after_create :assign_course_names
   
@@ -27,6 +25,13 @@ class Recipe < ActiveRecord::Base
       self.dessert = true
     end
     self.save     
+  end
+
+  def recipe_card
+    ActionView::Base.new(
+      Rails.configuration.paths["app/views"]).render(
+      :partial => 'menus/recipe', :format => :txt, 
+      :locals => { :recipe => self})
   end
 
 end

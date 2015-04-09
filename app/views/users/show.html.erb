@@ -3,5 +3,5 @@ HELLO??
 this will be: create dinner button/view menus button
 
 <%= button_to "Create Dinner", new_user_dinner_path(current_user), :class => "button", :method => :get  %><br />
-
+<%= button_to "My Dinners", user_dinners_path(current_user), :class => "button", :method => :get  %><br />
  <!-- new_user_dinner_path(current_user) -->
