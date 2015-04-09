@@ -1,5 +1,5 @@
 <% if !@dinner.menu.finalized? %>
-  <%= form_for @dinner.menu do |f|%>
+  <%= form_for @dinner.menu, method: "PATCH", remote: true do |f|%>
     <div id="appetizers">
       <h3>Appetizers</h3>
       <div class="recipe-card horizontal-scroll">
@@ -24,9 +24,10 @@
           <%= f.collection_check_boxes(:recipes, @dinner.menu.desserts, :id, :recipe_card) %>
         </div>
     </div>
+    <%= f.submit "Submit!" %>
   <% end %>
 <% else %>
-  completed menu
+  <%= render 'menus/final_menu', :dinner => @dinner %>
 <% end %>
 
 

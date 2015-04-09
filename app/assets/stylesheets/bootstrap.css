@@ -6732,3 +6732,15 @@ input:focus,
 .panel-default .panel-footer {
   color: #98978b;
 }
+
+.final-menu {
+  font-family: cursive;
+}
+
+.final-menu a {
+  font-size: 1.5em;
+}
+
+.final-menu h3 {
+  font-weight: bold;
+}
