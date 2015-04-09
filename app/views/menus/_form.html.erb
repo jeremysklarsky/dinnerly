@@ -1,4 +1,4 @@
-<%= form_tag menus_path, :method => 'post', :class => "form-inline search-center" do %>
+<%= form_tag menus_path, :method => 'post', remote: true, :class => "form-inline search-center" do %>
   <div class="form-group">
     <%= label_tag('menu[cuisine1]', "Cuisine 1") %><br>
     <%= select_tag 'menu[cuisine1]', options_for_select(@cuisines, selected: "Surprise Me!"), class: "form-control" %>

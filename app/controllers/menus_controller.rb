@@ -93,9 +93,10 @@ class MenusController < ApplicationController
     end    
 
     @menu.save
-    binding.pry
     if @dinner.save
-      redirect_to "/users/#{current_user.id}/dinners/#{@dinner.id}"
+      respond_to do |format|
+        format.js
+      end
     else
       render 'dinners/show'
     end

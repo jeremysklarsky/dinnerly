@@ -1,1 +1,4 @@
-_menu.html.erb
+<% @dinner.recipes.each do |recipe| %>
+  <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
+  <%= recipe.name %><br>
+<% end %>
