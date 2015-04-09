@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
 
   resources :menus
-
   resources :recipes, :only => ['show']
+  resources :menu_recipes, :only => ['update']
 
   root 'welcome#index'
 
