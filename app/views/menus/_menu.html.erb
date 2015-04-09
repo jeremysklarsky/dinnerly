@@ -1,4 +1,32 @@
-<% @dinner.recipes.each do |recipe| %>
-  <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
-  <%= recipe.name %><br>
+<% if !@dinner.menu.finalized? %>
+  <div id="appetizers">
+    <h3>Appetizers</h3>
+    <% @dinner.menu.appetizers.each do |recipe| %>
+      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
+      <%= recipe.name %><br>
+    <% end %>
+  </div>
+  <div id="sides">
+    <h3>Sides</h3>
+    <% @dinner.menu.sides.each do |recipe| %>
+      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
+      <%= recipe.name %><br>
+    <% end %>
+  </div>
+  <div id="mains">
+    <h3>Mains</h3>
+    <% @dinner.menu.mains.each do |recipe| %>
+      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
+      <%= recipe.name %><br>
+    <% end %>
+  </div>
+  <div id="desserts">
+    <h3>Desserts</h3>
+    <% @dinner.menu.desserts.each do |recipe| %>
+      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
+      <%= recipe.name %><br>
+    <% end %>
+  </div>
+<% else %>
+  completed menu
 <% end %>
