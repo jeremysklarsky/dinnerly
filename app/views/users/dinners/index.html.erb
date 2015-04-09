@@ -1,5 +1,8 @@
 <div class="well well-lg col-md-4 col-md-offset-4 text-center">
   <% current_user.dinners.each do |dinner| %>
-    <%= link_to dinner.name, "/users/#{current_user.id}/dinners/#{dinner.id}"%><br>
+    <%= link_to dinner.name, user_dinner_path(current_user, dinner)%><br>
   <% end %>
 </div>
+
+
+<!-- "/users/#{current_user.id}/dinners/#{dinner.id}" -->

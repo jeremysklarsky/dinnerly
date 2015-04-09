@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :users, :except => ['new'] do 
     resources :dinners, :controller => "users/dinners"
   end
@@ -10,7 +11,8 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new', :as => 'signup' 
 
   resources :menus
-  resources :recipes, only: ['show']
+
+  resources :recipes, :only => ['show']
 
   root 'welcome#index'
 
