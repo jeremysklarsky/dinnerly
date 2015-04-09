@@ -1,32 +1,22 @@
 <% if !@dinner.menu.finalized? %>
-  <div id="appetizers">
-    <h3>Appetizers</h3>
-    <% @dinner.menu.appetizers.each do |recipe| %>
-      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
-      <%= recipe.name %><br>
-    <% end %>
-  </div>
-  <div id="sides">
-    <h3>Sides</h3>
-    <% @dinner.menu.sides.each do |recipe| %>
-      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
-      <%= recipe.name %><br>
-    <% end %>
-  </div>
-  <div id="mains">
-    <h3>Mains</h3>
-    <% @dinner.menu.mains.each do |recipe| %>
-      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
-      <%= recipe.name %><br>
-    <% end %>
-  </div>
-  <div id="desserts">
-    <h3>Desserts</h3>
-    <% @dinner.menu.desserts.each do |recipe| %>
-      <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
-      <%= recipe.name %><br>
-    <% end %>
-  </div>
+  <%= form_for @dinner.menu do |f|%>
+    <div id="appetizers">
+      <h3>Appetizers</h3>
+      <%= f.collection_check_boxes(:recipes, @dinner.menu.appetizers, :id, :recipe_card) %>
+    </div>
+    <div id="sides">
+      <h3>Sides</h3>
+      <%= f.collection_check_boxes(:recipes, @dinner.menu.sides, :id, :recipe_card) %>
+    </div>
+    <div id="mains">
+      <h3>Mains</h3>
+      <%= f.collection_check_boxes(:recipes, @dinner.menu.mains, :id, :recipe_card) %>
+    </div>
+    <div id="desserts">
+      <h3>Desserts</h3>
+      <%= f.collection_check_boxes(:recipes, @dinner.menu.desserts, :id, :recipe_card) %>
+    </div>
+  <% end %>
 <% else %>
   completed menu
 <% end %>

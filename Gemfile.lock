@@ -186,6 +186,8 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.2.0)
       json (~> 1.4)
+    render_anywhere (0.0.11)
+      rails (>= 3.0.7)
     rest-client (1.6.8)
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
@@ -299,6 +301,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails-erd
   rails_12factor
+  render_anywhere
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
