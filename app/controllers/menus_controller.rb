@@ -1,83 +1,103 @@
 class MenusController < ApplicationController
 
-  # def new
-  #   @menu = Menu.new
-  #   @dinner = Dinner.find(params[:dinner_id])
-  #   @cuisines = Cuisine::CUISINES.keys.sort
-  # end
-
   def create
     @dinner = Dinner.find(params[:dinner_id])
+    @menu = @dinner.build_menu
+    @dinner.save
+    cuisines =[]
+    cuisines_no_surprises = Cuisine::CUISINES.dup
+    cuisines_no_surprises.delete('-Surprise Me!-')
+    @cuisine_keys = cuisines_no_surprises.keys
 
     if params['menu']['cuisine1'] != "-Surprise Me!-"
-      cuisines = Cuisine::CUISINES[params['menu']['cuisine1']]
+      cuisines << Cuisine::CUISINES[params['menu']['cuisine1']]
     else
-      cuisines_with_surprises = Cuisine::CUISINES.dup
-      cuisines_with_surprises.delete['-Surprise Me!-']
-      cuisine_keys = cuisines_with_surprises.keys
-      cuisines = []
       3.times do 
-        surprise_cuisine = cuisine_keys.sample
+        surprise_cuisine = Cuisine::CUISINES[@cuisine_keys.sample]
         cuisines << surprise_cuisine
-        cuisines_with_surprises.delete[surprise_cuisine]
       end
+
     end
 
     if params['menu']['cuisine2'] != "-Surprise Me!-"
       cuisines << Cuisine::CUISINES[params['menu']['cuisine2']]
     else
-      cuisines_with_surprises = Cuisine::CUISINES.dup
-      cuisines_with_surprises.delete['-Surprise Me!-']
-      cuisine_keys = cuisines_with_surprises.keys
       3.times do 
-        surprise_cuisine = cuisine_keys.sample
+        surprise_cuisine = Cuisine::CUISINES[@cuisine_keys.sample]
         cuisines << surprise_cuisine
-        cuisines_with_surprises.delete[surprise_cuisine]
       end
     end
+    
     @cuisines = cuisines.flatten.uniq
 
-
-    # to abstract all of this!
     num_appetizers = params['menu']['appetizers'].to_i * 2
     num_sides = params['menu']['sides'].to_i * 2
     num_mains = params['menu']['mains'].to_i * 2
     num_desserts = params['menu']['desserts'].to_i * 2
+  
+    @appetizer_recipes = []
+    @side_recipes = []
+    @main_recipes = []
+    @menu_recipes = []
+    @dessert_recipes = Recipe.where('dessert = true')
 
-    @appetizers_recipes = []
-    appetizers = Course::COURSES['Appetizers']
-    num_appetizers.times do
-      @appetizers_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', appetizers.sample).references(:courses)
+    @menu_recipes += @dessert_recipes  
+
+    @cuisines.each do |c|
+      @appetizer_recipes += Cuisine.find_by(name: c).recipes.where('appetizer = true').select{|recipe|!@menu_recipes.include?(recipe)} #if !Cuisine.find_by(name: c).recipes.where('appetizer = true').empty?
+      @menu_recipes += @appetizer_recipes
+      @side_recipes += Cuisine.find_by(name: c).recipes.where('side = true').select{|recipe|!@menu_recipes.include?(recipe)} #if !Cuisine.find_by(name: c).recipes.where('side = true').empty?
+      @menu_recipes += @side_recipes
+      @main_recipes += Cuisine.find_by(name: c).recipes.where('main = true').select{|recipe|!@menu_recipes.include?(recipe)} #if !Cuisine.find_by(name: c).recipes.where('main = true').empty?
+      @menu_recipes += @main_recipes
     end
 
-    @sides_recipes = []
-    sides = Course::COURSES['Side Dishes']
-    num_sides.times do
-      @sides_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', sides.sample).references(:courses)
+    @appetizer_recipes.uniq!
+    @side_recipes.uniq!
+    @main_recipes.uniq!
+
+    until @appetizer_recipes.length >= num_appetizers
+      recipe = Recipe.where('appetizer = true').sample 
+      @appetizer_recipes << recipe unless @appetizer_recipes.include?(recipe) || @menu_recipes.include?(recipe)  
+    end
+    
+    @menu_recipes += @appetizer_recipes
+
+    until @side_recipes.length >= num_sides
+      recipe = Recipe.where('side = true').sample 
+      @side_recipes << recipe unless @side_recipes.include?(recipe) || @menu_recipes.include?(recipe)  
+    end
+      
+    @menu_recipes += @side_recipes
+
+    until @main_recipes.length >= num_mains
+      recipe = Recipe.where('main = true').sample 
+      @main_recipes << recipe unless @main_recipes.include?(recipe) || @menu_recipes.include?(recipe)      
+    end
+    @menu_recipes += @main_recipes
+
+    @appetizer_recipes.sample(num_appetizers).each do |recipe|  
+      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Appetizer")
+    end
+      
+    @side_recipes.compact.sample(num_sides).each do |recipe|    
+      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Side")
     end
 
-    @mains_recipes = []
-    mains = Course::COURSES['Main Dishes']
-    num_mains.times do
-      @mains_recipes << Cuisine.find_by(name: cuisines.sample).recipes.includes(:courses).where('courses.name = ?', mains.sample).references(:courses)
+    @main_recipes.compact.sample(num_mains).each do |recipe|    
+      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Main")
     end
 
-    @desserts_recipes = []
-    desserts = Course::COURSES['Desserts']
-    num_desserts.times do
-      @desserts_recipes << Recipe.includes(:courses).where('courses.name=?', desserts.sample).references(:courses)
-    end
+    @dessert_recipes.sample(num_desserts).each do |recipe|    
+      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Dessert")
+    end    
 
-    @dinner.build_menu(menu_params)
+    @menu.save
+    binding.pry
     if @dinner.save
       redirect_to "/users/#{current_user.id}/dinners/#{@dinner.id}"
     else
       render 'dinners/show'
     end
-  end
-
-  private
-  def menu_params
-    params.require(:menu).permit(:name)
   end
 end

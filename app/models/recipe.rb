@@ -7,5 +7,11 @@ class Recipe < ActiveRecord::Base
   # has_many :recipe_cuisines
   # has_many :cuisines, through: :recipe_cuisines
   belongs_to :cuisine
+
+  def course_names
+    self.courses.collect{|course| course.name}
+  end
   
 end
+
+
