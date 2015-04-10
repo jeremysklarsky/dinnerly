@@ -38,9 +38,9 @@ class ApplicationController < ActionController::Base
         flash[:notice] = "You must be logged in!"
         redirect_to login_path
       else 
-          binding.pry
+          # binding.pry
         if dinner.host != current_user
-          binding.pry
+          # binding.pry
           if !email_list.include?(current_user.email)
             flash[:notice] = "You're not invited!"
             redirect_to user_path(current_user)
