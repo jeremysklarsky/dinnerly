@@ -1,12 +1,18 @@
-<%= form_for(@user, url: sessions_path) do |f| %>
- <p>
-   <%= f.label :email %><br />
-   <%= f.text_field :email %>
- </p>
- <p>
-   <%= f.label :password %><br />
-   <%= f.password_field :password %>
- </p>
- <%= f.submit "Log In" %>
-<% end %>
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="well bs-component">
+    <h3 class="welcome-msg col-lg-offset-3">Log in</h3>
+      <%= form_for(@user, url: sessions_path) do |f| %>
+      <p>
+      <%= f.label :email, class: "col-sm-3 control-label" %>
+      <%= f.text_field :email, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :password, class: "col-sm-3 control-label" %>
+      <%= f.password_field :password, class: "form-field form-control" %>
+      </p>
+      <%= f.submit "Log In", class: "col-sm-offset-3 btn btn-primary" %>
+      <% end %>
+  </div>
+</div>
 
+   
