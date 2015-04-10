@@ -8,7 +8,6 @@ class UpdateCourseNames
   def update
     @recipes = Recipe.all
     @recipes.each do |recipe|
-      binding.pry
       if !(recipe.course_names & COURSES["Appetizers"]).empty?
         recipe.appetizer = true
       end
