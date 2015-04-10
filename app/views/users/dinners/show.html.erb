@@ -1,8 +1,8 @@
-<div class="well well-lg col-md-8 col-md-offset-2 text-center">
-  <%= @dinner.name %><br>
-  <%= @dinner.location %><br>
-  <%= @dinner.datetime.strftime('%A, %d %b %Y %l:%M %p') %>
-  <br><br>
+<div class="well well-lg col-md-10 col-md-offset-1 text-center">
+  <h3 class="welcome-msg"><%= @dinner.name%></h3>
+  <h4 class="welcome-msg"><%= @dinner.location %></h4>
+  <h5 class="welcome-msg"><%= @dinner.datetime.strftime('%A, %d %b %Y %l:%M %p') %></h5>
+  <br>
 
 
   <div id="menu">
@@ -13,10 +13,10 @@
     <% end %>
   </div>
 
+  <div class="email-guests">
+  <br>
+    <%= render 'email_guest_form' %>
+  </div>
 
 </div>
 
-  <div class="email-guests">
-  
-    <%= render 'email_guest_form' %>
-  </div>

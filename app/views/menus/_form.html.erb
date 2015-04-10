@@ -8,23 +8,27 @@
     <%= select_tag 'menu[cuisine2]', options_for_select(@cuisines, selected: "Surprise Me!",), class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= label_tag('menu[appetizers]', "Number of Appetizers") %><br>
+    <%= label_tag('menu[appetizers]', "No. of Appetizers") %><br>
     <%= number_field_tag 'menu[appetizers]', nil, in: 0...11, class: "form-control" %>
   </div>
    <div class="form-group">
-    <%= label_tag('menu[sides]', "Number of Sides") %><br>
+    <%= label_tag('menu[sides]', "No. of Sides") %><br>
     <%= number_field_tag 'menu[sides]', nil, in: 0...11, class: "form-control" %>
   </div>
    <div class="form-group">
-    <%= label_tag('menu[mains]', "Number of Main Dishes") %><br>
+    <%= label_tag('menu[mains]', "No. of Main Dishes") %><br>
     <%= number_field_tag 'menu[mains]', nil, in: 0...11, class: "form-control" %>
   </div>
    <div class="form-group">
-    <%= label_tag('menu[desserts]', "Number of Desserts") %><br>
+    <%= label_tag('menu[desserts]', "No. of Desserts") %><br>
     <%= number_field_tag 'menu[desserts]', nil, in: 0...11, class: "form-control" %>
   </div>
   <%= hidden_field_tag 'dinner_id', @dinner.id %>
-  <div class="form-group">
-    <%= submit_tag "Create Menu!", class: "btn btn-warning search-btn" %>
+  <div class="form-group"><br>
+    <div class="col-md-2"></div>
+   
+    <%= label_tag %>
+    <%= submit_tag "Create Menu!", class: "btn btn-primary" %>
+ 
   </div>
 <% end %>
