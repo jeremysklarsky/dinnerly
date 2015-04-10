@@ -8,8 +8,10 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
-
+<%= render "shared_partials/navbar" %>
+<div class="container">
 <%= yield %>
+</div>
 
 </body>
 </html>
