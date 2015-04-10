@@ -31,15 +31,7 @@ class Users::DinnersController < ApplicationController
     subject = "You've got potluck"
     recipients = params[:guest][:emails]
     @dinner = Dinner.find(params[:id])
-    binding.pry
-    @dinner.guest_emails << params[:guest][:emails].join(",").gsub(" ", "")
-    binding.pry
-    # if @dinner.guest_emails 
-    #   @dinner.guest_emails << ", " + params[:guest][:emails].join(", ").gsub(" ", "")
-    # else
-    #   @dinner.guest_emails = params[:guest][:emails].join(", ").gsub(" ", "")
-    # end
-    
+    @dinner.guest_emails << params[:guest][:emails].join(",").gsub(" ", "")    
     @dinner.save
     GuestMailer.invite_guests(user_email, recipients, subject, dinner_page).deliver
 
@@ -50,6 +42,19 @@ class Users::DinnersController < ApplicationController
   end
 
   def rsvp
+    @dinner = Dinner.find(params[:id])
+  end
+
+  def update
+    @dinner = Dinner.find(params[:id])
+    if params[:dinner][:guests] == "Yes"
+      @dinner.guests << current_user
+      @dinner.save
+      redirect_to user_dinner_path(@dinner.host, @dinner)
+    else
+      redirect_to root_path
+    end
+
   end
 
 end

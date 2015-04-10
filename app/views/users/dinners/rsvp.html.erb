@@ -1,1 +1,17 @@
-RSVP PAGE??
+<div class="well well-lg col-md-8 col-md-offset-2 text-center">
+  <%= @dinner.name %><br>
+  <%= @dinner.location %><br>
+  <%= @dinner.datetime.strftime('%A, %d %b %Y %l:%M %p') %>
+  <br><br>
+
+
+  <%= form_for [@dinner.host, @dinner], method: "PATCH" do |f| %>
+    <%= f.hidden_field :guest_id, :value => current_user.id %>
+    <%= f.label :guests, "Yes" %>
+    <%= f.radio_button :guests, "Yes"%>
+    <%= f.label :guests, "No" %>
+    <%= f.radio_button :guests, "No"%><br>
+    <%= f.submit "Submit RSVP"%>
+  <% end %>
+
+</div>
