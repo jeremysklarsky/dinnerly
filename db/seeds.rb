@@ -13,23 +13,11 @@
 keywords_list = ["dessert", "appetizer", "bread", "main dish", "salad", "side dish", "soup", "marinade", "pasta", "casserole", "rice", "risotto", "chicken", "beef", "fish", "lamb", "pork", "grilled"]
 
 
-  #sophie's key, page 1 desserts
-  #next: sophie's key, page 2 desserts
-
-  #-------
-  #sophie's key, page 2 desserts
-  #next: kate's key, page 1 appetizers
-
-  #---------
-  #kate's key, page 1 appetizers
-  #next: kate's key, page 2 apps
-
-  #------
-  #next but haven't done it yet: kate's key, page 2 apps
+ #Rachel's key, dessert page 1
+ #next: Rachel's key, dessert page 2
 
 
-search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list[1]}&api_key=XXXXX&pg=1&rpp=49", headers:{ "Accept" => "application/json"})
-# Unirest.get("http://api.bigoven.com/recipes?any_kw=salad&api_key=XXXXX&pg=2&rpp=49", headers:{ "Accept" => "application/json"})
+search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list[0]}&api_key=ENV["big_oven_id"]&pg=1&rpp=49", headers:{ "Accept" => "application/json"})
 
 
 
@@ -40,7 +28,7 @@ end
 
 recipe_ids.each do |recipe_id|
 
-  recipe_response = Unirest.get("http://api.bigoven.com/recipe/#{recipe_id}?api_key=XXXXX", headers:{ "Accept" => "application/json"})
+  recipe_response = Unirest.get("http://api.bigoven.com/recipe/#{recipe_id}?api_key=ENV["big_oven_id"]", headers:{ "Accept" => "application/json"})
   if !Recipe.find_by(:big_oven_id => recipe_response.body["RecipeID"]) && ((recipe_response.body["Ingredients"] != "") && (recipe_response.body["Ingredients"] != nil)) && ((recipe_response.body["Instructions"] != "") && (recipe_response.body["Instructions"] != nil)) && ((recipe_response.body["Cuisine"] != "") && (recipe_response.body["Cuisine"] != nil))
 
     recipe = Recipe.new
