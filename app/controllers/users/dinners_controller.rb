@@ -9,6 +9,7 @@ class Users::DinnersController < ApplicationController
 
   def create
     @dinner = Dinner.new(name: params[:dinner][:name], location: params[:dinner][:location], datetime: params[:dinner][:datetime], host_id: params[:user_id]) 
+    @dinner.guest_emails = ""
     if @dinner.save
       redirect_to "/users/#{current_user.id}/dinners/#{@dinner.id}"
     else
@@ -31,8 +32,11 @@ class Users::DinnersController < ApplicationController
     subject = "You've got potluck"
     recipients = params[:guest][:emails]
     @dinner = Dinner.find(params[:id])
-    @dinner.guest_emails << params[:guest][:emails].join(",").gsub(" ", "")    
+    
+    @dinner.guest_emails << params["guest"]["emails"].select{|email| email.length > 1}.join(",").gsub(" ", "")    
+    
     @dinner.save
+    
     GuestMailer.invite_guests(user_email, recipients, subject, dinner_page).deliver
 
     respond_to do |f|

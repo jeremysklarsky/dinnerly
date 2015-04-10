@@ -1,8 +1,13 @@
 <div class="well well-lg col-md-4 col-md-offset-4 text-center">
+<h3>Dinners I've Hosted</h3>
   <% current_user.dinners.each do |dinner| %>
     <%= link_to dinner.name, user_dinner_path(current_user, dinner)%><br>
   <% end %>
 </div>
 
-
-<!-- "/users/#{current_user.id}/dinners/#{dinner.id}" -->
+<div class="well well-lg col-md-4 col-md-offset-4 text-center">
+<h3>Dinners I've Attended</h3>
+  <% Dinner.select{|dinner| dinner.guests.include?(current_user)}.each do |dinner| %>
+    <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%><br>
+  <% end %>
+</div>
