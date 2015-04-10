@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20150410151602) do
     t.string   "name"
     t.datetime "datetime"
     t.string   "location"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "guest_emails", default: " "
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "guest_emails", default: ""
   end
 
   create_table "menu_recipes", force: :cascade do |t|
