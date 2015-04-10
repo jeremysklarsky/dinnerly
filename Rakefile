@@ -4,3 +4,8 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+desc "Assigns boolean values to recipe courses"
+task :sanitize => :environment do 
+  UpdateCourseNames.new.update
+end

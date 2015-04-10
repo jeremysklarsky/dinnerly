@@ -8,9 +8,17 @@
 
 # name, list of ingredients, instructions, cuisine type(s), meal categories
 
+
+
 keywords_list = ["dessert", "appetizer", "bread", "main dish", "salad", "side dish", "soup", "marinade", "pasta", "casserole", "rice", "risotto", "chicken", "beef", "fish", "lamb", "pork", "grilled"]
 
-search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list.sample}&api_key=#{ENV["big_oven_key"]}&pg=1&rpp=49", headers:{ "Accept" => "application/json"})
+
+ #Rachel's key, dessert page 1
+ #next: Rachel's key, dessert page 2
+
+
+search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list[3]}&api_key=#{ENV['big_oven_key']}&pg=1&rpp=30", headers:{ "Accept" => "application/json"})
+
 
 
 recipe_ids = search_result.body["Results"].collect do |result|
@@ -19,7 +27,7 @@ end
 
 recipe_ids.each do |recipe_id|
 
-  recipe_response = Unirest.get("http://api.bigoven.com/recipe/#{recipe_id}?api_key=#{ENV["big_oven_key"]}", headers:{ "Accept" => "application/json"})
+  recipe_response = Unirest.get("http://api.bigoven.com/recipe/#{recipe_id}?api_key=#{ENV['big_oven_key']}", headers:{ "Accept" => "application/json"})
   if !Recipe.find_by(:big_oven_id => recipe_response.body["RecipeID"]) && ((recipe_response.body["Ingredients"] != "") && (recipe_response.body["Ingredients"] != nil)) && ((recipe_response.body["Instructions"] != "") && (recipe_response.body["Instructions"] != nil)) && ((recipe_response.body["Cuisine"] != "") && (recipe_response.body["Cuisine"] != nil))
 
     recipe = Recipe.new
