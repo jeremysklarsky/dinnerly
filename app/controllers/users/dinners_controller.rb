@@ -1,5 +1,8 @@
 class Users::DinnersController < ApplicationController
 
+  before_filter :invited?, only: [:show]
+
+
   def new
     @dinner = Dinner.new
   end
@@ -27,13 +30,26 @@ class Users::DinnersController < ApplicationController
     user_email = current_user.email
     subject = "You've got potluck"
     recipients = params[:guest][:emails]
+    @dinner = Dinner.find(params[:id])
+    binding.pry
+    @dinner.guest_emails << params[:guest][:emails].join(",").gsub(" ", "")
+    binding.pry
+    # if @dinner.guest_emails 
+    #   @dinner.guest_emails << ", " + params[:guest][:emails].join(", ").gsub(" ", "")
+    # else
+    #   @dinner.guest_emails = params[:guest][:emails].join(", ").gsub(" ", "")
+    # end
     
+    @dinner.save
     GuestMailer.invite_guests(user_email, recipients, subject, dinner_page).deliver
 
     respond_to do |f|
       f.js 
     end
 
+  end
+
+  def rsvp
   end
 
 end

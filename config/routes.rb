@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   resources :users, :except => ['new'] do 
     resources :dinners, :controller => "users/dinners" do
       post :invite, :on => :member
+      get :rsvp, :on => :member
     end
 
   end
+
+
 
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
