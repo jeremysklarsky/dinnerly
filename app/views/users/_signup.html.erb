@@ -2,19 +2,18 @@
   <div class="well bs-component">
     <h3 class="welcome-msg col-lg-offset-3">Sign up</h3><br>
       <%= form_for @user do |f| %>
-       <% if @user.errors.any? %>
-         <div id="error_explanation">
-           <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
-
-           <ul>
-           <% @user.errors.full_messages.each do |msg| %>
-             <li><%= msg %></li>
-           <% end %> 
-           </ul>
-         </div>
-       <% end %>
-       <%= f.label :name, class: "col-sm-3 control-label"  %>
-       <%= f.text_field :name, class: "form-field form-control" %><br>
+        <% if @user.errors.any? %>
+          <div id="error_explanation" class="col-lg-offset-2">
+            <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+            <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %> 
+            </ul>
+          </div>
+        <% end %>
+      <%= f.label :name, class: "col-sm-3 control-label"  %>
+      <%= f.text_field :name, class: "form-field form-control" %><br>
       <p>
       <%= f.label :email, class: "col-sm-3 control-label" %>
       <%= f.text_field :email, class: "form-field form-control" %><br>
@@ -24,9 +23,9 @@
       <%= f.password_field :password, class: "form-field form-control" %>
       </p>
       <p>
-       <%= f.label :password_confirmation, class: "col-sm-3 control-label" %>
-       <%= f.password_field :password_confirmation, class: "form-field form-control"  %>
-     </p>
+      <%= f.label :password_confirmation, class: "col-sm-3 control-label" %>
+      <%= f.password_field :password_confirmation, class: "form-field form-control"  %>
+      </p>
       <%= f.submit "Sign Up", class: "col-sm-offset-3 btn btn-primary" %>
       <% end %>
   </div>

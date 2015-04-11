@@ -1,6 +1,7 @@
 <div class="col-lg-6 col-lg-offset-3">
   <div class="well bs-component">
     <h3 class="welcome-msg col-lg-offset-3">Log in</h3>
+      <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
       <%= form_for(:user, url: sessions_path) do |f| %>
       <p>
       <%= f.label :email, class: "col-sm-3 control-label" %>
@@ -12,7 +13,8 @@
       </p>
       <%= f.submit "Log In", class: "col-sm-offset-3 btn btn-primary" %>
       <% end %>
-      <p>Don't have an account with us? <%=link_to "Sign up!", signup_path%></p>
+      <p></p>
+      <p class="col-lg-offset-3">Don't have an account with us? <%=link_to "Sign up!", signup_path%></p>
   </div>
 </div>
 
