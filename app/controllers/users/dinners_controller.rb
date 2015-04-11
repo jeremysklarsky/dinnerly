@@ -32,11 +32,13 @@ class Users::DinnersController < ApplicationController
     subject = "You've got potluck"
     recipients = params[:guest][:emails]
     @dinner = Dinner.find(params[:id])
-    
-    @dinner.guest_emails << params["guest"]["emails"].select{|email| email.length > 1}.join(",").gsub(" ", "")    
+    emails = params["guest"]["emails"].select{|email| email.length > 1}
+    emails.each do |email|
+      @dinner.guest_emails << "," + email.strip
+    end
     
     @dinner.save
-    
+    # binding.pry
     GuestMailer.invite_guests(user_email, recipients, subject, dinner_page).deliver
 
     respond_to do |f|
