@@ -8,7 +8,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      redirect_to user_path(@user)
+      if session[:dinner_path]
+        # binding.pry
+        redirect_to session[:dinner_path]
+      else
+        redirect_to user_path(@user)
+      end
     else
       render 'new'
     end
