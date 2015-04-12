@@ -52,29 +52,4 @@ class ApplicationController < ActionController::Base
         end 
       end
     end
-
-
-
 end
-     
-      # if logged_in?
-      #   if dinner.guests.include?(current_user) || dinner.host == current_user
-      #     # binding.pry
-          
-      #   elsif email_list.include?(current_user.email)
-      #     redirect_to "#{session[:dinner_path]}/rsvp"
-      #   else
-      #     flash[:notice] = "You are not invited to this dinner! Make your own dinner and invite your own friends"
-      #     redirect_to user_path(current_user)
-      #   end
-
-      # else
-      #   redirect_to login_path
-      # end
-      #are you logged in?
-      #if not--> go to log in page, try to log in, if you don't have an account, create one. Get signed in, attempt to go back to show page BUT
-      #are you invited? have you rsvp'd? If yes to both---go look at menu
-      #if logged in, but you are not an invited guest. TOO BAD. 
-      #if logged in, but you are not a "dinnerguest" yet (have not rsvp'd), get taked to RSVP page. 
-   
-
