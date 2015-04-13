@@ -1,102 +1,100 @@
 class MenuGenerator
 
-  attr_accessor :menu_params, :menu
+  attr_accessor :menu_params, :menu, :cuisines
 
   def initialize(menu_params)
     @menu_params = menu_params
     @menu = Menu.create
+    @appetizer_recipes = []
+    @side_recipes = []
+    @main_recipes = []
+    @menu_recipes = []
+    @course_recipes_array = [@appetizer_recipes, @side_recipes, @main_recipes]
+    @dessert_recipes = Recipe.where('dessert = true')
   end
 
   def call
+    create_cuisine_list
+    set_course_numbers
+    add_to_menu_recipe_array(@dessert_recipes)  
+    
+    @cuisines.each do |cuisine|
+      #course_recipes, #db_course_name
+      create_menu_options(@appetizer_recipes, 'appetizer', cuisine)
+      create_menu_options(@side_recipes, 'side', cuisine)
+      create_menu_options(@main_recipes, 'main', cuisine)
+    end
+
+    @course_recipes_array.each{|course_recipes|course_recipes.uniq!}
+
+    finalize_menu_recipes(@appetizer_recipes, @num_appetizers, 'appetizer')
+    finalize_menu_recipes(@side_recipes, @num_sides, 'side')
+    finalize_menu_recipes(@main_recipes, @num_mains, 'main')
+    
+    build_menu_recipes(@appetizer_recipes, @num_appetizers, "Appetizer")
+    build_menu_recipes(@side_recipes, @num_sides, "Side")
+    build_menu_recipes(@main_recipes, @num_mains, "Main")
+    build_menu_recipes(@dessert_recipes, @num_desserts, "Dessert")
+
+    @menu.save
+    @menu
+  end
+
+
+  def set_course_numbers
+    @num_appetizers = self.menu_params['appetizers'].to_i * 2
+    @num_sides = self.menu_params['sides'].to_i * 2
+    @num_mains = self.menu_params['mains'].to_i * 2
+    @num_desserts = self.menu_params['desserts'].to_i * 2
+  end
+
+  def create_cuisine_list
     cuisines =[]
     cuisines_no_surprises = Cuisine::CUISINES.dup
     cuisines_no_surprises.delete('-Surprise Me!-')
     @cuisine_keys = cuisines_no_surprises.keys
 
-    if @menu_params['cuisine1'] != "-Surprise Me!-"
-      cuisines << Cuisine::CUISINES[@menu_params['cuisine1']]
-    else
-      3.times do 
-        surprise_cuisine = Cuisine::CUISINES[@cuisine_keys.sample]
-        cuisines << surprise_cuisine
-      end
+    2.times do |i|
+      if @menu_params["cuisine#{i}"] != "-Surprise Me!-"
+        cuisines << Cuisine::CUISINES[@menu_params["cuisine#{i}"]]
+      else
+        3.times do 
+          surprise_cuisine = Cuisine::CUISINES[@cuisine_keys.sample]
+          cuisines << surprise_cuisine
+        end
 
-    end
-
-    if @menu_params['cuisine2'] != "-Surprise Me!-"
-      cuisines << Cuisine::CUISINES[@menu_params['cuisine2']]
-    else
-      3.times do 
-        surprise_cuisine = Cuisine::CUISINES[@cuisine_keys.sample]
-        cuisines << surprise_cuisine
       end
     end
     
     @cuisines = cuisines.flatten.uniq
+  end
 
-    num_appetizers = @menu_params['appetizers'].to_i * 2
-    num_sides = @menu_params['sides'].to_i * 2
-    num_mains = @menu_params['mains'].to_i * 2
-    num_desserts = @menu_params['desserts'].to_i * 2
-  
-    @appetizer_recipes = []
-    @side_recipes = []
-    @main_recipes = []
-    @menu_recipes = []
-    @dessert_recipes = Recipe.where('dessert = true')
-
-    @menu_recipes += @dessert_recipes  
-
-    @cuisines.each do |c|
-      @appetizer_recipes += Cuisine.find_by(name: c).recipes.where('appetizer = true').select{|recipe|!@menu_recipes.include?(recipe)} #if !Cuisine.find_by(name: c).recipes.where('appetizer = true').empty?
-      @menu_recipes += @appetizer_recipes
-      @side_recipes += Cuisine.find_by(name: c).recipes.where('side = true').select{|recipe|!@menu_recipes.include?(recipe)} #if !Cuisine.find_by(name: c).recipes.where('side = true').empty?
-      @menu_recipes += @side_recipes
-      @main_recipes += Cuisine.find_by(name: c).recipes.where('main = true').select{|recipe|!@menu_recipes.include?(recipe)} #if !Cuisine.find_by(name: c).recipes.where('main = true').empty?
-      @menu_recipes += @main_recipes
+  def build_menu_recipes(course_recipes, num_courses, name)
+    course_recipes.sample(num_courses).each do |recipe|  
+      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: name)
     end
+  end
 
-    @appetizer_recipes.uniq!
-    @side_recipes.uniq!
-    @main_recipes.uniq!
+  def sufficient_courses?(course_recipes, num_courses)
+    course_recipes.length >= num_courses
+  end
 
-    until @appetizer_recipes.length >= num_appetizers
-      recipe = Recipe.where('appetizer = true').sample 
-      @appetizer_recipes << recipe unless @appetizer_recipes.include?(recipe) || @menu_recipes.include?(recipe)  
-    end
-    
-    @menu_recipes += @appetizer_recipes
+  def finalize_menu_recipes(course_recipes, num_courses, course_name)
+    add_random_recipes(course_recipes, course_name) until sufficient_courses?(course_recipes, num_courses)
+  end
 
-    until @side_recipes.length >= num_sides
-      recipe = Recipe.where('side = true').sample 
-      @side_recipes << recipe unless @side_recipes.include?(recipe) || @menu_recipes.include?(recipe)  
-    end
-      
-    @menu_recipes += @side_recipes
+  def add_to_menu_recipe_array(course_recipes)
+    @menu_recipes += course_recipes
+  end
 
-    until @main_recipes.length >= num_mains
-      recipe = Recipe.where('main = true').sample 
-      @main_recipes << recipe unless @main_recipes.include?(recipe) || @menu_recipes.include?(recipe)      
-    end
-    @menu_recipes += @main_recipes
+  def add_random_recipes(course_recipes, course_name)
+    recipe = Recipe.where("#{course_name} = true").sample 
+    course_recipes << recipe unless course_recipes.include?(recipe) || @menu_recipes.include?(recipe)  
+  end
 
-    @appetizer_recipes.sample(num_appetizers).each do |recipe|  
-      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Appetizer")
-    end
-      
-    @side_recipes.compact.sample(num_sides).each do |recipe|    
-      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Side")
-    end
-
-    @main_recipes.compact.sample(num_mains).each do |recipe|    
-      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Main")
-    end
-
-    @dessert_recipes.sample(num_desserts).each do |recipe|    
-      MenuRecipe.create(menu_id: @menu.id, recipe_id: recipe.id, course_name: "Dessert")
-    end    
-    @menu.save
-    @menu
+  def create_menu_options(course_recipes, course_name, cuisine)
+    course_recipes += Cuisine.find_by(name: cuisine).recipes.where("#{course_name} = true").select{|recipe|!@menu_recipes.include?(recipe)} 
+    add_to_menu_recipe_array(course_recipes)   
   end
 
 end
