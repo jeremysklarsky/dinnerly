@@ -22,6 +22,7 @@ RSpec.feature "Login User", type: :feature do
     fill_in("Password", :with => "foobar")
     fill_in("Password confirmation", :with => "foobar")
     click_button "Sign Up"
+    
     click_link "Log Out"
     click_link "log in"
     fill_in "Email", :with => "amy@gmail.com"
