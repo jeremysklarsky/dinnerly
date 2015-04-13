@@ -1,10 +1,12 @@
 class MenusController < ApplicationController
 
   def create
+    # binding.pry
     @dinner = Dinner.find(params[:dinner_id])
     @dinner.menu = MenuGenerator.new(params['menu']).call
-
+    # binding.pry
     if @dinner.save
+      # binding.pry
       respond_to do |format|
         format.js
         format.html

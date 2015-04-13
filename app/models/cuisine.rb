@@ -6,23 +6,16 @@ class Cuisine < ActiveRecord::Base
   CUISINES = {"-Surprise Me!-" => ["Surprise Me!"],
               "Mexican" =>  ["Mexican"],
               "Italian" =>  ["Italian"],
-              "American" =>  ["American", "american", "American-South"],
-              "African" =>  ["African"],
-              "Hungary" =>  ["Hungary"],
-              "Southern" => ["American-South"],
-              "Hawaiian" =>  ["Hawaiian"],
-              "Brazilian" =>  ["Brazilian"],
-              "English" =>  ["English"],
-              "Japanese" =>  ["Japanese"],
+              "American" =>  ["American"],
               "Asian" =>  ["Asian"],
               "Spanish" =>  ["Spanish"],
-              "Chinese" =>  ["Chinese", "Chinese-canadian"],
-              "Caribbean" =>  ["Caribbean"],
-              "Middle Eastern" => ["Middle Eastern"],
-              "South African" => ["South African"],
+              "Vegan" => ["Vegan"],
               "Greek" =>  ["Greek"],
+              "Western-Style" => ["Western-Style"],
+              "Mediterranean" => ["Mediterranean"],
               "German" =>  ["German"],
-              "Thai" =>  ["Thai"],
               "French" =>  ["French"]}
+
+              
 
 end

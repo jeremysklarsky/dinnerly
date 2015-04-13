@@ -1,10 +1,21 @@
 FactoryGirl.define do
+  sequence(:name) {|n| "recipe#{n}"}
   factory :recipe do
+    name
+    cuisine Cuisine::CUISINES.values.flatten[1..-1].sample
+    # course
 
   end
 end
 
 
+#  sequence(:email) { |n| "person#{n}@email.com" }
+#   factory :user do
+#     name "Amy Poehler"
+#     email 
+#     password "foobar"
+#   end
+# end
 #     t.string   "name"
 #     t.string   "source_url"
 #     t.text     "instructions"
