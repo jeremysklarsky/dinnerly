@@ -13,9 +13,8 @@ class MenusController < ApplicationController
       render 'dinners/show'
     end
   end
-
+  
   def update
-    
     @menu = Menu.find(params[:id])
     @dinner = @menu.dinner
     @options = @menu.recipes.collect{|r|r.id}
