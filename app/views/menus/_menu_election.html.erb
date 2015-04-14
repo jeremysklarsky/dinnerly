@@ -13,27 +13,49 @@
           <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
           <% end  %>
         </div>
-        <% end %>
+      <% end %>
       </div>
     </div>
     <div id="sides">
       <h3>Sides</h3>
         <div class="recipe-card horizontal-scroll">
-          
+        <% @dinner.menu.menu_sides.each do |mr| %>
+        <div class="recipe-card">
+          <p><%= mr.recipe.name %></p>
+          <p id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></p>
+          <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
+        </div>
+      <% end %>          
         </div>
       </div>
     <div id="mains">
       <h3>Mains</h3>
         <div class="recipe-card horizontal-scroll">
-          
+          <% @dinner.menu.menu_mains.each do |mr| %>
+        <div class="recipe-card">
+          <p><%= mr.recipe.name %></p>
+          <p id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></p>
+          <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
+        </div>
+      <% end %>
         </div>
       </div>
     <div id="desserts">
       <h3>Desserts</h3>
         <div class="recipe-card horizontal-scroll">
-          
+          <% @dinner.menu.menu_desserts.each do |mr| %>
+        <div class="recipe-card">
+          <p><%= mr.recipe.name %></p>
+          <p id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></p>
+          <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
+        </div>
+      <% end %>
         </div>
     </div>
+
+    <% if @dinner.host == current_user %>
+      <%= button_to 'Tally Menu', tally_menu_path(@dinner.menu), remote: true %>
+    <% end %>
   
 <% else %>
   <%= render 'menus/final_menu', :dinner => @dinner %>

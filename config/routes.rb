@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   post 'sessions' => 'sessions#create'
   get 'signup' => 'users#new', :as => 'signup' 
 
-  resources :menus
+  resources :menus do
+    post :tally, :on => :member
+  end
+
   resources :recipes, :only => ['show']
   resources :menu_recipes, :only => ['update', 'vote'] do 
     post :vote, :on => :member
