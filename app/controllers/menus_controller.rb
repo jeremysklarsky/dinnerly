@@ -33,4 +33,36 @@ class MenusController < ApplicationController
       f.js
     end
   end
+
+  def tally
+    @menu = Menu.find(params[:id])
+    @dinner = @menu.dinner
+    @options = @menu.menu_recipes.collect{|mr|mr.id}
+
+    @apps = @menu.menu_recipes.where(course_name: "Appetizer")
+    @sides = @menu.menu_recipes.where(course_name: "Side")
+    @mains = @menu.menu_recipes.where(course_name: "Main")
+    @desserts = @menu.menu_recipes.where(course_name: "Dessert")
+
+    @num_apps = @apps.size / 2
+    @num_sides = @sides.size / 2
+    @num_mains = @mains.size / 2
+    @num_desserts = @desserts.size / 2
+
+    @choices = []
+    @choices << @apps.sort_by {|a| a.vote_total }.reverse[0..@num_apps-1].collect {|a| a.id}
+    @choices << @sides.sort_by {|a| a.vote_total }.reverse[0..@num_sides-1].collect {|a| a.id}
+    @choices << @mains.sort_by {|a| a.vote_total }.reverse[0..@num_mains-1].collect {|a| a.id}
+    @choices << @desserts.sort_by {|a| a.vote_total }.reverse[0..@num_desserts-1].collect {|a| a.id}
+    @choices.flatten!
+
+    (@options - @choices).each do |reject|
+      @menu.menu_recipes.find(reject).destroy
+    end
+    @menu.finalized = true
+    @menu.save
+    respond_to do |f|
+      f.js
+    end
+  end
 end
