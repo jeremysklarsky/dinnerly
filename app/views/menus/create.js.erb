@@ -1,2 +1,5 @@
-
-$('#menu').html("<%= j render partial: 'menu' %>");
+<% if @dinner.menu.election? %>
+  $('#menu').html("<%= j render partial: 'menu_election' %>");
+<% else %>
+  $('#menu').html("<%= j render partial: 'menu' %>");
+<% end %>

@@ -6,9 +6,13 @@
 
 
   <div id="menu">
-    <% if @dinner.menu %>
-      <%= render 'menus/menu' %>
+  <% if @dinner.menu %>  
+    <% if @dinner.menu.election %>
+      <%= render 'menus/menu_election' %>
     <% else %>
+      <%= render 'menus/menu' %>
+    <% end %>
+  <% else %>
       <%= render 'menus/form' %>
     <% end %>
   </div>

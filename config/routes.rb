@@ -8,19 +8,16 @@ Rails.application.routes.draw do
 
   end
 
-
-
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
   post 'sessions' => 'sessions#create'
-
   get 'signup' => 'users#new', :as => 'signup' 
-
-
 
   resources :menus
   resources :recipes, :only => ['show']
-  resources :menu_recipes, :only => ['update']
+  resources :menu_recipes, :only => ['update', 'vote'] do 
+    post :vote, :on => :member
+  end
 
   root 'welcome#index'
 

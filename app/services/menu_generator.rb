@@ -67,6 +67,7 @@ class MenuGenerator
     end
     
     @cuisines = cuisines.flatten.uniq
+    @cuisines.delete_if {|c| c.nil?}
   end
 
   def build_menu_recipes(course_recipes, num_courses, name)

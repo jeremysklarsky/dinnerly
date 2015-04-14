@@ -20,4 +20,20 @@ class Menu < ActiveRecord::Base
   def desserts
     self.menu_recipes.where(course_name: "Dessert").collect {|mr| mr.recipe}
   end
+
+  def menu_appetizers
+    self.menu_recipes.where(course_name: "Appetizer").collect {|mr| mr}
+  end
+
+  def menu_sides
+    self.menu_recipes.where(course_name: "Side").collect {|mr| mr}
+  end
+
+  def menu_mains
+    self.menu_recipes.where(course_name: "Main").collect {|mr| mr}
+  end
+
+  def menu_desserts
+    self.menu_recipes.where(course_name: "Dessert").collect {|mr| mr}
+  end
 end
