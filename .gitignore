@@ -20,7 +20,7 @@
 /config/application.yml
 
 # Ignore database configuration
-/config/database.yml
+/app/config/database.yml
 
 #ignore dictionaries
 /app/models/course.rb
