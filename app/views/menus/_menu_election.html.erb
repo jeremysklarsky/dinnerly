@@ -1,40 +1,38 @@
 <!-- menu election -->
 
 <% if !@dinner.menu.finalized? %>
-  <%= form_for @dinner.menu, method: "PATCH", remote: true do |f|%>
+  
     <div id="appetizers">
       <h3>Appetizers</h3>
       <div class="recipe-card horizontal-scroll">
-      <% @dinner.menu.appetizers.each do |recipe| %>
-        <tr>
-          <td><%= recipe.name %></td>
-          <td><%= pluralize(recipe.votes.count, "vote") %></td>
-          <td><%= button_to '+1', upvote_topic_path(topic), method: :post %></td>
-         
-        </tr>
+      <% @dinner.menu.menu_appetizers.each do |mr| %>
+        <div class="recipe-card">
+          <p><%= mr.recipe.name %></p>
+          <p id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></p>
+          <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
+        </div>
         <% end %>
       </div>
     </div>
     <div id="sides">
       <h3>Sides</h3>
         <div class="recipe-card horizontal-scroll">
-          <%= f.collection_check_boxes(:recipes, @dinner.menu.sides, :id, :recipe_card) %>
+          
         </div>
       </div>
     <div id="mains">
       <h3>Mains</h3>
         <div class="recipe-card horizontal-scroll">
-          <%= f.collection_check_boxes(:recipes, @dinner.menu.mains, :id, :recipe_card) %>
+          
         </div>
       </div>
     <div id="desserts">
       <h3>Desserts</h3>
         <div class="recipe-card horizontal-scroll">
-          <%= f.collection_check_boxes(:recipes, @dinner.menu.desserts, :id, :recipe_card) %>
+          
         </div>
     </div>
-    <%= f.submit "Submit!" %>
-  <% end %>
+  
 <% else %>
   <%= render 'menus/final_menu', :dinner => @dinner %>
   

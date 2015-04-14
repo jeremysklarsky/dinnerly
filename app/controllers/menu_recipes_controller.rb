@@ -13,4 +13,19 @@ class MenuRecipesController < ApplicationController
       f.js
     end 
   end
+
+  def vote
+    # binding.pry
+    @menu_recipe = MenuRecipe.find(params[:id])
+    @menu_recipe.votes.build(:user_id => current_user.id)
+    @menu_recipe.save
+    @num_votes = "#num_votes_#{@menu_recipe.id}"
+    @vote_button = "#vote_#{@menu_recipe.id}"
+    # binding.pry
+
+    respond_to do |f|
+      f.js 
+    end
+  end
+
 end
