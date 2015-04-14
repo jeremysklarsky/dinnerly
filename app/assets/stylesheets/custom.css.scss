@@ -1,0 +1,20 @@
+
+.horizontal-scroll {
+  height: 300px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: inline-block;
+}
+
+.sans-serif {
+  font-family: sans-serif;
+  font-size: .75em;
+  text-transform: none;
+  padding: 1px 10px;
+  margin-top: 1em;
+}
+.individual-recipe{
+  float: left;
+  margin-right:5px;
+}
