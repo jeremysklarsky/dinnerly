@@ -9,4 +9,8 @@ class MenuRecipe < ActiveRecord::Base
     votes.size
   end
 
+  def vote_cast?(current_user)
+    !self.votes.where(:user_id => current_user.id).empty?
+  end
+
 end

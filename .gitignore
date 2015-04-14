@@ -21,3 +21,7 @@
 
 # Ignore database configuration
 /config/database.yml
+
+# Ignore dictionaries
+/models/cuisine.rb
+/models/course.rb

@@ -9,7 +9,9 @@
         <div class="recipe-card">
           <p><%= mr.recipe.name %></p>
           <p id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></p>
+          <% if !mr.vote_cast?(current_user) %>
           <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
+          <% end  %>
         </div>
         <% end %>
       </div>

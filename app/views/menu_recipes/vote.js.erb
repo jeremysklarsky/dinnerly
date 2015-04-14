@@ -1,2 +1,6 @@
 $('<%= j @num_votes %>').html('<%= j pluralize(@menu_recipe.votes.count, "vote") %>');
 $('<%= j @vote_button %>').parent().remove();
+debugger;
+<% if session[:alert]%>
+alert("You can't vote!!")
+<%end%>
