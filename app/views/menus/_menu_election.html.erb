@@ -5,15 +5,12 @@
     <div id="appetizers">
       <h3>Appetizers</h3>
       <div class="recipe-card horizontal-scroll">
-      <% @dinner.menu.appetizers.each do |topic| %>
+      <% @dinner.menu.appetizers.each do |recipe| %>
         <tr>
-          <td><%= topic.title %></td>
-          <td><%= topic.description %></td>
-          <td><%= pluralize(topic.votes.count, "vote") %></td>
+          <td><%= recipe.name %></td>
+          <td><%= pluralize(recipe.votes.count, "vote") %></td>
           <td><%= button_to '+1', upvote_topic_path(topic), method: :post %></td>
-          <td><%= link_to 'Show', topic %></td>
-          <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-          <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         
         </tr>
         <% end %>
       </div>

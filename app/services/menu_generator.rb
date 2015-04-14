@@ -94,7 +94,6 @@ class MenuGenerator
   end
 
   def create_menu_options(course_recipes, course_name, cuisine)
-    binding.pry
     course_recipes += Cuisine.find_by(name: cuisine).recipes.where("#{course_name} = true").select{|recipe|!@menu_recipes.include?(recipe)} 
     add_to_menu_recipe_array(course_recipes)   
   end
