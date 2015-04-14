@@ -23,10 +23,18 @@
     <%= label_tag('menu[desserts]', "No. of Desserts") %><br>
     <%= number_field_tag 'menu[desserts]', nil, in: 0...11, class: "form-control" %>
   </div>
+
+  <div class="form-group">
+    <%= label_tag('menu[election]', "Who sets the menu?") %><br>
+    <%= select_tag 'menu[election]', options_for_select(["It's my party!", "Let your guests vote"]), class: "form-control" %>
+  </div>
+
+
   <%= hidden_field_tag 'dinner_id', @dinner.id %>
   <div class="form-group"><br>
+    
     <div class="col-md-2"></div>
-   
+
     <%= label_tag %>
     <%= submit_tag "Create Menu!", class: "btn btn-primary" %>
  

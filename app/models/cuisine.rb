@@ -4,25 +4,22 @@ class Cuisine < ActiveRecord::Base
   has_many :recipes #through: :recipe_cuisines
 
   CUISINES = {"-Surprise Me!-" => ["Surprise Me!"],
-              "Mexican" =>  ["Mexican"],
+              "Mexican" =>  ["Mexican", "Tex-Mex"],
               "Italian" =>  ["Italian"],
-              "American" =>  ["American", "american", "American-South"],
+              "American" =>  ["American", "American-South", "Amerivan"],
               "African" =>  ["African"],
-              "Hungary" =>  ["Hungary"],
+              "Hungarian" =>  ["Hungary"],
               "Southern" => ["American-South"],
               "Hawaiian" =>  ["Hawaiian"],
-              "Brazilian" =>  ["Brazilian"],
               "English" =>  ["English"],
-              "Japanese" =>  ["Japanese"],
               "Asian" =>  ["Asian"],
-              "Spanish" =>  ["Spanish"],
               "Chinese" =>  ["Chinese", "Chinese-canadian"],
-              "Caribbean" =>  ["Caribbean"],
-              "Middle Eastern" => ["Middle Eastern"],
+              "Middle Eastern" => ["Middle Eastern", "Lebanese"],
               "South African" => ["South African"],
-              "Greek" =>  ["Greek"],
-              "German" =>  ["German"],
               "Thai" =>  ["Thai"],
-              "French" =>  ["French"]}
+              "French" =>  ["French"], 
+              "Vegetarian" => ["Vegetarian"], 
+              "Indian" => ["Indian"],
+              "Mediterranean" => ["Mediterranean"]}
 
 end

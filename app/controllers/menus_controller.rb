@@ -1,9 +1,12 @@
 class MenusController < ApplicationController
 
   def create
+    binding.pry
     @dinner = Dinner.find(params[:dinner_id])
     @dinner.menu = MenuGenerator.new(params['menu']).call
-
+    
+    @dinner.menu.election = true if params[:menu][:election] == "Let your guests vote"
+  
     if @dinner.save
       respond_to do |format|
         format.js
@@ -14,8 +17,7 @@ class MenusController < ApplicationController
     end
   end
 
-  def update
-    
+  def update    
     @menu = Menu.find(params[:id])
     @dinner = @menu.dinner
     @options = @menu.recipes.collect{|r|r.id}
@@ -24,7 +26,6 @@ class MenusController < ApplicationController
     (@options - @choices).each do |reject|
       @menu.menu_recipes.find_by(recipe_id: reject).destroy
     end
-
     @menu.finalized = true
     @menu.save
     respond_to do |f|

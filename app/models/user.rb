@@ -19,4 +19,6 @@
   has_many :menu_recipes, foreign_key: 'chef_id'
   has_many :recipes, through: :menu_recipes
 
+  has_many :votes
+
 end

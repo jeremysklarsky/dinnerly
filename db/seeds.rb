@@ -17,7 +17,7 @@ keywords_list = ["dessert", "appetizer", "bread", "main dish", "salad", "side di
  #next: Rachel's key, dessert page 2
 
 
-search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list[3]}&api_key=#{ENV['big_oven_key']}&pg=1&rpp=30", headers:{ "Accept" => "application/json"})
+search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list[15]}&api_key=#{ENV['big_oven_key']}&pg=2&rpp=9", headers:{ "Accept" => "application/json"})
 
 
 

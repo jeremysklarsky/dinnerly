@@ -30,24 +30,19 @@ class Users::DinnersController < ApplicationController
     dinner_page = "http://localhost:3000/users/#{current_user.id}/dinners/#{params[:id]}"
     user_email = current_user.email
     subject = "You've got potluck"
-    # recipients = params[:guest][:emails]
-    # binding.pry
     @dinner = Dinner.find(params[:id])
     emails = params["guest"]["emails"].select{|email| email.length > 1}
     emails.each do |email|
       @dinner.guest_emails << "," + email.strip
-    end
-    
+    end    
     @dinner.save
     recipients = emails.collect do |email|
       email.strip
     end
     GuestMailer.invite_guests(user_email, recipients, subject, dinner_page).deliver
-
     respond_to do |f|
       f.js 
     end
-
   end
 
   def rsvp
