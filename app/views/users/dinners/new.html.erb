@@ -3,10 +3,8 @@
     <h3 class="welcome-msg">Create a beautiful, lavish dinner party:</h3><br>
     <%=form_for([current_user, @dinner], :html => {:class => "form-horizontal"}) do |f| %>
 
-
       <%= f.label :name, class: "col-sm-2 control-label" %>
       <%= f.text_field :name, class: "form-field form-control" %><br>
-
 
       <%= f.label :location, class: "col-sm-2 control-label" %>
       <%= f.text_field :location, class: "form-field form-control" %><br>
@@ -16,7 +14,7 @@
 
       <%= f.submit class: "col-sm-offset-2 btn btn-primary" %>
     <%end%>
-</div>
+  </div>
 </div>
 
 

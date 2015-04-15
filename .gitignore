@@ -20,8 +20,8 @@
 /config/application.yml
 
 # Ignore database configuration
-/app/config/database.yml
+/config/database.yml
 
-#ignore dictionaries
-/app/models/course.rb
-/app/models/cuisine.rb
+# Ignore dictionaries
+/models/course.rb
+/models/cuisine.rb
