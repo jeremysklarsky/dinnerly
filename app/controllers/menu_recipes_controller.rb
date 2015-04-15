@@ -16,7 +16,6 @@ class MenuRecipesController < ApplicationController
   end
 
   def vote
-    # binding.pry
     @menu_recipe = MenuRecipe.find(params[:id])
     unless session[:alert]
       @menu_recipe.votes.build(:user_id => current_user.id)
@@ -24,6 +23,18 @@ class MenuRecipesController < ApplicationController
       @num_votes = "#num_votes_#{@menu_recipe.id}"
       @vote_button = "#vote_#{@menu_recipe.id}"
     end
+    respond_to do |f|
+      f.js 
+    end
+  end
+
+  def unvote
+    @menu_recipe = MenuRecipe.find(params[:id])
+    @num_votes = "#num_votes_#{@menu_recipe.id}"
+    @vote_button = "#vote_#{@menu_recipe.id}"
+    @user = current_user
+    @vote = Vote.find_by(user_id: @user.id, menu_recipe_id: @menu_recipe.id)
+    @vote.destroy if @vote
     respond_to do |f|
       f.js 
     end
