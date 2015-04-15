@@ -1,3 +1,5 @@
+require "net/http"
+
 class Recipe < ActiveRecord::Base
 
   has_many :menu_recipes
@@ -42,6 +44,7 @@ class Recipe < ActiveRecord::Base
     end
 
   end
+
 
 end
 
