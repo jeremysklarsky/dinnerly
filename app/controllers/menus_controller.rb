@@ -1,14 +1,12 @@
 class MenusController < ApplicationController
 
   def create
-    
     @dinner = Dinner.find(params[:dinner_id])
     @dinner.menu = MenuGenerator.new(params['menu']).call
     
     @dinner.menu.election = true if params[:menu][:election] == "Let your guests vote"
     @dinner.menu.save
     if @dinner.save
-      # binding.pry
       respond_to do |format|
         format.js
         format.html
@@ -61,6 +59,14 @@ class MenusController < ApplicationController
     end
     @menu.finalized = true
     @menu.save
+
+    dinner_page = "http://localhost:3000/users/#{current_user.id}/dinners/#{@dinner.id}" 
+    subject = "What do you want to bring to #{current_user.name}'s potluck?"
+    
+    @dinner.guest_emails.split(",").each do |recipient|
+      GuestMailer.notify_guest_when_tallied(current_user.email, recipient, subject, dinner_page, @dinner).deliver
+    end
+
     respond_to do |f|
       f.js
     end

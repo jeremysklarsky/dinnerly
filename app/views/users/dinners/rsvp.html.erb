@@ -1,9 +1,9 @@
 <div class="well well-lg col-md-8 col-md-offset-2 text-center">
   <%= @dinner.name %><br>
   <%= @dinner.location %><br>
-  <%= @dinner.datetime.strftime('%A, %d %b %Y %l:%M %p') %>
+  <%=@dinner.date.strftime("%B %d, %Y")%>
+  <%=@dinner.time.strftime("%l:%M %p")%>
   <br><br>
-
 
   <%= form_for [@dinner.host, @dinner], method: "PATCH" do |f| %>
     <%= f.hidden_field :guest_id, :value => current_user.id %>

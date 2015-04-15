@@ -29,7 +29,6 @@ class ApplicationController < ActionController::Base
     end
 
     def invited?
-      # binding.pry
       session[:dinner_path] = request.path
       dinner_id = session[:dinner_path].split("/").last
       dinner = Dinner.find(dinner_id)
@@ -38,9 +37,7 @@ class ApplicationController < ActionController::Base
         flash[:notice] = "You must be logged in!"
         redirect_to login_path
       else 
-          # binding.pry
         if dinner.host != current_user
-          # binding.pry
           if !email_list.include?(current_user.email)
             flash[:notice] = "You're not invited!"
             redirect_to user_path(current_user)

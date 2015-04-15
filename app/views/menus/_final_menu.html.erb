@@ -37,3 +37,8 @@
     <% end %>
 </div>
 
+<% if current_user == @dinner.host %>
+  <div id="email-button" class="email-guests"><br>
+  <%= render 'users/dinners/email_guest_form' %>
+  </div>
+<% end %>

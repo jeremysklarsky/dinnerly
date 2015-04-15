@@ -16,11 +16,6 @@
       <%= render 'menus/form' %>
     <% end %>
   </div>
-
-  <div id="email-button" class="email-guests <%= "hidden" if !@dinner.menu || current_user != @dinner.host %>">
-  <br>
-    <%= render 'email_guest_form' %>
-  </div>
-
+ 
 </div>
 

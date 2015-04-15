@@ -84,7 +84,13 @@
     </div>
 
     <% if @dinner.host == current_user %>
-      <%= button_to 'Tally Menu', tally_menu_path(@dinner.menu), class: "btn btn-tally btn-primary", remote: true %>
+      <%= button_to 'Tally Menu', tally_menu_path(@dinner.menu), class: "btn btn-tally btn-primary", remote: true %><br>
+      <div id="email-button" class="email-guests"><br>
+      <%= render 'users/dinners/email_guest_form' %>
+      </div>
+
+    <% else %>
+      <%= link_to "Save", user_path(current_user), class: "btn btn-primary" %>
     <% end %>
   
 <% else %>
