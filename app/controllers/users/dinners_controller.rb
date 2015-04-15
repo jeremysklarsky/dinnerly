@@ -26,7 +26,7 @@ class Users::DinnersController < ApplicationController
   end
 
   def invite
-    dinner_page = "http://localhost:3000/users/#{current_user.id}/dinners/#{params[:id]}"
+    dinner_page = "http://www.approvablefeast.com/users/#{current_user.id}/dinners/#{params[:id]}"
     user_email = current_user.email
     @user = current_user
     subject = "#{@user.name}'s invited you to a dinner party!"

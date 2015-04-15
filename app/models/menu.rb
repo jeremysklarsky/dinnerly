@@ -37,7 +37,7 @@ class Menu < ActiveRecord::Base
 
   def email_guests_with_final_menu(dinner, host)
     @dinner = dinner
-    dinner_page = "http://localhost:3000/users/#{host.id}/dinners/#{@dinner.id}" 
+    dinner_page = "http://www.approvablefeast.com/users/#{host.id}/dinners/#{@dinner.id}" 
     subject = "What do you want to bring to #{host.name}'s potluck?"
     @dinner.guest_emails.split(",").each do |recipient|
       GuestMailer.notify_guest_when_tallied(host.email, recipient, subject, dinner_page, @dinner).deliver
