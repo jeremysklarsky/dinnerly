@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   end
 
   resources :recipes, :only => ['show']
-  resources :menu_recipes, :only => ['update', 'vote'] do 
+  resources :menu_recipes, :only => ['update', 'vote', 'unvote'] do 
     post :vote, :on => :member
+    post :unvote, :on => :member
   end
 
   root 'welcome#index'

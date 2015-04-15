@@ -1,0 +1,4 @@
+$('<%= j @num_votes %>').html('<%= j pluralize(@menu_recipe.votes.count, "vote") %>');
+
+$('<%= j @vote_button %>').parents('div.vote-button-form').html("<%= j render :partial => 'vote', locals: { mr: @menu_recipe }%>");
+

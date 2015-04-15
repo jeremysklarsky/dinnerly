@@ -13,7 +13,9 @@
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
-          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/vote', locals: { mr: mr } %></div>
+          <% else %>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/unvote', locals: { mr: mr } %></div>
           <% end  %>
         </span>
 
@@ -31,8 +33,10 @@
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
-          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
-        <% end  %>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/vote', locals: { mr: mr } %></div>
+          <% else %>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/unvote', locals: { mr: mr } %></div>
+          <% end  %>
         </span>
 
         <% end %>          
@@ -49,7 +53,9 @@
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
-          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/vote', locals: { mr: mr } %></div>
+          <% else %>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/unvote', locals: { mr: mr } %></div>
           <% end  %>
         </span>
 
@@ -67,7 +73,9 @@
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
-          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/vote', locals: { mr: mr } %></div>
+          <% else %>
+          <div class="vote-button-form"><%= render :partial => 'menu_recipes/unvote', locals: { mr: mr } %></div>
           <% end  %>
         </span>
 
