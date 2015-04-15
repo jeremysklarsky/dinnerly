@@ -64,10 +64,7 @@ class Users::DinnersController < ApplicationController
       @dinner.save
       redirect_to user_dinner_path(@dinner.host, @dinner)
     else
-      # binding.pry
-      recipients = @dinner.guest_emails.split(",")
-      recipients.delete(current_user.email)
-      @dinner.guest_emails = recipients.join(",")
+      @dinner.guest_emails = @dinner.guest_emails.gsub(/#{current_user.email}/,"")
       @dinner.save
       redirect_to root_path
     end
