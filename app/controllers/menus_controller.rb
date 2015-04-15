@@ -1,7 +1,6 @@
 class MenusController < ApplicationController
 
   def create
-    
     @dinner = Dinner.find(params[:dinner_id])
     @dinner.menu = MenuGenerator.new(params['menu']).call
     
@@ -64,11 +63,9 @@ class MenusController < ApplicationController
     dinner_page = "http://localhost:3000/users/#{current_user.id}/dinners/#{@dinner.id}" 
     subject = "What do you want to bring to #{current_user.name}'s potluck?"
     
-    @dinner.guest_emails.each do |recipient|
+    @dinner.guest_emails.split(",").each do |recipient|
       GuestMailer.notify_guest_when_tallied(current_user.email, recipient, subject, dinner_page, @dinner).deliver
     end
-
-    # binding.pry
 
     respond_to do |f|
       f.js

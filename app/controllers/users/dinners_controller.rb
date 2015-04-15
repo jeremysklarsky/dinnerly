@@ -6,8 +6,6 @@ class Users::DinnersController < ApplicationController
     @dinner = Dinner.new
   end
 
-
-
   def create
     @user = User.find(params[:user_id])
     @dinner = Dinner.new(dinner_params)
@@ -19,7 +17,6 @@ class Users::DinnersController < ApplicationController
       flash.now[:notice] = "That didn't work!"
       render :new
     end
-
   end
 
   def show
@@ -74,7 +71,6 @@ class Users::DinnersController < ApplicationController
       @dinner.save
       redirect_to root_path
     end
-
   end
 
   private
