@@ -35,7 +35,8 @@ class MenuGenerator
     build_menu_recipes(@side_recipes, @num_sides, "Side")
     build_menu_recipes(@main_recipes, @num_mains, "Main")
     build_menu_recipes(@dessert_recipes, @num_desserts, "Dessert")
-
+    binding.pry
+    @menu.exp_date = params[:menu][:exp_date]
     @menu.save
     @menu
   end

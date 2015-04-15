@@ -5,6 +5,8 @@ class Menu < ActiveRecord::Base
   has_many :menu_recipes
   has_many :recipes, through: :menu_recipes
 
+  
+
   def appetizers
     self.menu_recipes.where(course_name: "Appetizer").collect {|mr| mr.recipe}
   end
