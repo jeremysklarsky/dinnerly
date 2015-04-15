@@ -24,7 +24,7 @@
           <%= f.collection_check_boxes(:recipes, @dinner.menu.desserts, :id, :recipe_card) %>
         </div>
     </div>
-    <%= f.submit "Submit!" %>
+    <%= f.submit "Set Menu", class: "btn btn-primary" %>
   <% end %>
 <% else %>
   <%= render 'menus/final_menu', :dinner => @dinner %>

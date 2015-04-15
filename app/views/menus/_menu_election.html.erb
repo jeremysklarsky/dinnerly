@@ -1,4 +1,5 @@
 <!-- menu election -->
+<div class="menu-election">
 
 <% if !@dinner.menu.finalized? %>
   
@@ -12,13 +13,14 @@
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
-          <div><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></div>
+          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
           <% end  %>
         </span>
 
       <% end %>
       </div>
     </div>
+
     <div id="sides">
       <h3>Sides</h3>
         <div class="recipe-card horizontal-scroll">
@@ -29,45 +31,56 @@
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
-          <div><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></div>
-          <% end  %>
+          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
+        <% end  %>
         </span>
 
         <% end %>          
-        </div>
       </div>
+    </div>
+
     <div id="mains">
       <h3>Mains</h3>
         <div class="recipe-card horizontal-scroll">
-          <% @dinner.menu.menu_mains.each do |mr| %>
-        <div class="recipe-card">
-          <p><%= mr.recipe.name %></p>
-          <p id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></p>
-          <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
-        </div>
-       <% end %>
-        </div>
+        <% @dinner.menu.menu_mains.each do |mr| %>
+
+        <span class="individual-recipe">
+          <img src="<%= mr.recipe.image_url %>" class="img-thumbnail"><br>
+          <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
+          <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
+          <% if !mr.vote_cast?(current_user) %>
+          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
+          <% end  %>
+        </span>
+
+        <% end %>
       </div>
+    </div>
+
     <div id="desserts">
       <h3>Desserts</h3>
         <div class="recipe-card horizontal-scroll">
-          <% @dinner.menu.menu_desserts.each do |mr| %>
-        <div class="recipe-card">
-          <p><%= mr.recipe.name %></p>
-          <p id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></p>
-          <p><%= button_to '+1', vote_menu_recipe_path(mr), id: "vote_#{mr.id}", remote: true %></p>
-        </div>
-      <% end %>
-        </div>
+        <% @dinner.menu.menu_desserts.each do |mr| %>
+        
+        <span class="individual-recipe">
+          <img src="<%= mr.recipe.image_url %>" class="img-thumbnail"><br>
+          <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
+          <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
+          <% if !mr.vote_cast?(current_user) %>
+          <div><%= button_to '+1', vote_menu_recipe_path(mr), class: "btn-vote btn-primary", id: "vote_#{mr.id}", remote: true %></div>
+          <% end  %>
+        </span>
+
+        <% end %>
+      </div>
     </div>
 
     <% if @dinner.host == current_user %>
-      <%= button_to 'Tally Menu', tally_menu_path(@dinner.menu), remote: true %>
+      <%= button_to 'Tally Menu', tally_menu_path(@dinner.menu), class: "btn btn-tally btn-primary", remote: true %>
     <% end %>
   
 <% else %>
   <%= render 'menus/final_menu', :dinner => @dinner %>
-  
 <% end %>
 
-
+</div>
