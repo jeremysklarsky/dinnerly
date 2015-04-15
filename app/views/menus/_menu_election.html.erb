@@ -2,7 +2,7 @@
 <div class="menu-election">
 
 <% if !@dinner.menu.finalized? %>
-  
+  <h3>Vote by <%=@dinner.menu.exp_date.strftime("%B %d, %Y")%></h3>
     <div id="appetizers">
       <h3>Appetizers</h3>
       <div class="recipe-card horizontal-scroll">

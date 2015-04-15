@@ -12,5 +12,5 @@ end
 
 desc "check for expired elections, tally expired elections and email"
 task :tally_and_email_guests => :environment do
-  
+  DailyTally.tally_and_email
 end

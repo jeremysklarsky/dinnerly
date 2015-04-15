@@ -28,7 +28,7 @@
     <%= label_tag('menu[election]', "Who sets the menu?") %><br>
     <%= select_tag 'menu[election]', options_for_select(["It's my party!", "Let your guests vote"]), class: "form-control", id: "election-option" %>
   </div>
-  <div class="form-group" id="exp">
+  <div class="form-group hidden" id="exp">
     <%= label_tag('menu[exp_date]', "election end date")%><br>
     <%= date_field_tag 'menu[exp_date]', class: "form-control" %>
   </div>
