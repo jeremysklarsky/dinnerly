@@ -10,7 +10,11 @@
       <%= f.text_field :location, class: "form-field form-control" %><br>
 
       <%= f.label :date, class: "col-sm-2 control-label" %>
-      <%= f.datetime_field :datetime, class: "form-field form-control" %><br>
+      <%= f.date_field :date, class: "form-field form-control" %><br>
+
+      <%= f.label :time, class: "col-sm-2 control-label" %>
+      <%= f.time_field :time, class: "form-field form-control" %><br>
+
 
       <%= f.submit class: "col-sm-offset-2 btn btn-primary" %>
     <%end%>

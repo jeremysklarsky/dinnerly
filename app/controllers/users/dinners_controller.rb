@@ -6,8 +6,12 @@ class Users::DinnersController < ApplicationController
     @dinner = Dinner.new
   end
 
+
+
   def create
-    @dinner = Dinner.new(name: params[:dinner][:name], location: params[:dinner][:location], datetime: params[:dinner][:datetime], host_id: params[:user_id]) 
+    @user = User.find(params[:user_id])
+    @dinner = Dinner.new(dinner_params)
+    @dinner.host = @user
     @dinner.guest_emails = ""
     if @dinner.save
       redirect_to "/users/#{current_user.id}/dinners/#{@dinner.id}"
@@ -71,6 +75,12 @@ class Users::DinnersController < ApplicationController
       redirect_to root_path
     end
 
+  end
+
+  private
+
+  def dinner_params
+    params.require(:dinner).permit(:name, :location, :date, :time)
   end
 
 end

@@ -1,5 +1,7 @@
 $('<%= j @num_votes %>').html('<%= j pluralize(@menu_recipe.votes.count, "vote") %>');
-$('<%= j @vote_button %>').parent().remove();
+
+$('<%= j @vote_button %>').parents('div.vote-button-form').html("<%= j render :partial => 'unvote', locals: { mr: @menu_recipe }%>");
+
 <% if session[:alert]%>
 alert("Voting limit reached for this course.")
 <%end%>

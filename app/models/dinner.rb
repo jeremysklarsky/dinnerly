@@ -6,6 +6,6 @@ class Dinner < ActiveRecord::Base
   has_one :menu
   has_many :recipes, through: :menu
 
-  validates_presence_of :host_id, :name, :datetime, :location
+  validates_presence_of :host_id, :name, :date, :time, :location
 
 end
