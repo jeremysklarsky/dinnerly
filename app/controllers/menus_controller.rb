@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
 
   def create
-    binding.pry
+    # binding.pry
     @dinner = Dinner.find(params[:dinner_id])
     @dinner.menu = MenuGenerator.new(params['menu']).call
     

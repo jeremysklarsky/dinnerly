@@ -64,7 +64,7 @@ class Users::DinnersController < ApplicationController
       @dinner.save
       redirect_to user_dinner_path(@dinner.host, @dinner)
     else
-      binding.pry
+      # binding.pry
       recipients = @dinner.guest_emails.split(",")
       recipients.delete(current_user.email)
       @dinner.guest_emails = recipients.join(",")
