@@ -31,7 +31,7 @@ class Users::DinnersController < ApplicationController
     @user = current_user
     subject = "#{@user.name}'s invited you to a dinner party!"
     dinner = Dinner.find(params[:id])
-    binding.pry
+    # binding.pry
     emails = params["guest"]["emails"].select{|email| email.length > 1}
     emails.each do |email|
       dinner.guest_emails << "," + email.strip
@@ -40,7 +40,7 @@ class Users::DinnersController < ApplicationController
     recipients = emails.collect do |email|
       email.strip
     end
-    binding.pry
+    # binding.pry
     recipients.each do |recipient|
       GuestMailer.invite_guests(user_email, recipient, subject, dinner_page, dinner).deliver
     end
