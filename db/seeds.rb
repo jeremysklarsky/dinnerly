@@ -13,11 +13,10 @@
 keywords_list = ["dessert", "appetizer", "bread", "main dish", "salad", "side dish", "soup", "marinade", "pasta", "casserole", "rice", "risotto", "chicken", "beef", "fish", "lamb", "pork", "grilled"]
 
 
- #Rachel's key, dessert page 1
- #next: Rachel's key, dessert page 2
+#we did: 49 desserts, page 2, 49 apps page 2, now: 49 main dishes, page 2.  
 
 
-search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list[1]}&api_key=#{ENV['big_oven_key']}&pg=2&rpp=49", headers:{ "Accept" => "application/json"})
+search_result = Unirest.get("http://api.bigoven.com/recipes?any_kw=#{keywords_list[3]}&api_key=#{ENV['big_oven_key']}&pg=2&rpp=49", headers:{ "Accept" => "application/json"})
 
 
 
