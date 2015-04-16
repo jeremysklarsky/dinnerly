@@ -33,13 +33,18 @@ class SessionsController < ApplicationController
   end
 
   def send_password
-    @user = User.find_by(:email => params[:email])
-    random_password = Array.new(10).map { (65 + rand(58)).chr }.join
-    @user.password = random_password
-    @user.save!
-    UserMailer.create_and_deliver_password_change(@user, random_password).deliver
-    reset_session
-    redirect_to login_path
+    if User.find_by(:email => params[:email]) 
+      @user = User.find_by(:email => params[:email])
+      random_password = Array.new(10).map { (65 + rand(58)).chr }.join
+      @user.password = random_password
+      @user.save!
+      UserMailer.create_and_deliver_password_change(@user, random_password).deliver
+      reset_session
+      redirect_to login_path
+    else
+      flash[:notice] = "Sorry, we can't find your account. Sign up!"
+      redirect_to signup_path
+    end
   end
 
   private 
