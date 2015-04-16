@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :users, :except => ['new', 'edit'] do 
+  resources :users, :except => ['new', 'edit'] do
     get 'account' => 'users#edit'
     resources :dinners, :controller => "users/dinners" do
       post :invite, :on => :member
       get :rsvp, :on => :member
     end
-
   end
 
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
   post 'sessions' => 'sessions#create'
+  get '/auth/facebook/callback' => 'sessions#create'
   get 'reset_password' => 'sessions#reset_password'
   post 'send_password' => 'sessions#send_password'
   get 'signup' => 'users#new', :as => 'signup'

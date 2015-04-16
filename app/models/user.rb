@@ -1,5 +1,6 @@
-  class User < ActiveRecord::Base
-  
+class User < ActiveRecord::Base
+ attr_accessor :random_password
+
   validates_uniqueness_of :email
   validates_presence_of :name, :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
@@ -28,5 +29,20 @@
     end
   end
 
-end
+  def self.create_with_omniauth(auth)
+    self.create do |user|
+      user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.oauth_token = auth["credentials"]["token"]
+      user.password = User.random_password
+      user.password_confirmation = user.password
+    end
+  end
 
+  def self.random_password
+    Array.new(10).map { (65 + rand(58)).chr }.join
+  end
+
+end
