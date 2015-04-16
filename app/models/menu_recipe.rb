@@ -13,4 +13,12 @@ class MenuRecipe < ActiveRecord::Base
     !self.votes.where(:user_id => current_user.id).empty?
   end
 
+  def is_chef?(current_user)
+    if self.chef
+      self.chef.id == current_user.id
+    else
+      false
+    end
+  end
+
 end

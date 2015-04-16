@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       #   redirect_to session[:reset_path]
       else
         flash[:notice] = "Successfully logged in. Welcome #{@user.name}!"
-        redirect_to @path
+        redirect_to root_path
       end
     else
       flash.now[:notice] = "User name or password is not valid."

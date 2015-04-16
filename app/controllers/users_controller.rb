@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :login_required, only: [:update]
-  before_filter :resetting?, only: [:edit]
+  # before_filter :resetting?, only: [:edit]
 
   def new
     @user = User.new

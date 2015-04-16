@@ -1,14 +1,27 @@
 class MenuRecipesController < ApplicationController
   before_action :can_vote?, only: [:vote]
 
-  def update
-    @menu = Menu.find(params[:menu_recipe][:menu_id])
-    @menu_recipe = MenuRecipe.find_by(:recipe_id => params[:menu_recipe][:recipe_id], :menu_id => params[:menu_recipe][:menu_id])
+  def chef
+    @menu_recipe = MenuRecipe.find(params[:id])
     @menu_recipe.chef_id = current_user.id
     @menu_recipe.save
 
     @current_user = current_user.name
-    @id = "#edit_menu_recipe_#{@menu_recipe.id}"
+    @chef_button = "#chef_#{params[:id]}"
+    @chef_name = "#chef_name_#{params[:id]}"
+
+    respond_to do |f|
+      f.js
+    end 
+  end
+
+  def unchef
+    @menu_recipe = MenuRecipe.find(params[:id])
+    @menu_recipe.chef_id = nil
+    @menu_recipe.save
+
+    @chef_button = "#chef_#{params[:id]}"
+    @chef_name = "#chef_name_#{params[:id]}"
 
     respond_to do |f|
       f.js
