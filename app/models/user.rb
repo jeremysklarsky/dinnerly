@@ -45,4 +45,10 @@ class User < ActiveRecord::Base
     Array.new(10).map { (65 + rand(58)).chr }.join
   end
 
+  def self.handle_facebook_login(auth_hash)
+    self.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) || self.create_with_omniauth(auth_hash)  
+
+  end
+
+
 end
