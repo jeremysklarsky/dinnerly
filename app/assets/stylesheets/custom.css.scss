@@ -1,22 +1,23 @@
 /* GENERAL APP STYLING
 -------------------------------------------------- */
 body {
-  /*background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://farm8.staticflickr.com/7649/16749704980_c01ecbe1fc_o.jpg");*/
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("table.jpg");
     
     /* Background image is centered vertically and horizontally at all times */
-    /*background-position: center center;*/
+    background-position: center center;
     
     /* Background image doesn't tile */
-    /*background-repeat: no-repeat;*/
+    background-repeat: no-repeat;
     
     /* Background image is fixed in the viewport so that it doesn't move when 
        the content's height is greater than the image's height */
-    /*background-attachment: fixed;*/
+    background-attachment: fixed;
     
     /* This is what makes the background image rescale based
        on the container's size */
-    /*background-size: cover;*/
+    background-size: cover;
 }
+
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -43,18 +44,35 @@ body {
 /* WELCOME PAGE STYLING
 ---------------------------------------------------*/
 .instructions {
-  background-color: white;
-  height: 200px;
+  background-color: #CCCAC7;
+  border-top: solid 3px #242661;
+  height: 500px;
   margin: 0;
   padding: 0;
 }
-
 .welcome-photo {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("https://farm8.staticflickr.com/7649/16749704980_c01ecbe1fc_o.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("table.jpg");
+  background-size: cover;
 }
+
+.logo-text {
+  font-size: 12em;
+  font-family: Lobster, cursive;
+  text-align: center;
+}
+
+h1.logo-text {
+  margin: 0;
+  padding-top: .4em;
+  margin-bottom: .2em;
+}
+
+/*.logo-text .btn {
+  text-align: center;
+}*/
 
 /* NAVBAR STYLING
 -------------------------------------------------- */
@@ -62,6 +80,17 @@ body {
 .navbar-nav,
 .navbar {
   border-radius: 0px;
+  margin-bottom: 0;
+  background-color: rgba(36, 38, 97, 1);
+  border-color: #242661;
+  color: #E4F2EB;
+}
+
+.navbar-default .navbar-nav > li > a,
+.navbar-default li a,
+.navbar-nav li a,
+.navbar li a {
+  color: #E4F2EB;
 }
 
 /* ELECTION MENU PARTIAL STYLING
@@ -101,8 +130,10 @@ div.menu-election .recipe-card.horizontal-scroll span:last-child {
   width: 100%;
   height: 40px; /* Set the fixed height of the footer here */
   text-align: center;
-  color: #98978b;
-  background-color: rgba(36, 38, 97, 0.5);
+  color: #E4F2EB;
+  /*background-color: rgba(36, 38, 97, 0.5);
+  border-color: #242661;*/
+  background-color: rgba(36, 38, 97, 1);
   border-color: #242661;
   border-radius: 0;
 }
@@ -122,7 +153,7 @@ footer li:first-child {
   padding-left: 0;
 }
 footer li a {
-  color: #98978b;
+  color: #E4F2EB;
 }
 footer li a:hover {
   color: #fff;

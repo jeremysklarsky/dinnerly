@@ -1,15 +1,11 @@
 </div>
 <div class="welcome-photo">
-  <div class="well well-md col-md-8 col-md-offset-2 text-center">
-    <h1 class="welcome-msg">Welcome</h1><br>
-    <h3><%=link_to "Sign up", signup_path%> or <%=link_to "log in", login_path%> to create a dinner party, generate a menu and invite your friends to attend! Friends and family can then claim a dish to bring.</h3>
-
-    <div id="fbSignup"><%= link_to "Sign in with Facebook", "/auth/facebook", class: "fbLogin"%></div><br>
-
-  </div>
+  <h1 class="logo-text">Approvable<br>Feast</h1>
+  <div id="fbSignup" class="text-center"><%= link_to "Sign in with Facebook", "/auth/facebook", class: "fbLogin btn btn-primary"%></div>
 </div>
 <div id="instructions" class="instructions">
-  INSTRUCTIONS HERE
+  <h1 class="welcome-msg">Welcome</h1><br>
+    <h3><%=link_to "Sign up", signup_path%> or <%=link_to "log in", login_path%> to create a dinner party, generate a menu and invite your friends to attend! Friends and family can then claim a dish to bring.</h3>
 </div>
 
 
