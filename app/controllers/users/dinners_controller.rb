@@ -43,9 +43,13 @@ class Users::DinnersController < ApplicationController
     
     recipients.each do |recipient|
       if dinner.menu.election
-        GuestMailer.invite_guest_to_vote(user_email, recipient, subject, dinner_page, dinner).deliver  
+        header = "You're invited to vote!"
+        link_action = "Vote now!"
+        GuestMailer.email_guests(user_email, recipient, subject, dinner_page, dinner, header, link_action).deliver  
       else
-        GuestMailer.invite_guest_to_cook(user_email, recipient, subject, dinner_page, dinner).deliver
+        header = "You're invited to cook!"
+        link_action = "RSVP"
+        GuestMailer.email_guests(user_email, recipient, subject, dinner_page, dinner, header, link_action).deliver
       end
     end
     respond_to do |f|
