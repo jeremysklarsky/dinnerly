@@ -36,7 +36,6 @@ class GuestMailer < ApplicationMailer
 
     @user_email = user_email
     @recipient = recipient
-    # binding.pry
     mail(:to => @recipient,
          :subject => @subject,
          :reply_to => @user_email)

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
   post 'sessions' => 'sessions#create'
-  get 'signup' => 'users#new', :as => 'signup' 
+  get 'reset_password' => 'sessions#reset_password'
+  post 'send_password' => 'sessions#send_password'
+  get 'signup' => 'users#new', :as => 'signup'
 
   resources :menus do
     post :tally, :on => :member

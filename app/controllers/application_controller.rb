@@ -28,6 +28,16 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    # def resetting?
+    #   session[:reset_path] = request.path
+    #   if !logged_in?
+    #     flash[:notice] = "You must be logged in!"
+    #     redirect_to login_path
+    #   else
+    #     redirect_to session[:reset_path]
+    #   end
+    # end
+
     def invited?
       session[:dinner_path] = request.path
       dinner_id = session[:dinner_path].split("/").last
