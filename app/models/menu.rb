@@ -9,16 +9,16 @@ class Menu < ActiveRecord::Base
     @dinner = self.dinner
     @options = self.menu_recipes.collect{|mr|mr.id}
 
-    # @num_apps = apps.size / 2
-    # @num_sides = sides.size / 2
-    # @num_mains = mains.size / 2
-    # @num_desserts = desserts.size / 2
+    @num_apps = menu_appetizers.size / 2
+    @num_sides = menu_sides.size / 2
+    @num_mains = menu_mains.size / 2
+    @num_desserts = menu_desserts.size / 2
 
     @choices = []
-    @choices << appetizers.sort_by {|a| a.vote_total }.reverse[0..@num_apps-1].collect {|a| a.id}
-    @choices << sides.sort_by {|a| a.vote_total }.reverse[0..@num_sides-1].collect {|a| a.id}
-    @choices << mains.sort_by {|a| a.vote_total }.reverse[0..@num_mains-1].collect {|a| a.id}
-    @choices << desserts.sort_by {|a| a.vote_total }.reverse[0..@num_desserts-1].collect {|a| a.id}
+    @choices << menu_appetizers.sort_by {|a| a.vote_total }.reverse[0..@num_apps-1].collect {|a| a.id}
+    @choices << menu_sides.sort_by {|a| a.vote_total }.reverse[0..@num_sides-1].collect {|a| a.id}
+    @choices << menu_mains.sort_by {|a| a.vote_total }.reverse[0..@num_mains-1].collect {|a| a.id}
+    @choices << menu_desserts.sort_by {|a| a.vote_total }.reverse[0..@num_desserts-1].collect {|a| a.id}
     @choices.flatten!
 
     (@options - @choices).each do |reject|
