@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     if auth_hash
       @user = User.handle_facebook_login(auth_hash)
     else
