@@ -21,4 +21,6 @@
 
   has_many :votes
 
+
 end
+

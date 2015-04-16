@@ -1,0 +1,24 @@
+<div class="well well-md col-md-8 col-md-offset-2 text-center">
+  <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
+
+  <%= form_for @user do |f| %>
+
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, :size=>"40" %><br>
+    <%= f.label :email, "E-mail" %>
+    <%= f.email_field :email, :size=>"40" %><br>
+
+    <%= f.label :password, "Current Password" %>
+    <%= f.password_field :password, :size=>"40" %><br>
+
+    <%= f.label :new_password, "New Password" %>
+    <%= f.password_field :new_password, :size=>"40" %><br>
+
+    <%= f.label :confirm_password, "Confirm New Password" %>
+    <%= f.password_field :confirm_password, :size=>"40" %><br>
+
+    
+    <%= f.submit %>
+  <% end %>
+
+</div>
