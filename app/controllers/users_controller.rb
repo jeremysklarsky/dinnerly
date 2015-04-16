@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  before_action :login_required, only: [:update]
+  before_filter :resetting?, only: [:edit]
+
   def new
     @user = User.new
   end
@@ -9,8 +12,9 @@ class UsersController < ApplicationController
     if @user.save
       login(@user)
       if session[:dinner_path]
-        # binding.pry
         redirect_to session[:dinner_path]
+      # elsif session[:reset_path]
+      #   redirect_to session[:reset_path]
       else
         redirect_to user_path(@user)
       end
@@ -26,9 +30,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    binding.pry
     if !!@user.authenticate(params[:user][:password])
-      binding.pry
       @user.name = params[:user][:name]
       @user.email = params[:user][:email]
       if !params[:user][:new_password].empty? 
@@ -40,12 +42,10 @@ class UsersController < ApplicationController
           flash[:notice] = "Please confirm new password."
         end
       else
-        binding.pry
         @user.save
         flash[:notice] = "User details updated."
       end
     else
-      binding.pry
       flash[:notice] = "Incorrect password. No User details updated. Click below to reset your password."
     end
     render 'edit'
