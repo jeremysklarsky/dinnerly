@@ -1,7 +1,6 @@
 class MenusController < ApplicationController
 
   def create
-    # binding.pry
     @dinner = Dinner.find(params[:dinner_id])
     @dinner.menu = MenuGenerator.new(params['menu']).call
     
@@ -38,7 +37,6 @@ class MenusController < ApplicationController
     @dinner = @menu.dinner
     @menu.tally_votes
     @menu.email_guests_with_final_menu(@dinner, current_user)
-
 
     respond_to do |f|
       f.js

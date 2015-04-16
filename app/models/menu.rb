@@ -39,13 +39,15 @@ class Menu < ActiveRecord::Base
     @dinner = dinner
     dinner_page = "http://www.approvablefeast.com/users/#{host.id}/dinners/#{@dinner.id}" 
     subject = "What do you want to bring to #{host.name}'s potluck?"
-    # binding.pry
+    header = "You're invited to cook!"
+    link_action = "Sign Up!"
+    
     @dinner.guest_emails.split(",").each do |recipient|
       if recipient.length > 1
-        GuestMailer.notify_guest_when_tallied(host.email, recipient, subject, dinner_page, @dinner).deliver
+        GuestMailer.email_guests(host.email, recipient, subject, dinner_page, @dinner, header, link_action).deliver
       end
     end
-    GuestMailer.notify_guest_when_tallied(host.email, host.email, subject, dinner_page, @dinner).deliver
+    GuestMailer.email_guests(host.email, host.email, subject, dinner_page, @dinner, header, link_action).deliver
   end
 
 
