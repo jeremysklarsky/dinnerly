@@ -1,5 +1,6 @@
 <div class="col-lg-6 col-lg-offset-3">
   <div class="well bs-component">
+      <%= flash[:notice] %>
     <h3 class="welcome-msg col-lg-offset-3">Sign up</h3><br>
       <%= form_for @user do |f| %>
         <% if @user.errors.any? %>
