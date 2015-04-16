@@ -9,8 +9,8 @@
         <!-- Display the user name if logged in -->
         <!-- <li id="displayName" class="btn disabled dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></li>
           -->
+        <li class="logOutButton"><%= link_to "My Account", user_account_path(current_user) %></li>
         <li class="logOutButton"><%= link_to "Log Out", logout_path %></li>
-         
        
       <%else%>
         <li><%= link_to "Log In", login_path %></li><li><%= link_to "Sign Up", signup_path %></li>
