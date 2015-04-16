@@ -32,15 +32,7 @@ class Users::DinnersController < ApplicationController
     subject = "#{@user.name}'s invited you to a dinner party!"
     dinner = Dinner.find(params[:id])
     
-    emails = params["guest"]["emails"].select{|email| email.length > 1}
-    emails.each do |email|
-      dinner.guest_emails << "," + email.strip
-    end    
-    dinner.save
-    recipients = emails.collect do |email|
-      email.strip
-    end
-    
+    recipients = EmailSanitizer.clean_emails(params["guest"]["emails"], dinner)
     recipients.each do |recipient|
       if dinner.menu.election
         header = "You're invited to vote!"
