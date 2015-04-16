@@ -1,5 +1,4 @@
 class Users::DinnersController < ApplicationController
-
   before_filter :invited?, only: [:show]
 
   def new

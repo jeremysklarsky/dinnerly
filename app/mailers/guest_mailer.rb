@@ -14,6 +14,4 @@ class GuestMailer < ApplicationMailer
          :subject => @subject,
          :reply_to => @user_email)
   end
-
-
 end

@@ -41,6 +41,7 @@ class Menu < ActiveRecord::Base
     subject = "What do you want to bring to #{host.name}'s potluck?"
     header = "You're invited to cook!"
     link_action = "Sign Up!"
+    
     @dinner.guest_emails.split(",").each do |recipient|
       if recipient.length > 1
         GuestMailer.email_guests(host.email, recipient, subject, dinner_page, @dinner, header, link_action).deliver
