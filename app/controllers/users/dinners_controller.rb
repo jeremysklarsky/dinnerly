@@ -52,16 +52,24 @@ class Users::DinnersController < ApplicationController
     @dinner = Dinner.find(params[:id])
   end
 
+  def edit
+    current_user = User.find(params[:user_id])
+    @dinner = Dinner.find(params[:id])
+  end
+
+
   def update
     @dinner = Dinner.find(params[:id])
-    if params[:dinner][:guests] == "Yes"
-      @dinner.guests << current_user
-      @dinner.save
-      redirect_to user_dinner_path(@dinner.host, @dinner)
-    else
-      @dinner.guest_emails = @dinner.guest_emails.gsub(/#{current_user.email}/,"")
-      @dinner.save
-      redirect_to root_path
+    if @dinner.update(dinner_params)
+      if params[:dinner][:guests] == "Yes"
+        @dinner.guests << current_user
+        @dinner.save
+        redirect_to user_dinner_path(@dinner.host, @dinner)
+      else
+        @dinner.guest_emails = @dinner.guest_emails.gsub(/#{current_user.email}/,"")
+        @dinner.save
+        redirect_to root_path
+      end
     end
   end
 
