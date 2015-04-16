@@ -3,7 +3,7 @@ class MenuRecipe < ActiveRecord::Base
   belongs_to :menu
   belongs_to :recipe
   belongs_to :chef, :class_name => "User"
-  has_many :votes
+  has_many :votes, dependent: :destroy
 
   def vote_total
     votes.size

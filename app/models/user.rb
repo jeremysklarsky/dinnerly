@@ -12,15 +12,21 @@
          # and use confirmation to ensure they always match
          :confirmation => true
 
-  has_many :dinners, foreign_key: 'host_id'
+  has_many :dinners, foreign_key: 'host_id', dependent: :destroy
   has_many :dinner_guests, foreign_key: 'guest_id'
   has_many :attended_dinners, foreign_key: 'guest_id', class_name: 'DinnerGuest'
   has_many :menus, through: :dinners
   has_many :menu_recipes, foreign_key: 'chef_id'
   has_many :recipes, through: :menu_recipes
-
   has_many :votes
 
+  def attending?(dinner)
+    if dinner.guests.include?(self)
+      "Yes"
+    else
+      "No"
+    end
+  end
 
 end
 

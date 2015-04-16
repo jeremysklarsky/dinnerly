@@ -1,13 +1,61 @@
-<div class="well well-lg col-md-4 col-md-offset-4 text-center">
-<h3>Dinners I've Hosted</h3>
-  <% current_user.dinners.each do |dinner| %>
-    <%= link_to dinner.name, user_dinner_path(current_user, dinner)%><br>
-  <% end %>
-</div>
+<div id="my-dinners">
+  <div class="well well-lg col-md-8 col-md-offset-2 text-center">
+  <h3>Dinners I've Hosted</h3>
+    <div class="row text-center">
+      <span class="col-md-3">Name</span>
+      <span class="col-md-3">Date</span>
+      <span class="col-md-3"># Attending</span>
+      <span class="col-md-3">Final Menu?</span>
+    </div>
 
-<div class="well well-lg col-md-4 col-md-offset-4 text-center">
-<h3>Dinners I've Attended</h3>
-  <% Dinner.select{|dinner| dinner.guests.include?(current_user)}.each do |dinner| %>
-    <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%><br>
-  <% end %>
+    <% @hosted_dinners.each do |dinner| %>
+      <div class="row dinner-row text-center">
+
+        <span class="col-md-3"> <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%></span>
+        <span class="col-md-3"><%= dinner.date %></span>
+        <span class="col-md-3"><%= dinner.guests.size %></span>
+        <span class="col-md-3"><%= dinner.final_menu? %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="well well-lg col-md-8 col-md-offset-2 text-center">
+  <h3>Dinners I've Attended</h3>
+   <div class="row dinner-row text-center">
+      <span class="col-md-3">Name</span>
+      <span class="col-md-3">Date</span>
+      <span class="col-md-3">Host</span>
+      <span class="col-md-3">Was It Awesome?</span>
+    </div>
+
+    <% @attended_dinners.each do |dinner| %>
+      <div class="row dinner-row text-center">
+
+        <span class="col-md-3"> <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%></span>
+        <span class="col-md-3"><%= dinner.date %></span>
+        <span class="col-md-3"><%= dinner.host.name %></span>
+        <span class="col-md-3">Yeah!</span>
+    <% end %>
+  </div>
+
+  <div class="well well-lg col-md-8 col-md-offset-2 text-center">
+
+  <h3>Upcoming Dinners</h3>
+    <div class="row text-center">
+    <span class="col-md-3">Name</span>
+    <span class="col-md-3">Date</span>
+    <span class="col-md-3">Host</span>
+    <span class="col-md-3">RSVP?</span>
+  </div>
+
+    <% @upcoming_dinners.each do |dinner| %>
+      <div class="row dinner-row text-center">
+
+        <span class="col-md-3"> <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%></span>
+        <span class="col-md-3"><%= dinner.date %></span>
+        <span class="col-md-3"><%= dinner.host.name %></span>
+        <span class="col-md-3"><%= current_user.attending?(dinner) %></span>
+      </div>
+    <% end %>
+  </div>
 </div>
