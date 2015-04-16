@@ -5,6 +5,13 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(:email => params[:user][:email]).try(:authenticate, params[:user][:password])
+    # binding.pry
+    # if q == "reset"
+    #   #@path = accounts path
+    # else
+    #   @path = root_path
+    # end
+    
     if @user 
       login(@user)
       if session[:dinner_path]
@@ -13,7 +20,7 @@ class SessionsController < ApplicationController
       #   redirect_to session[:reset_path]
       else
         flash[:notice] = "Successfully logged in. Welcome #{@user.name}!"
-        redirect_to root_path
+        redirect_to @path
       end
     else
       flash.now[:notice] = "User name or password is not valid."
