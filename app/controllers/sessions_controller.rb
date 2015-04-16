@@ -4,8 +4,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if request.env['omniauth.auth']
-      @user = User.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) || User.create_with_omniauth(auth_hash)  
+    binding.pry
+    if auth_hash
+      @user = User.handle_facebook_login(auth_hash)
     else
       @user = User.find_by(:email => params[:user][:email]).try(:authenticate, params[:user][:password])
     end
