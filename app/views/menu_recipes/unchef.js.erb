@@ -1,0 +1,3 @@
+$('<%= j @chef_name %>').html('');
+
+$('<%= j @chef_button %>').parents('div.vote-button-form').html("<%= j render :partial => 'chef', locals: { menu_recipe: @menu_recipe }%>");

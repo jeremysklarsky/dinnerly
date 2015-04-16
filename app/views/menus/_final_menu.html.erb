@@ -2,38 +2,22 @@
   <h3>Appetizers</h3>
     <% @dinner.menu.appetizers.each do |recipe| %>
       <%= link_to recipe.name, recipe_path(recipe) %><br>
-      <% if MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id %>
-        <%= User.find(MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id).name %>
-      <% else %>
-        <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
-      <% end %>
+      <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
     <% end %>
   <h3>Sides</h3>
     <% @dinner.menu.sides.each do |recipe| %>
       <%= link_to recipe.name, recipe_path(recipe) %><br>
-      <% if MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id %>
-        <%= User.find(MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id).name %>
-      <% else %>
-        <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
-      <% end %>
+      <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
     <% end %>
   <h3>Mains</h3>
     <% @dinner.menu.mains.each do |recipe| %>
       <%= link_to recipe.name, recipe_path(recipe) %><br>
-      <% if MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id %>
-        <%= User.find(MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id).name %>
-      <% else %>
-        <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
-      <% end %>
+      <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
     <% end %>
   <h3>Desserts</h3>
     <% @dinner.menu.desserts.each do |recipe| %>
       <%= link_to recipe.name, recipe_path(recipe) %><br>
-      <% if MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id %>
-        <%= User.find(MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id).first.chef_id).name %>
-      <% else %>
-        <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
-      <% end %>
+      <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
     <% end %>
 </div>
 
