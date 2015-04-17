@@ -41,9 +41,16 @@ body {
   margin-top: 1em;
 }
 
+.well {
+  margin-top: 4em;
+  padding-bottom: 4em;
+  margin-bottom: 7em;
+}
+
 /* WELCOME PAGE STYLING
 ---------------------------------------------------*/
 .instructions {
+  text-align: center;
   background-color: #CCCAC7;
   border-top: solid 3px #242661;
   height: 500px;
@@ -62,6 +69,8 @@ body {
   font-size: 12em;
   font-family: Lobster, cursive;
   text-align: center;
+  color: #2BB2E8;
+  text-shadow: -1px 0 #0D3747, 0 1px #0D3747, 1px 0 #0D3747, 0 -1px #0D3747;
 }
 
 h1.logo-text {
@@ -70,10 +79,6 @@ h1.logo-text {
   margin-bottom: .2em;
 }
 
-/*.logo-text .btn {
-  text-align: center;
-}*/
-
 /* NAVBAR STYLING
 -------------------------------------------------- */
 .navbar-default,
@@ -81,8 +86,8 @@ h1.logo-text {
 .navbar {
   border-radius: 0px;
   margin-bottom: 0;
-  background-color: rgba(36, 38, 97, 1);
-  border-color: #242661;
+  background-color: #08204C;
+  border-color: #1A1B45;
   color: #E4F2EB;
 }
 
@@ -91,6 +96,7 @@ h1.logo-text {
 .navbar-nav li a,
 .navbar li a {
   color: #E4F2EB;
+  font-size: 1.3em;
 }
 
 /* ELECTION MENU PARTIAL STYLING
@@ -117,6 +123,18 @@ div.menu-election .recipe-card.horizontal-scroll span:last-child {
   margin: 0.5em;
 }
 
+.btn-primary {
+  background-color: #08204C;
+}
+
+.btn {
+  font-size: 1em;
+}
+
+.button-row span:nth-child(2) {
+  margin: 2em;
+}
+
 /* MY DINNERS STYLING
 -------------------------------------------------- */
 #my-dinners {
@@ -131,10 +149,8 @@ div.menu-election .recipe-card.horizontal-scroll span:last-child {
   height: 40px; /* Set the fixed height of the footer here */
   text-align: center;
   color: #E4F2EB;
-  /*background-color: rgba(36, 38, 97, 0.5);
-  border-color: #242661;*/
-  background-color: rgba(36, 38, 97, 1);
-  border-color: #242661;
+  background-color: #08204C;
+  border-color: #1A1B45;
   border-radius: 0;
 }
 .footer > .container {
@@ -158,4 +174,17 @@ footer li a {
 footer li a:hover {
   color: #fff;
   text-decoration: none;
+}
+
+/* WELL STYLING
+--------------------------*/
+
+.welcome-msg.user-account {
+  margin-bottom: 1em;
+}
+
+/* FORM STYLING
+-------------------------*/
+#forgot-password {
+  float: left;
 }

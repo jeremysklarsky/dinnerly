@@ -1,26 +1,29 @@
-<div class="well well-md col-md-8 col-md-offset-2 text-center">
-  <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="well">
+    <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
+    <h3 class="welcome-msg col-lg-offset-3">Edit Profile Information</h3><br>
+    <div class="text-right">
+      <%= form_for @user do |f| %>
 
-  <%= form_for @user do |f| %>
+        <%= f.label :name, "Name", class: "col-sm-3 control-label" %>
+        <%= f.text_field :name, class: "form-field form-control" %><br>
+        <%= f.label :email, "E-mail", class: "col-sm-3 control-label" %>
+        <%= f.email_field :email, class: "form-field form-control" %><br>
 
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name, :size=>"40" %><br>
-    <%= f.label :email, "E-mail" %>
-    <%= f.email_field :email, :size=>"40" %><br>
+        <%= f.label :password, "Current Password", class: "col-sm-3 control-label" %>
+        <%= f.password_field :password, class: "form-field form-control" %>
+        <div class="col-sm-3 control-label"></div>
+        <%= link_to "Forgot Password?", reset_password_path, id: 'forgot-password' %><br><br>
+        <%= f.label :new_password, "New Password", class: "col-sm-3 control-label" %>
+        <%= f.password_field :new_password, class: "form-field form-control" %><br>
 
-    <%= f.label :password, "Current Password" %>
-    <%= f.password_field :password, :size=>"40" %><br>
-
-    <%= f.label :new_password, "New Password" %>
-    <%= f.password_field :new_password, :size=>"40" %><br>
-
-    <%= f.label :confirm_password, "Confirm New Password" %>
-    <%= f.password_field :confirm_password, :size=>"40" %><br>
-
+        <%= f.label :confirm_password, "Confirm New Password", class: "col-sm-3 control-label" %>
+        <%= f.password_field :confirm_password, class: "form-field form-control" %><br>
+    </div>
+    <div class="text-center">
+      <%= f.submit "Save Changes", class: "btn btn-primary" %>
+      <% end %>
+    </div>
     
-    <%= f.submit %>
-  <% end %>
-
-  <%= link_to "Reset Password", reset_password_path %>
-
+  </div>
 </div>

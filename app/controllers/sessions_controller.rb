@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     if auth_hash
       @user = User.handle_facebook_login(auth_hash)
     else
@@ -16,7 +15,7 @@ class SessionsController < ApplicationController
       if session[:dinner_path]
         redirect_to session[:dinner_path]
       else
-        flash[:notice] = "Successfully logged in. Welcome #{@user.name}!"
+        flash[:notice] = "Successfully logged in. Welcome, #{@user.name}!"
         redirect_to root_path
       end
     else
@@ -53,5 +52,4 @@ class SessionsController < ApplicationController
     def auth_hash
       request.env['omniauth.auth']
     end
-
 end
