@@ -84,6 +84,7 @@
 
     <% if @dinner.host == current_user %>
     <div id="email-button" class="email-guests"><br>
+    <button id="email-guests-btn" class="btn btn-primary">Invite Guests</button><br>
       <%= render 'users/dinners/email_guest_form' %>
     </div>
     <h4>In a rush? <%= link_to 'Tally your votes now.', tally_menu_path(@dinner.menu), method: :post, remote: true %></h4>
