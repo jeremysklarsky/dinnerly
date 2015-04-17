@@ -1,0 +1,17 @@
+<a href="<%= recipe_path(recipe)%>" 
+   class="recipe-link" 
+   data-container="body" 
+   data-toggle="focus" 
+   data-placement="top" 
+   data-content=
+   "<h5><%= recipe.name %></h5>
+    <img src='<%= recipe.image_url %>' class='qtr'/>
+    <p>Primary Ingredient: <%= recipe.primary_ingredient %></p>
+    ">
+
+   <%= recipe.name %>
+
+
+   </a>
+
+
