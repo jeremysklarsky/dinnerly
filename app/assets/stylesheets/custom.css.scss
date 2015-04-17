@@ -79,6 +79,26 @@ h1.logo-text {
   margin-bottom: .2em;
 }
 
+.learnMore {
+  color: #2BB2E8;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 3em;
+}
+
+.learnMore h4 {
+  font-weight: bold;
+}
+
+.learnMore .glyphicon {
+  text-shadow: -1px 0 #0D3747, 0 1px #0D3747, 1px 0 #0D3747, 0 -1px #0D3747;
+}
+
+.scrollBack {
+  position: relative;
+  top: 230px;
+}
+
 /* NAVBAR STYLING
 -------------------------------------------------- */
 .navbar-default,
