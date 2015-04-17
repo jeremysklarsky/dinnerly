@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def self.handle_facebook_login(auth_hash)
+    # binding.pry
     self.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) || self.create_with_omniauth(auth_hash)  
 
   end

@@ -4,14 +4,17 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # binding.pry
     if auth_hash
       @user = User.handle_facebook_login(auth_hash)
     else
       @user = User.find_by(:email => params[:user][:email]).try(:authenticate, params[:user][:password])
     end
     
+    # binding.pry
     if @user
       login(@user)
+      # binding.pry
       if session[:dinner_path]
         redirect_to session[:dinner_path]
       else
