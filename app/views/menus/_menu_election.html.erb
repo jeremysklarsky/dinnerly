@@ -24,22 +24,22 @@
 
     <div id="sides">
       <h3>Sides</h3>
-        <div class="recipe-card horizontal-scroll">
-        <% @dinner.menu.menu_sides.each do |mr| %>
-        
-        <span class="individual-recipe">
-          <img src="<%= mr.recipe.image_url %>" class="img-thumbnail"><br>
-          <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
-          <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
-          <% if !mr.vote_cast?(current_user) %>
-          <div class="vote-button-form"><%= render :partial => 'menu_recipes/vote', locals: { mr: mr } %></div>
-          <% else %>
-          <div class="vote-button-form"><%= render :partial => 'menu_recipes/unvote', locals: { mr: mr } %></div>
-          <% end  %>
-        </span>
-
-        <% end %>          
+      <div class="recipe-card horizontal-scroll">
+      <% @dinner.menu.menu_sides.each do |mr| %>
+      
+      <div class="individual-recipe">
+        <img src="<%= mr.recipe.image_url %>" class="img-thumbnail"><br>
+        <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
+        <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
+        <% if !mr.vote_cast?(current_user) %>
+        <div class="vote-button-form"><%= render :partial => 'menu_recipes/vote', locals: { mr: mr } %></div>
+        <% else %>
+        <div class="vote-button-form"><%= render :partial => 'menu_recipes/unvote', locals: { mr: mr } %></div>
+        <% end  %>
       </div>
+
+      <% end %>  
+      </div>        
     </div>
 
     <div id="mains">

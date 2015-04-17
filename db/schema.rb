@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416204808) do
+ActiveRecord::Schema.define(version: 20150417182523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 20150416204808) do
     t.string   "course_name"
   end
 
-  add_index "menu_recipes", ["menu_id", "recipe_id"], name: "index_menu_recipes_on_menu_id_and_recipe_id", unique: true, using: :btree
   add_index "menu_recipes", ["menu_id"], name: "index_menu_recipes_on_menu_id", using: :btree
   add_index "menu_recipes", ["recipe_id"], name: "index_menu_recipes_on_recipe_id", using: :btree
 

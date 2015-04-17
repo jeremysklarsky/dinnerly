@@ -27,11 +27,11 @@ body {
 }
 .horizontal-scroll {
   height: 300px;
-  /*width: 900px;*/
+  width: 100%;
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
-  display: inline-block;
+  /*display: inline-block;*/
 }
 .sans-serif {
   font-family: sans-serif;
@@ -112,7 +112,6 @@ div.menu-election h3 {
   font-family: 'Lobster', cursive;
   margin-bottom: 1em;
 }
-
 div.menu-election .horizontal-scroll {
   height: 325px;
 }
@@ -120,8 +119,9 @@ div.menu-election div:last-child {
   margin-bottom: 2em;
 }
 div.menu-election .individual-recipe {
-  float: left;
+  /*float: left;*/
   margin-right: 15px;
+  display: inline-block;
 }
 /*div.menu-election .recipe-card.horizontal-scroll span:last-child {
   margin-right: 0px;
