@@ -1,45 +1,48 @@
-<%= form_tag menus_path, :method => 'post', remote: true, :class => "form-inline search-center" do %>
+<%= form_tag menus_path, :method => 'post', remote: true, :class => "search-center" do %>
+  
+  <div class="cuisine-form-group">
+    <h4>Choose two cuisines -- or let us surprise you!</h4><br>
+    <div class="form-group">
+      <%= select_tag 'menu[cuisine1]', options_for_select(@cuisines, selected: "Surprise Me!"), class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= select_tag 'menu[cuisine2]', options_for_select(@cuisines, selected: "Surprise Me!",), class: "form-control" %>
+    </div>
+  </div>
+  <br><hr>
+  <div class="dishes-form-group">
+    <h4>Select a number of dishes for each course:</h4><br>
+    <div class="form-group">
+      <%= label_tag('menu[appetizers]', "Appetizers: ") %><br>
+      <%= number_field_tag 'menu[appetizers]', 0, in: 0...11, class: "form-control" %>
+    </div>
+     <div class="form-group">
+      <%= label_tag('menu[sides]', "Sides: ") %><br>
+      <%= number_field_tag 'menu[sides]', 0, in: 0...11, class: "form-control" %>
+    </div>
+     <div class="form-group">
+      <%= label_tag('menu[mains]', "Entrees: ") %><br>
+      <%= number_field_tag 'menu[mains]', 0, in: 0...11, class: "form-control" %>
+    </div>
+     <div class="form-group">
+      <%= label_tag('menu[desserts]', "Desserts: ") %><br>
+      <%= number_field_tag 'menu[desserts]', 0, in: 0...11, class: "form-control" %>
+    </div>
+  </div>
+  <br><hr>
+  <div class="menu-type-form-group">
+    <h4>Who sets the menu?</h4><br>
+    <div class="form-group">
+      <%= select_tag 'menu[election]', options_for_select(["It's my party!", "Let my guests vote!"]), class: "form-control", id: "election-option" %><br>
+    </div>
+    <div class="form-group hidden" id="exp">
+      <h4>When should we tally the votes for you?</h4>
+      <%= date_field_tag 'menu[exp_date]', class: "form-control" %><br>
+    </div>
+  </div>
+    <%= hidden_field_tag 'dinner_id', @dinner.id %>
   <div class="form-group">
-    <%= label_tag('menu[cuisine1]', "Cuisine 1") %><br>
-    <%= select_tag 'menu[cuisine1]', options_for_select(@cuisines, selected: "Surprise Me!"), class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= label_tag('menu[cuisine2]', "Cuisine 2") %><br>
-    <%= select_tag 'menu[cuisine2]', options_for_select(@cuisines, selected: "Surprise Me!",), class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= label_tag('menu[appetizers]', "No. of Appetizers") %><br>
-    <%= number_field_tag 'menu[appetizers]', nil, in: 0...11, class: "form-control" %>
-  </div>
-   <div class="form-group">
-    <%= label_tag('menu[sides]', "No. of Sides") %><br>
-    <%= number_field_tag 'menu[sides]', nil, in: 0...11, class: "form-control" %>
-  </div>
-   <div class="form-group">
-    <%= label_tag('menu[mains]', "No. of Main Dishes") %><br>
-    <%= number_field_tag 'menu[mains]', nil, in: 0...11, class: "form-control" %>
-  </div>
-   <div class="form-group">
-    <%= label_tag('menu[desserts]', "No. of Desserts") %><br>
-    <%= number_field_tag 'menu[desserts]', nil, in: 0...11, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= label_tag('menu[election]', "Who sets the menu?") %><br>
-    <%= select_tag 'menu[election]', options_for_select(["It's my party!", "Let your guests vote"]), class: "form-control", id: "election-option" %>
-  </div>
-  <div class="form-group hidden" id="exp">
-    <%= label_tag('menu[exp_date]', "election end date")%><br>
-    <%= date_field_tag 'menu[exp_date]', class: "form-control" %>
-  </div>
-
-  <%= hidden_field_tag 'dinner_id', @dinner.id %>
-  <div class="form-group"><br>
-    
-    <div class="col-md-2"></div>
-
-    <%= label_tag %>
-    <%= submit_tag "Create Menu!", class: "btn btn-primary", id:"create-menu" %>
- 
+    <br>
+    <%= submit_tag "Create Menu", class: "btn btn-primary", id:"create-menu" %>
   </div>
 <% end %>

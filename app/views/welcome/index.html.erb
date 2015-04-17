@@ -1,12 +1,23 @@
 </div>
 <div class="welcome-photo">
   <h1 class="logo-text">Approvable<br>Feast</h1>
-  <div id="fbSignup" class="text-center"><%= link_to "Sign in with Facebook", "/auth/facebook", class: "fbLogin btn btn-primary"%></div>
+  <div id="fbSignup" class="text-center"><%= link_to "Sign in with Facebook", "/auth/facebook", class: "fbLogin btn btn-primary"%></div><br><br>
+  <div id="learnMore" class="learnMore text-center">
+    <h4>LEARN MORE</h4>
+    <span class="glyphicon glyphicon-chevron-down"></span>
+  </div>
 </div>
 <div id="instructions" class="instructions">
   <div class="col-md-6 col-md-offset-3 text-center">
     <h1 class="welcome-msg">Welcome</h1>
-    <h3><%=link_to "Sign up", signup_path%> or <%=link_to "log in", login_path%> to create a dinner party, generate a menu and invite your friends to attend! Friends and family can then claim a dish to bring.</h3>
+    <h3>1. <%=link_to "Sign up", signup_path%> or <%=link_to "log in", login_path%> to create a dinner party.</h3>
+    <h3>2. Select from a list of cuisines and set the number of dishes you want to serve at your dinner party. We'll suggest a bunch of recipes for you to choose from.</h3>
+    <h3>3. Invite your friends and let them vote on which dishes they'd like to enjoy at your dinner party! (Or you can always choose to set the menu yourself.)</h3>
+    <h3>4. Once the menu for your dinner party been finalized, your guests can sign up to bring the dishes they'd like to cook.</h3><br>
+    <div id="scrollBack" class="scrollBack text-center">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+    <h4>BACK TO TOP</h4>
+  </div>
   </div>
 </div>
 
