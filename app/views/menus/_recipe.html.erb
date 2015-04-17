@@ -1,3 +1,6 @@
-<img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
-<%= link_to recipe.short_name, "/recipes/#{recipe.id}"%>
-
+<div class="recipe-card-partial">
+  <div class="recipe-card-partial-image">
+    <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
+    <%= link_to recipe.short_name, "/recipes/#{recipe.id}"%>
+  </div>
+</div>

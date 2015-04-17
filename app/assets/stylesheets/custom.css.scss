@@ -17,7 +17,6 @@ body {
        on the container's size */
     background-size: cover;
 }
-
 .theme-dropdown .dropdown-menu {
   position: static;
   display: block;
@@ -28,6 +27,7 @@ body {
 }
 .horizontal-scroll {
   height: 300px;
+  /*width: 900px;*/
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -39,13 +39,6 @@ body {
   text-transform: none;
   padding: 1px 10px;
   margin-top: 1em;
-}
-
-.well {
-  margin-top: 4em;
-  padding-bottom: 4em;
-  margin-bottom: 7em;
-  position: relative;
 }
 
 /* WELCOME PAGE STYLING
@@ -65,7 +58,6 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("table.jpg");
   background-size: cover;
 }
-
 .logo-text {
   font-size: 12em;
   font-family: Lobster, cursive;
@@ -73,28 +65,23 @@ body {
   color: #2BB2E8;
   text-shadow: -1px 0 #0D3747, 0 1px #0D3747, 1px 0 #0D3747, 0 -1px #0D3747;
 }
-
 h1.logo-text {
   margin: 0;
   padding-top: .4em;
   margin-bottom: .2em;
 }
-
 .learnMore {
   color: #2BB2E8;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: 3em;
 }
-
 .learnMore h4 {
   font-weight: bold;
 }
-
 .learnMore .glyphicon {
   text-shadow: -1px 0 #0D3747, 0 1px #0D3747, 1px 0 #0D3747, 0 -1px #0D3747;
 }
-
 .scrollBack {
   position: relative;
   bottom: 10px;
@@ -111,7 +98,6 @@ h1.logo-text {
   border-color: #1A1B45;
   color: #E4F2EB;
 }
-
 .navbar-default .navbar-nav > li > a,
 .navbar-default li a,
 .navbar-nav li a,
@@ -122,6 +108,11 @@ h1.logo-text {
 
 /* ELECTION MENU PARTIAL STYLING
 -------------------------------------------------- */
+div.menu-election h3 {
+  font-family: 'Lobster', cursive;
+  margin-bottom: 1em;
+}
+
 div.menu-election .horizontal-scroll {
   height: 325px;
 }
@@ -132,9 +123,40 @@ div.menu-election .individual-recipe {
   float: left;
   margin-right: 15px;
 }
-div.menu-election .recipe-card.horizontal-scroll span:last-child {
+/*div.menu-election .recipe-card.horizontal-scroll span:last-child {
   margin-right: 0px;
+}*/
+
+/* NON-ELECTION MENU PARTIAL STYLING
+-------------------------------------------------- */
+div.non-election-dinner h3 {
+  font-family: 'Lobster', cursive;
+  margin-bottom: 1em;
 }
+div.non-election-dinner input[type="checkbox"] {
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  /*border: 5px solid #242661;*/
+}
+div.non-election-dinner div.recipe-card-partial {
+  margin-right: 15px;
+}
+div.non-election-dinner div.recipe-card-partial {
+  /*margin-right: 0px;*/
+}
+
+/* FINAL MENU PARTIAL STYLING
+-------------------------------------------------- */
+.final-menu a.recipe-link {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.5em;
+  /*font-style: italic;*/
+}
+/*.final-menu .well {
+  background-color: rgba(248,245,240,0.6);
+}*/
 
 /* BUTTON STYLING
 -------------------------------------------------- */
@@ -142,33 +164,44 @@ div.menu-election .recipe-card.horizontal-scroll span:last-child {
   padding: 5px 10px 5px 10px;
   border-radius: 4px;
   margin: 0.5em;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: .9em;
 }
-
 .btn-primary {
-  background-color: #08204C;
+  background-color: #2391BD;
+  /*rgba(43, 178, 232, 1);*/
+  /*rgba(6, 31, 77, .75)*/
 }
-
 .btn {
   font-size: 1em;
 }
-
 .button-row span:nth-child(2) {
   margin: 2em;
 }
-
 .btn.btn-primary.edit-dinner-details {
   margin-bottom: 1em;
   position: absolute;
   top: 10px;
   right: 10px;
 }
-
 .btn.btn-primary a {
   color: #E4F2EB;
 }
-
 .btn.btn-primary a:hover {
   text-decoration: none;
+}
+.edit_dinner label {
+  font-size: 2em;
+  margin-right: 0.2em;
+}
+input#dinner_guests_yes,
+input#dinner_guests_no {
+  margin: 0 0.2em 0.5em 0;
+  font-size: 6em;
+  vertical-align: super;
+}
+input#dinner_guests_no {
+  margin: 0 0 0.5em 0;
 }
 
 /* MY DINNERS STYLING
@@ -176,6 +209,26 @@ div.menu-election .recipe-card.horizontal-scroll span:last-child {
 #my-dinners {
   float: none;
   text-align: center;
+}
+#my-dinners h2 {
+  font-family: 'Lobster', cursive;
+  margin-bottom: 1em;
+}
+#my-dinners .index-header {
+  text-decoration: underline;
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+#my-dinners .well {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+#my-dinners .well-top {
+  margin-top: 3em;
+}
+#my-dinners .well-bottom {
+  margin-bottom: 6em;
 }
 
 /* FOOTER STYLING
@@ -188,6 +241,7 @@ div.menu-election .recipe-card.horizontal-scroll span:last-child {
   background-color: #08204C;
   border-color: #1A1B45;
   border-radius: 0;
+  font-size: 0.9em;
 }
 .footer > .container {
   margin-top: 10px;
@@ -211,12 +265,20 @@ footer li a:hover {
   color: #fff;
   text-decoration: none;
 }
+.glyphicon {
+  font-size: 0.8em; 
+}
 
 /* WELL STYLING
 --------------------------*/
-
 .welcome-msg.user-account {
   margin-bottom: 1em;
+}
+.well {
+  margin-top: 4em;
+  padding-bottom: 4em;
+  margin-bottom: 7em;
+  position: relative;
 }
 
 /* FORM STYLING
@@ -224,17 +286,19 @@ footer li a:hover {
 #forgot-password {
   float: left;
 }
-
 .cuisine-form-group .form-control,
 .menu-type-form-group .form-control {
   width: 50%;
   margin: auto;
 }
-
 .dishes-form-group .form-group {
   display: inline-block;
   width: 22%;
   margin: .5em;
+}
+hr {
+  width: 60%;
+  border-top: 3px double rgba(62, 63, 58, .75);
 }
 
 /* POPOVER STYLING
@@ -242,4 +306,6 @@ footer li a:hover {
 .qtr {
   width: 150px; 
   height: 150px;
+  border-radius: 4px;
+  margin: 0.5em;
 }

@@ -1,17 +1,16 @@
 <div class="well well-lg col-md-8 col-md-offset-2 text-center">
-  <%= @dinner.name %><br>
-  <%= @dinner.location %><br>
-  <%=@dinner.date.strftime("%B %d, %Y")%>
-  <%=@dinner.time.strftime("%l:%M %p")%>
-  <br><br>
+  <h3 class="welcome-msg"><%= @dinner.name %></h3>
+  <h4><%= @dinner.location %></h4>
+  <h5><%= @dinner.date.strftime("%B %d, %Y") %></h5>
+  <h5><%= @dinner.time.strftime("%l:%M %p") %></h5>
+  <hr>
 
   <%= form_for [@dinner.host, @dinner], method: "PATCH" do |f| %>
     <%= f.hidden_field :guest_id, :value => current_user.id %>
-    <%= f.label :guests, "Yes" %>
-    <%= f.radio_button :guests, "Yes"%>
-    <%= f.label :guests, "No" %>
-    <%= f.radio_button :guests, "No"%><br>
-    <%= f.submit "Submit RSVP"%>
+    <%= f.label :guests, "Yes", class: ".radio-inline" %>
+    <%= f.radio_button :guests, "Yes" %>
+    <%= f.label :guests, "No", class: ".radio-inline" %>
+    <%= f.radio_button :guests, "No" %><br>
+    <%= f.submit "Submit RSVP", class: "btn btn-primary" %>
   <% end %>
-
 </div>

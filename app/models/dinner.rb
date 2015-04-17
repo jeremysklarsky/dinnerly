@@ -1,5 +1,4 @@
 class Dinner < ActiveRecord::Base
-
   has_many :dinner_guests 
   has_many :guests, through: :dinner_guests
   belongs_to :host, :class_name => "User"
@@ -9,11 +8,7 @@ class Dinner < ActiveRecord::Base
   validates_presence_of :host_id, :name, :date, :time, :location
 
   def final_menu?
-    if self.menu.finalized
-      "Yes"
-    else
-      "Not yet"
-    end
+    self.menu.finalized ? "Yes" : "Not yet"
   end
 
   def invited_guests

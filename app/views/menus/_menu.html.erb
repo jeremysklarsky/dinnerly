@@ -1,33 +1,34 @@
-<% if !@dinner.menu.finalized? %>
-  <%= form_for @dinner.menu, method: "PATCH", remote: true do |f|%>
-    <div id="appetizers">
-      <h3>Appetizers</h3>
-      <div class="recipe-card horizontal-scroll">
-      <%= f.collection_check_boxes(:recipes, @dinner.menu.appetizers, :id, :recipe_card) %>
-      </div>
-    </div>
-    <div id="sides">
-      <h3>Sides</h3>
-        <div class="recipe-card horizontal-scroll">
-          <%= f.collection_check_boxes(:recipes, @dinner.menu.sides, :id, :recipe_card) %>
-        </div>
-      </div>
-    <div id="mains">
-      <h3>Mains</h3>
-        <div class="recipe-card horizontal-scroll">
-          <%= f.collection_check_boxes(:recipes, @dinner.menu.mains, :id, :recipe_card) %>
-        </div>
-      </div>
-    <div id="desserts">
-      <h3>Desserts</h3>
-        <div class="recipe-card horizontal-scroll">
-          <%= f.collection_check_boxes(:recipes, @dinner.menu.desserts, :id, :recipe_card) %>
-        </div>
-    </div>
-    <%= f.submit "Set Menu", class: "btn btn-primary" %>
-  <% end %>
-<% else %>
-  <%= render 'menus/final_menu', :dinner => @dinner %>
-  
-<% end %>
+<div class="non-election-dinner">
 
+  <% if !@dinner.menu.finalized? %>
+    <%= form_for @dinner.menu, method: "PATCH", remote: true do |f|%>
+      <div id="appetizers">
+        <h3>Appetizers</h3>
+        <div class="recipe-card horizontal-scroll">
+        <%= f.collection_check_boxes(:recipes, @dinner.menu.appetizers, :id, :recipe_card) %>
+        </div>
+      </div>
+      <div id="sides">
+        <h3>Sides</h3>
+          <div class="recipe-card horizontal-scroll">
+            <%= f.collection_check_boxes(:recipes, @dinner.menu.sides, :id, :recipe_card) %>
+          </div>
+        </div>
+      <div id="mains">
+        <h3>Mains</h3>
+          <div class="recipe-card horizontal-scroll">
+            <%= f.collection_check_boxes(:recipes, @dinner.menu.mains, :id, :recipe_card) %>
+          </div>
+        </div>
+      <div id="desserts">
+        <h3>Desserts</h3>
+          <div class="recipe-card horizontal-scroll">
+            <%= f.collection_check_boxes(:recipes, @dinner.menu.desserts, :id, :recipe_card) %>
+          </div>
+      </div>
+      <%= f.submit "Set Menu", class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <%= render 'menus/final_menu', :dinner => @dinner %>
+  <% end %>
+</div>

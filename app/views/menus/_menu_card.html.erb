@@ -4,14 +4,11 @@
    data-toggle="focus" 
    data-placement="top" 
    data-content=
-   "<h5><%= recipe.name %></h5>
+   "<div class='text-center'>
+    <h5><%= recipe.name %></h5>
     <img src='<%= recipe.image_url %>' class='qtr'/>
     <p>Primary Ingredient: <%= recipe.primary_ingredient %></p>
+    </div>
     ">
 
-   <%= recipe.name %>
-
-
-   </a>
-
-
+   <%= recipe.name %></a>
