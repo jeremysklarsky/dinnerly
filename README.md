@@ -1,4 +1,4 @@
-# Dinnerly
+# Approvable Feast
 
 ## Description
 
