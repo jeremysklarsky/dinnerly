@@ -21,9 +21,9 @@
         <%= f.password_field :confirm_password, class: "form-field form-control" %><br>
     </div>
     <div class="text-center">
-      <%= f.submit "Save Changes", class: "btn btn-primary" %>
+      <%= f.submit "Save Changes", class: "btn btn-primary" %><br><br>
+      <%= link_to "Cancel", user_path(@user), class: "btn btn-danger" %>
       <% end %>
     </div>
-    
   </div>
 </div>
