@@ -1,8 +1,7 @@
-<!-- menu election -->
 <div class="menu-election">
 
 <% if !@dinner.menu.finalized? %>
-  <h3>Vote by <%=@dinner.menu.exp_date.strftime("%B %d, %Y")%></h3>
+  <h3>Vote by <%=@dinner.menu.exp_date.strftime("%B %d, %Y") %></h3>
     <div id="appetizers">
       <h3>Appetizers</h3>
       <div class="recipe-card horizontal-scroll">
@@ -84,11 +83,10 @@
     </div>
 
     <% if @dinner.host == current_user %>
-      <%= button_to 'Tally Menu', tally_menu_path(@dinner.menu), class: "btn btn-tally btn-primary", remote: true %><br>
-      <div id="email-button" class="email-guests"><br>
+    <div id="email-button" class="email-guests"><br>
       <%= render 'users/dinners/email_guest_form' %>
-      </div>
-
+    </div>
+    <h4>In a rush? <%= link_to 'Tally your votes now.', tally_menu_path(@dinner.menu), method: :post, remote: true %></h4>
     <% else %>
       <%= link_to "Save", user_path(current_user), class: "btn btn-primary" %>
     <% end %>
