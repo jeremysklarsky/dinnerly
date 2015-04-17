@@ -2,7 +2,7 @@ class Users::DinnersController < ApplicationController
   before_filter :invited?, only: [:show]
 
   def index
-    
+    @user = current_user
     @hosted_dinners = current_user.dinners
     @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user)}.select{|dinner|dinner.date < Date.today}
     @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user)}
@@ -36,18 +36,18 @@ class Users::DinnersController < ApplicationController
     user_email = current_user.email
     @user = current_user
     subject = "#{@user.name}'s invited you to a dinner party!"
-    dinner = Dinner.find(params[:id])
+    @dinner = Dinner.find(params[:id])
     
-    recipients = EmailSanitizer.clean_emails(params["guest"]["emails"], dinner)
+    recipients = EmailSanitizer.clean_emails(params["guest"]["emails"], @dinner)
     recipients.each do |recipient|
-      if dinner.menu.election
+      if @dinner.menu.election
         header = "You're invited to vote!"
         link_action = "Vote now!"
-        GuestMailer.email_guests(user_email, recipient, subject, dinner_page, dinner, header, link_action).deliver  
+        GuestMailer.email_guests(user_email, recipient, subject, dinner_page, @dinner, header, link_action).deliver  
       else
         header = "You're invited to cook!"
         link_action = "RSVP"
-        GuestMailer.email_guests(user_email, recipient, subject, dinner_page, dinner, header, link_action).deliver
+        GuestMailer.email_guests(user_email, recipient, subject, dinner_page, @dinner, header, link_action).deliver
       end
     end
     respond_to do |f|

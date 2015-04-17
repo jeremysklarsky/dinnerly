@@ -1,17 +1,16 @@
-<!-- <div class="well well-sm col-md-3 col-md-offset-5 text-center"> -->
-<button id="email-guests-btn" class="btn btn-primary">Invite Guests</button><br>
-
 <form id="email-form" class="hidden", method="POST", action="<%= @dinner.id %>/invite", data-remote="true">
 
   <input name="authenticity_token" type="hidden" value="token_value">
 
   <div id="email-forms">
-    <input type="text" name="guest[emails][]", class="email-input"/><br><br>
-    <input type="text" name="guest[emails][]", class="email-input"/><br><br>
+    <input type="text" name="guest[emails][]", class="email-input" size="30"/><br><br>
+    <input type="text" name="guest[emails][]", class="email-input" size="30"/><br><br>
   </div>
+  
   <input type="submit" value="Send Invitations" class="btn btn-primary"/>
 
 
 </form>
+
 <div id="send-confirmation"></div>
 </div>
