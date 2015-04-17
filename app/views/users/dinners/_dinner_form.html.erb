@@ -11,5 +11,6 @@
   <%= f.label :time, class: "col-sm-2 control-label" %>
   <%= f.time_field :time, class: "form-field form-control" %><br>
 
-  <%= f.submit class: "col-sm-offset-2 btn btn-primary" %>
+  <%= f.submit class: "col-sm-offset-2 btn btn-primary" %><br><br>
+  <%= link_to "Cancel", user_path(current_user), class: "col-sm-offset-2 btn btn-danger" %>
 <%end%>
