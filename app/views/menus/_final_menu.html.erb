@@ -26,6 +26,8 @@
 </div>
 
 <% if current_user == @dinner.host %>
+  <button id="email-guests-btn" class="btn btn-primary">Invite Guests</button><br>
+
   <div id="email-button" class="email-guests"><br>
   <%= render partial: 'users/dinners/email_guest_form', locals: {:dinner => @dinner} %>
   </div>
