@@ -45,6 +45,7 @@ body {
   margin-top: 4em;
   padding-bottom: 4em;
   margin-bottom: 7em;
+  position: relative;
 }
 
 /* WELCOME PAGE STYLING
@@ -96,7 +97,7 @@ h1.logo-text {
 
 .scrollBack {
   position: relative;
-  top: 230px;
+  bottom: 10px;
 }
 
 /* NAVBAR STYLING
@@ -155,6 +156,21 @@ div.menu-election .recipe-card.horizontal-scroll span:last-child {
   margin: 2em;
 }
 
+.btn.btn-primary.edit-dinner-details {
+  margin-bottom: 1em;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.btn.btn-primary a {
+  color: #E4F2EB;
+}
+
+.btn.btn-primary a:hover {
+  text-decoration: none;
+}
+
 /* MY DINNERS STYLING
 -------------------------------------------------- */
 #my-dinners {
@@ -207,6 +223,18 @@ footer li a:hover {
 -------------------------*/
 #forgot-password {
   float: left;
+}
+
+.cuisine-form-group .form-control,
+.menu-type-form-group .form-control {
+  width: 50%;
+  margin: auto;
+}
+
+.dishes-form-group .form-group {
+  display: inline-block;
+  width: 22%;
+  margin: .5em;
 }
 
 /* POPOVER STYLING
