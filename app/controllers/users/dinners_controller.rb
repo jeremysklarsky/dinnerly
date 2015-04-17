@@ -2,7 +2,7 @@ class Users::DinnersController < ApplicationController
   before_filter :invited?, only: [:show]
 
   def index
-    
+    @user = current_user
     @hosted_dinners = current_user.dinners
     @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user)}.select{|dinner|dinner.date < Date.today}
     @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user)}
