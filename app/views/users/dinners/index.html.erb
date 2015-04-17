@@ -11,9 +11,9 @@
     <% @hosted_dinners.each do |dinner| %>
       <div class="row dinner-row text-center">
         <span class="col-md-3"> <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%></span>
-        <span class="col-md-3"><%= dinner.date.strftime("%B %d, %Y") %></span>
+        <span class="col-md-3"><%= dinner.dinner_date %></span>
         <span class="col-md-3"><%= dinner.guests.size %></span>
-        <span class="col-md-3"><%= dinner.final_menu? if dinner.menu %></span>
+        <span class="col-md-3"><%= dinner.final_menu? %></span>
       </div>
     <% end %>
   </div>
@@ -30,7 +30,7 @@
     <% @attended_dinners.each do |dinner| %>
       <div class="row dinner-row text-center">
       <span class="col-md-3"> <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%></span>
-      <span class="col-md-3"><%= dinner.date.strftime("%B %d, %Y") %></span>
+      <span class="col-md-3"><%= dinner.dinner_date %></span>
       <span class="col-md-3"><%= dinner.host.name %></span>
       <span class="col-md-3">Yeah!</span>
     <% end %>
@@ -49,7 +49,7 @@
     <% @upcoming_dinners.each do |dinner| %>
       <div class="row dinner-row text-center">
         <span class="col-md-3"> <%= link_to dinner.name, user_dinner_path(dinner.host, dinner)%></span>
-        <span class="col-md-3"><%= dinner.date.strftime("%B %d, %Y") %></span>
+        <span class="col-md-3"><%= dinner.dinner_date %></span>
         <span class="col-md-3"><%= dinner.host.name %></span>
         <span class="col-md-3"><%= current_user.attending?(dinner) %></span>
       </div>
