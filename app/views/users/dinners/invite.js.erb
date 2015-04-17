@@ -1,7 +1,8 @@
+$("#email-form").replaceWith("<%= j render :partial => 'users/dinners/email_guest_form', :locals => {:dinner => @dinner} %>")
 $("#email-form").addClass("hidden");
 $("#send-confirmation").html("Invitation sent!");
-
 $("#add-guests-btn").on("click", function(){
-$(".email-input").val(" ");
+  $(".additional-form").remove();
+  $(".email-input").val(" ");
   $("#email-form").removeClass("hidden");
 })
