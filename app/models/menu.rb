@@ -6,32 +6,26 @@ class Menu < ActiveRecord::Base
   has_many :recipes, through: :menu_recipes
 
   def tally_votes
-    @menu = self
-    @dinner = @menu.dinner
-    @options = @menu.menu_recipes.collect{|mr|mr.id}
+    @dinner = self.dinner
+    @options = self.menu_recipes.collect{|mr|mr.id}
 
-    @apps = @menu.menu_recipes.where(course_name: "Appetizer")
-    @sides = @menu.menu_recipes.where(course_name: "Side")
-    @mains = @menu.menu_recipes.where(course_name: "Main")
-    @desserts = @menu.menu_recipes.where(course_name: "Dessert")
-
-    @num_apps = @apps.size / 2
-    @num_sides = @sides.size / 2
-    @num_mains = @mains.size / 2
-    @num_desserts = @desserts.size / 2
+    @num_apps = menu_appetizers.size / 2
+    @num_sides = menu_sides.size / 2
+    @num_mains = menu_mains.size / 2
+    @num_desserts = menu_desserts.size / 2
 
     @choices = []
-    @choices << @apps.sort_by {|a| a.vote_total }.reverse[0..@num_apps-1].collect {|a| a.id}
-    @choices << @sides.sort_by {|a| a.vote_total }.reverse[0..@num_sides-1].collect {|a| a.id}
-    @choices << @mains.sort_by {|a| a.vote_total }.reverse[0..@num_mains-1].collect {|a| a.id}
-    @choices << @desserts.sort_by {|a| a.vote_total }.reverse[0..@num_desserts-1].collect {|a| a.id}
+    @choices << menu_appetizers.sort_by {|a| a.vote_total }.reverse[0..@num_apps-1].collect {|a| a.id}
+    @choices << menu_sides.sort_by {|a| a.vote_total }.reverse[0..@num_sides-1].collect {|a| a.id}
+    @choices << menu_mains.sort_by {|a| a.vote_total }.reverse[0..@num_mains-1].collect {|a| a.id}
+    @choices << menu_desserts.sort_by {|a| a.vote_total }.reverse[0..@num_desserts-1].collect {|a| a.id}
     @choices.flatten!
 
     (@options - @choices).each do |reject|
-      @menu.menu_recipes.find(reject).destroy
+      self.menu_recipes.find(reject).destroy
     end
-    @menu.finalized = true
-    @menu.save
+    self.finalized = true
+    self.save
 
   end
 
@@ -49,22 +43,6 @@ class Menu < ActiveRecord::Base
     end
     GuestMailer.email_guests(host.email, host.email, subject, dinner_page, @dinner, header, link_action).deliver
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   def appetizers
