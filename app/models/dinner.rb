@@ -7,9 +7,6 @@ class Dinner < ActiveRecord::Base
 
   validates_presence_of :host_id, :name, :date, :time, :location
 
-  def final_menu?
-    self.menu.finalized ? "Yes" : "Not yet"
-  end
 
   def invited_guests
     emails = self.guest_emails.split(",")
@@ -20,5 +17,21 @@ class Dinner < ActiveRecord::Base
       end
     end
     invited_guests_array
+  end
+
+  def final_menu?
+    if self.menu.present? && self.menu.finalized 
+      "Yes" 
+    else
+      "Not yet"
+    end
+  end
+
+  def dinner_date
+    if self.date
+      self.date.strftime("%B %d, %Y")
+    else
+      "No date"
+    end
   end
 end
