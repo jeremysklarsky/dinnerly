@@ -1,9 +1,9 @@
 <% if menu_recipe.first.is_chef?(current_user) %>
-  <div id="chef_name_<%= menu_recipe.first.id %>"><%= current_user.name %></div>
+  <div class="chef-name" id="chef_name_<%= menu_recipe.first.id %>">Chef: <%= current_user.name %></div>
   <div class="vote-button-form"><%= render :partial => 'menu_recipes/unchef', locals: { menu_recipe: menu_recipe.first } %></div>
 <% elsif menu_recipe.first.chef %>
-  <div id="chef_name_<%= menu_recipe.first.id %>"><%= menu_recipe.first.chef.name %></div>
+  <div class="chef-name" id="chef_name_<%= menu_recipe.first.id %>">Chef: <%= menu_recipe.first.chef.name %></div>
 <% else %>
-  <div id="chef_name_<%= menu_recipe.first.id %>"></div>
+  <div class="chef-name" id="chef_name_<%= menu_recipe.first.id %>"></div>
   <div class="vote-button-form"><%= render :partial => 'menu_recipes/chef', locals: { menu_recipe: menu_recipe.first } %></div>
 <% end  %>
