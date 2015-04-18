@@ -16,19 +16,23 @@ class MenusController < ApplicationController
     end
   end
 
-  def update    
+  def update
     @menu = Menu.find(params[:id])
-    @dinner = @menu.dinner
-    @options = @menu.recipes.collect{|r|r.id}
+    @dinner = @menu.dinner 
     @choices = params["menu"]["recipes"].map(&:to_i)
 
-    (@options - @choices).each do |reject|
-      @menu.menu_recipes.find_by(recipe_id: reject).destroy
-    end
-    @menu.finalized = true
-    @menu.save
-    respond_to do |f|
-      f.js
+    if (@choices - [0]).length < 4
+      flash.now[:notice] = "Please choose at least one dish for each course."
+    else
+      @options = @menu.recipes.collect{|r|r.id}
+      (@options - @choices).each do |reject|
+        @menu.menu_recipes.find_by(recipe_id: reject).destroy
+      end
+      @menu.finalized = true
+      @menu.save
+      respond_to do |f|
+        f.js
+      end
     end
   end
 
