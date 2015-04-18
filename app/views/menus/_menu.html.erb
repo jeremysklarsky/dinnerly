@@ -1,5 +1,4 @@
 <div class="non-election-dinner">
-
   <% if !@dinner.menu.finalized? %>
     <%= form_for @dinner.menu, method: "PATCH", remote: true do |f|%>
       <div id="appetizers">
@@ -26,6 +25,7 @@
             <%= f.collection_check_boxes(:recipes, @dinner.menu.desserts, :id, :recipe_card) %>
           </div>
       </div>
+      <p id="notice" class="text-center"><%= flash[:notice] %></p>
       <%= f.submit "Set Menu", class: "btn btn-primary" %>
     <% end %>
   <% else %>
