@@ -14,19 +14,19 @@
     <h4>Select a number of dishes for each course:</h4><br>
     <div class="form-group">
       <%= label_tag('menu[appetizers]', "Appetizers: ") %><br>
-      <%= number_field_tag 'menu[appetizers]', 0, in: 0...11, class: "form-control" %>
+      <%= number_field_tag 'menu[appetizers]', 1, in: 1...11, class: "form-control" %>
     </div>
      <div class="form-group">
       <%= label_tag('menu[sides]', "Sides: ") %><br>
-      <%= number_field_tag 'menu[sides]', 0, in: 0...11, class: "form-control" %>
+      <%= number_field_tag 'menu[sides]', 1, in: 1...11, class: "form-control" %>
     </div>
      <div class="form-group">
       <%= label_tag('menu[mains]', "Entrees: ") %><br>
-      <%= number_field_tag 'menu[mains]', 0, in: 0...11, class: "form-control" %>
+      <%= number_field_tag 'menu[mains]', 1, in: 1...11, class: "form-control" %>
     </div>
      <div class="form-group">
       <%= label_tag('menu[desserts]', "Desserts: ") %><br>
-      <%= number_field_tag 'menu[desserts]', 0, in: 0...11, class: "form-control" %>
+      <%= number_field_tag 'menu[desserts]', 1, in: 1...11, class: "form-control" %>
     </div>
   </div>
   <br><hr>
