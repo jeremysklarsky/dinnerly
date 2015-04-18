@@ -1,7 +1,19 @@
 <div class="menu-election">
 
 <% if !@dinner.menu.finalized? %>
-  <h3>Vote by <%=@dinner.menu.exp_date.strftime("%B %d, %Y") %></h3>
+  <div class="countdown">
+        <h3>Vote by <%=@dinner.menu.exp_date.strftime("%B %d, %Y")%></h3>
+          <span class="expiredate" value="<%= @dinner.menu.exp_date%>">election expires in: </span>   
+          <span class="days">00</span>
+          <span class="timeRefDays">days</span>
+          <span class="hours">00</span>
+          <span class="timeRefHours">hours</span>
+          <span class="minutes">00</span>
+          <span class="timeRefMinutes">minutes</span>
+          <span class="seconds">00</span>
+          <span class="timeRefSeconds">seconds</span>
+        </div>
+
     <div id="appetizers">
       <h3>Appetizers</h3>
       <div class="recipe-card horizontal-scroll">
