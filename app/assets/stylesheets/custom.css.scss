@@ -110,7 +110,7 @@ h1.logo-text {
 -------------------------------------------------- */
 div.menu-election h3 {
   font-family: 'Lobster', cursive;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 div.menu-election .horizontal-scroll {
   height: 325px;
@@ -119,13 +119,9 @@ div.menu-election div:last-child {
   margin-bottom: 2em;
 }
 div.menu-election .individual-recipe {
-  /*float: left;*/
   margin-right: 15px;
   display: inline-block;
 }
-/*div.menu-election .recipe-card.horizontal-scroll span:last-child {
-  margin-right: 0px;
-}*/
 
 /* NON-ELECTION MENU PARTIAL STYLING
 -------------------------------------------------- */
@@ -138,25 +134,49 @@ div.non-election-dinner input[type="checkbox"] {
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  /*border: 5px solid #242661;*/
 }
 div.non-election-dinner div.recipe-card-partial {
   margin-right: 15px;
-}
-div.non-election-dinner div.recipe-card-partial {
-  /*margin-right: 0px;*/
 }
 
 /* FINAL MENU PARTIAL STYLING
 -------------------------------------------------- */
 .final-menu a.recipe-link {
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.5em;
-  /*font-style: italic;*/
+  font-size: 1.3em;
 }
-/*.final-menu .well {
-  background-color: rgba(248,245,240,0.6);
-}*/
+
+.final-menu {
+  border-radius: 5%;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 2.5em;
+  padding: 1em;
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #fff;
+  -webkit-box-shadow: 0 3px 10px 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 10px 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.final-menu div {
+  margin-top: 1em;
+}
+
+.final-menu hr {
+  margin-top: 1em;
+  margin-bottom: 3em;
+}
+
+.bon-appetit {
+  font-size: 1.4em;
+}
+
+.chef-name {
+  font-size: 1.1em;
+}
+
+.chef-name:before {
+}
 
 /* BUTTON STYLING
 -------------------------------------------------- */

@@ -1,4 +1,5 @@
 <div class="final-menu">
+  <br><br>
   <h3>Appetizers</h3>
     <% @dinner.menu.appetizers.each do |recipe| %>
       <%= render partial: 'menus/menu_card', locals: { recipe: recipe } %><br>
@@ -21,8 +22,10 @@
     <% @dinner.menu.desserts.each do |recipe| %>
       <%= render partial: 'menus/menu_card', locals: { recipe: recipe } %><br>
       <%= render 'menus/chef', :recipe => recipe, :dinner => @dinner, :menu_recipe => MenuRecipe.where(:recipe_id => recipe.id, :menu_id => @dinner.menu.id) %><br>
-    <% end %>
-  <hr>  
+    <% end %>  
+  <br>
+  <h3 class="bon-appetit">Bon Appetit!</h3>
+  <br><br>
 </div>
 
 <% if current_user == @dinner.host %>
