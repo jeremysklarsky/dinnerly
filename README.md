@@ -1,40 +1,57 @@
+[![Code Climate](https://codeclimate.com/github/jeremysklarsky/dinnerly/badges/gpa.svg)](https://codeclimate.com/github/jeremysklarsky/dinnerly)
+
 # Approvable Feast
 
-## Description
-
-Add a short description of your app.
-
-## Screenshots
-
-Add some spiffy screenshots of your app here.
-
-## Background
-
-Why did you want to make this app? What was your development process
-like?
+Approvable Feast is an interactive potluck planner that allows users to select an array of recipe options for each course, then invite guests to vote for the favorites and choose a dish to bring to the party.
 
 ## Features
 
-Bullet point some of the key features of your app here.
+* Dual user authentication systems, one built from scratch and one via [OmniAuth Facebook](https://github.com/mkdynamic/omniauth-facebook)
+* Recipe information parsed from [Big Oven API](http://api.bigoven.com/)
+* Implements custom-built voting system, with upvote and downvote functionality 
+* Allows users to schedule email notifications via ActionMailer with custom Rake task and [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler)
 
 ## Usage
 
-How do users use your app?
+1. Sign up or log in to create a dinner party.  
+2. Select from a list of cuisines and set the number of dishes you want to serve at your dinner party. We'll suggest a bunch of recipes for you to choose from.  
+3. Invite your friends and let them vote on which dishes they'd like to enjoy at your dinner party - or you can choose to set the menu yourself.  
+4. Guests receive email invitations with a link to RSVP then vote on dishes. Only invited guests can RSVP, and only RSVP'd guests can vote.
+5. Once the menu for your dinner party been finalized, your guests can sign up to bring the dishes they'd like to cook.  
+
 
 ## Development/Contribution
 
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
+Approvable Feast is an on-going work in progress, and contributions are welcome. Please consider:
+
+- Refactoring complex code  
+- Adding feature tests  
+- Squashing a bug  
+- Fixing a typo  
+- Correcting style  
+
+When contributing, please first:
+
+- [Fork the project.](https://github.com/jeremysklarsky/dinnerly#fork-destination-box)  
+- Commit your changes. When debugging, include a failing test case.  
+- [Submit a pull request](https://github.com/jeremysklarsky/dinnerly/compare/) with at least one animated GIF.  
+- Patiently await our merge + eternal gratitude.  
+
 
 ## Future
 
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
+- Add abililty to re-generate course options  
+- Refine recipe parsing method (filter out low rated / incomplete recipes, etc.)  
+- Add ability to filter menu options for vegetarian, gluten-free, food allergies, etc.  
+- Add social features, such as chat & SMS notifications  
+- Improve test suite  
 
-## Author
 
-Link to your blog, twitter, etc!
+## Authors
+
+Team Approvable Feast is [Sophie DeBenedetto](https://github.com/SophieDeBenedetto), [Rachel Nackman](https://github.com/rnackman), [Jeremy Sklarsky](https://github.com/jeremysklarsky), and [Kate Travers](https://github.com/ktravers).
+
 
 ## License
 
-Dinnerly is MIT Licensed. See LICENSE for details.
+Approvable Feast is MIT Licensed. See LICENSE for details.
