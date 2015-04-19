@@ -3,9 +3,9 @@ class Users::DinnersController < ApplicationController
 
   def index
     @user = current_user
-    @hosted_dinners = current_user.dinners
-    @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user)}.select{|dinner|dinner.date < Date.today}
-    @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user)}
+    @hosted_dinners = current_user.dinners.sort_by &:date
+    @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user)}.select{|dinner|dinner.date < Date.today}.sort_by &:date
+    @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user)}.sort_by &:date
   end
 
   def new
