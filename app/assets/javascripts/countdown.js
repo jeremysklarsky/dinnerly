@@ -38,7 +38,7 @@
     t && e.extend(r, t);
     i();
     var interval = setInterval(i, 1e3);
-    }
+    };
     })(jQuery);
 
 // $( document ).ajaxComplete() {
@@ -71,7 +71,7 @@ $(function () {
         var y = e.getFullYear();
         var futureFormattedDate = mm + "/" + dd + "/" + y;
         return futureFormattedDate;
-    };
+    }
     countDownListener();
 });
 
@@ -82,7 +82,7 @@ function countDownListener(){
             date: $(this).children('.expiredate').attr("value"),
             format: "on"
             });
-        })
+        });
     });
 }
 
