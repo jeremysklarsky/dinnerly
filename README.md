@@ -25,16 +25,16 @@ Approvable Feast is an interactive potluck planner that allows users to select a
 Approvable Feast is an on-going work in progress, and contributions are welcome. Please consider:
 
 - Refactoring complex code  
-- Adding feature tests  
+- Adding [test specs](https://robots.thoughtbot.com/how-we-test-rails-applications)  
 - Squashing a bug  
 - Fixing a typo  
-- Correcting style  
+- Correcting [style](https://github.com/styleguide/ruby)  
 
 When contributing, please first:
 
-- [Fork the project.](https://github.com/jeremysklarsky/dinnerly#fork-destination-box)  
-- Commit your changes. When debugging, include a failing test case.  
-- [Submit a pull request](https://github.com/jeremysklarsky/dinnerly/compare/) with at least one animated GIF.  
+- [Fork the project.](https://github.com/jeremysklarsky/dinnerly/fork)  
+- [Commit your changes](https://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message). When debugging, include a failing test case.  
+- [Submit a pull request](https://github.com/jeremysklarsky/dinnerly/pulls) with _at least one_ animated GIF.  
 - Patiently await our merge + eternal gratitude.  
 
 
