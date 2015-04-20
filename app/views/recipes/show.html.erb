@@ -1,6 +1,6 @@
 <div class="well well-lg col-md-8 col-md-offset-2 text-center">
 
-  <%if @recipe.image_upload%>
+  <%if !@recipe.image_upload.url.include?("missing")%>
     <img src='<%= @recipe.image_upload.url %>' alt="<%= @recipe.name %>", class="img-thumbnail"/>
   <%else%>
     <img src='<%= valid_image_url(@recipe) %>' alt="<%= @recipe.name %>", class="img-thumbnail"/>

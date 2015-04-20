@@ -1,6 +1,6 @@
 <div class="recipe-card-partial">
   <div class="recipe-card-partial-image">
-    <%if recipe.image_upload%>
+    <%if !recipe.image_upload.url.include?("missing")%>
     <img src="<%= recipe.image_upload.url %>" class="img-thumbnail"><br>
     <%else%>
     <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>

@@ -20,7 +20,7 @@
       <% @dinner.menu.menu_appetizers.each do |mr| %>
 
         <div class="individual-recipe">
-          <%if mr.recipe.image_upload%>
+          <%if !mr.recipe.image_upload.url.include?("missing")%>
             <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
           <%else%>
             <img src="<%= valid_image_url(mr.recipe) %>" class="img-thumbnail"><br>
@@ -44,7 +44,7 @@
       <% @dinner.menu.menu_sides.each do |mr| %>
       
       <div class="individual-recipe">
-        <%if mr.recipe.image_upload%>
+        <%if !mr.recipe.image_upload.url.include?("missing")%>
           <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
         <%else%>
           <img src="<%= valid_image_url(mr.recipe) %>" class="img-thumbnail"><br>
@@ -68,7 +68,7 @@
         <% @dinner.menu.menu_mains.each do |mr| %>
 
         <span class="individual-recipe">
-          <%if mr.recipe.image_upload%>
+          <%if !mr.recipe.image_upload.url.include?("missing")%>
           <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
           <%else%>
           <img src="<%= valid_image_url(mr.recipe) %>" class="img-thumbnail"><br>
@@ -92,7 +92,7 @@
         <% @dinner.menu.menu_desserts.each do |mr| %>
         
         <span class="individual-recipe">
-          <%if mr.recipe.image_upload%>
+          <%if !mr.recipe.image_upload.url.include?("missing")%>
           <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
           <%else%>
           <img src="<%= valid_image_url(mr.recipe) %>" class="img-thumbnail"><br>
