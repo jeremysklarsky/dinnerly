@@ -6,7 +6,7 @@
    data-content=
    "<div class='text-center'>
     <h5><%= recipe.name %></h5>
-    <img src='<%= recipe.image_url %>' class='qtr'/>
+    <img src='<%= valid_image_url(recipe) %>' class='qtr'/>
     <p>Primary Ingredient: <%= recipe.primary_ingredient %></p>
     </div>
     ">

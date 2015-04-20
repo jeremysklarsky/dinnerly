@@ -129,12 +129,6 @@ div.non-election-dinner h3 {
   font-family: 'Lobster', cursive;
   margin-bottom: 1em;
 }
-div.non-election-dinner input[type="checkbox"] {
-  position: absolute;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-}
 div.non-election-dinner div.recipe-card-partial {
   margin-right: 15px;
 }
@@ -217,6 +211,19 @@ input#dinner_guests_no {
 input#dinner_guests_no {
   margin: 0 0 0.5em 0;
 }
+div.non-election-dinner input[type="checkbox"] {
+  /*position: absolute;*/
+  border: solid 2px #242661;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  -o-appearance:none;
+}
+
 
 /* MY DINNERS STYLING
 -------------------------------------------------- */

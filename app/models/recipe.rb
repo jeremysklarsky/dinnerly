@@ -29,6 +29,10 @@ class Recipe < ActiveRecord::Base
   end
 
   def recipe_card
+    if !FastImage.size(self.image_url)
+      self.image_url = "http://ctbnutrition.com/wp-content/uploads/2015/03/Vegetable-Question-Mark.jpg"
+      self.save
+    end
     ActionView::Base.new(
       Rails.configuration.paths["app/views"]).render(
       :partial => 'menus/recipe', :format => :txt,
