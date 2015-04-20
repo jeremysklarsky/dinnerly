@@ -11,9 +11,9 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     menu = @dinner.menu
     menu.recipes << @recipe
-    binding.pry
+    # binding.pry
     @recipe.save
-    binding.pry
+    # binding.pry
     menu.save
   end
 
@@ -24,9 +24,9 @@ class RecipesController < ApplicationController
    determine_recipe_course(@recipe, @menu)
    @recipe.cuisine = Cuisine.find_or_create_by(name: params[:recipe][:cuisine])
    @recipe.save
-   binding.pry
+   # binding.pry
    @dinner = @recipe.menus.first.dinner
-   binding.pry
+   # binding.pry
    redirect_to user_dinner_path(@dinner.host, @dinner)
   end
 
