@@ -3,7 +3,7 @@
 <% if !@dinner.menu.finalized? %>
   <div class="countdown">
         <h3>Vote by <%=@dinner.menu.exp_date.strftime("%B %d, %Y")%></h3>
-          <span class="expiredate" value="<%= @dinner.menu.exp_date%>">election expires in: </span>   
+          <span class="expiredate" value="<%= @dinner.menu.exp_date%>">Election expires in: </span>   
           <span class="days">00</span>
           <span class="timeRefDays">days</span>
           <span class="hours">00</span>

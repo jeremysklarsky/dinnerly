@@ -1,5 +1,4 @@
 class MenuGenerator
-
   attr_accessor :menu_params, :menu, :cuisines
 
   def initialize(menu_params)
@@ -11,14 +10,13 @@ class MenuGenerator
     @menu_recipes = []
     @course_recipes_array = [@appetizer_recipes, @side_recipes, @main_recipes]
     @dessert_recipes = Recipe.where('dessert = true')
-
   end
 
   def call
     create_cuisine_list
     set_course_numbers
-    add_to_menu_recipe_array(@dessert_recipes)  
-    
+    add_to_menu_recipe_array(@dessert_recipes)
+
     @cuisines.each do |cuisine|
       #course_recipes, #db_course_name
       create_menu_options(@appetizer_recipes, 'appetizer', cuisine)
@@ -36,12 +34,11 @@ class MenuGenerator
     build_menu_recipes(@side_recipes, @num_sides, "Side")
     build_menu_recipes(@main_recipes, @num_mains, "Main")
     build_menu_recipes(@dessert_recipes, @num_desserts, "Dessert")
-    # binding.pry
+
     @menu.exp_date = menu_params[:exp_date]
     @menu.save
     @menu
   end
-
 
   def set_course_numbers
     @num_appetizers = self.menu_params['appetizers'].to_i * 2
@@ -60,14 +57,14 @@ class MenuGenerator
       if @menu_params["cuisine#{i}"] != "-Surprise Me!-"
         cuisines << Cuisine::CUISINES[@menu_params["cuisine#{i}"]]
       else
-        3.times do 
+        3.times do
           surprise_cuisine = Cuisine::CUISINES[@cuisine_keys.sample]
           cuisines << surprise_cuisine
         end
 
       end
     end
-    
+
     @cuisines = cuisines.flatten.uniq
     @cuisines.delete_if {|c| c.nil?}
   end
@@ -97,7 +94,7 @@ class MenuGenerator
 
   def create_menu_options(course_recipes, course_name, cuisine)
     course_recipes += Cuisine.find_by(name: cuisine).recipes.where("#{course_name} = true").select{|recipe|!@menu_recipes.include?(recipe)} 
-    add_to_menu_recipe_array(course_recipes)   
+    add_to_menu_recipe_array(course_recipes)
   end
 
 end

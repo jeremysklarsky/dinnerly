@@ -1,20 +1,14 @@
 class SessionsController < ApplicationController
 
-  def new
-  end
-
   def create
-    # binding.pry
     if auth_hash
       @user = User.handle_facebook_login(auth_hash)
     else
       @user = User.find_by(:email => params[:user][:email]).try(:authenticate, params[:user][:password])
     end
-    
-    # binding.pry
+
     if @user
       login(@user)
-      # binding.pry
       if session[:dinner_path]
         redirect_to session[:dinner_path]
       else
@@ -36,7 +30,7 @@ class SessionsController < ApplicationController
   end
 
   def send_password
-    if User.find_by(:email => params[:email]) 
+    if User.find_by(:email => params[:email])
       @user = User.find_by(:email => params[:email])
       random_password = Array.new(10).map { (65 + rand(58)).chr }.join
       @user.password = random_password
@@ -50,7 +44,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  private 
+  private
     # protects env['omniauth.auth'] hash info by placing it inside private method
     def auth_hash
       request.env['omniauth.auth']

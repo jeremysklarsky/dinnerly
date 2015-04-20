@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :login_required, only: [:update]
   # before_filter :resetting?, only: [:edit]
 
@@ -27,13 +26,12 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-
   def update
     @user = current_user
     if !!@user.authenticate(params[:user][:password])
       @user.name = params[:user][:name]
       @user.email = params[:user][:email]
-      if !params[:user][:new_password].empty? 
+      if !params[:user][:new_password].empty?
         @user.password = params[:user][:new_password]
         @user.password_confirmation = params[:user][:confirm_password]
         if @user.save
@@ -49,7 +47,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Incorrect password. No User details updated. Click below to reset your password."
     end
     render 'edit'
-  end 
+  end
 
   private
   def user_params
