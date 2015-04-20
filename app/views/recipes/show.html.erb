@@ -1,6 +1,16 @@
 <div class="well well-lg col-md-8 col-md-offset-2 text-center">
-  <img src="<%= @recipe.image_url %>" alt="<%= @recipe.name %>", class="img-thumbnail">  
+
+  <%if @recipe.image_upload%>
+    <img src='<%= @recipe.image_upload.url %>' alt="<%= @recipe.name %>", class="img-thumbnail"/>
+  <%else%>
+    <img src='<%= @recipe.image_url %>' alt="<%= @recipe.name %>", class="img-thumbnail"/>
+   <%end%>
+   <%if @recipe.source_url%>
   <h1><%= link_to @recipe.name, @recipe.source_url %></h1>
+  <%else%>
+  <h1><%=  @recipe.name %></h1>
+  <%end%>
+
   <h4><%= @recipe.description %></h4><br>
 
   <h4>Cook time: <%= @recipe.cook_time %></h4>

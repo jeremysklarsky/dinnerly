@@ -1,6 +1,10 @@
 <div class="recipe-card-partial">
   <div class="recipe-card-partial-image">
+    <%if recipe.image_upload%>
+    <img src="<%= recipe.image_upload.url %>" class="img-thumbnail"><br>
+    <%else%>
     <img src="<%= recipe.image_url %>" class="img-thumbnail"><br>
+    <%end%>
     <%= link_to recipe.short_name, "/recipes/#{recipe.id}"%>
   </div>
 </div>

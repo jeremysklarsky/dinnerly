@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     post :tally, :on => :member
   end
 
-  resources :recipes, :only => ['show']
+  resources :recipes
+  post "/recipes" => "recipes#create"
   resources :menu_recipes, :only => ['chef', 'unchef', 'vote', 'unvote'] do 
     post :vote, :on => :member
     post :unvote, :on => :member
