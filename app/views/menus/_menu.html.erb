@@ -4,7 +4,7 @@
       <div id="appetizers">
         <h3>Appetizers</h3>
         <div class="recipe-card horizontal-scroll">
-        <%= f.collection_check_boxes(:recipes, @dinner.menu.appetizers, :id, :recipe_card) %>
+          <%= f.collection_check_boxes(:recipes, @dinner.menu.appetizers, :id, :recipe_card) %>
         </div>
       </div>
       <div id="sides">
