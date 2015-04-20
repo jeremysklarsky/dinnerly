@@ -60,7 +60,11 @@
         <% @dinner.menu.menu_mains.each do |mr| %>
 
         <span class="individual-recipe">
+          <%if mr.recipe.image_upload%>
+          <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
+          <%else%>
           <img src="<%= mr.recipe.image_url %>" class="img-thumbnail"><br>
+          <%end%>
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
@@ -80,7 +84,11 @@
         <% @dinner.menu.menu_desserts.each do |mr| %>
         
         <span class="individual-recipe">
+          <%if mr.recipe.image_upload%>
+          <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
+          <%else%>
           <img src="<%= mr.recipe.image_url %>" class="img-thumbnail"><br>
+          <%end%>
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>

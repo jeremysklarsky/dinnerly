@@ -8,6 +8,8 @@ class Recipe < ActiveRecord::Base
   has_many :courses, through: :recipe_courses
   belongs_to :cuisine
   after_create :assign_course_names
+  has_attached_file :image_upload
+  validates_attachment_content_type :image_upload, :content_type => /\Aimage\/.*\Z/
   
   def course_names
     self.courses.collect{|course| course.name}

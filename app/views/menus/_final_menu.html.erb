@@ -34,4 +34,5 @@
   <div id="email-button" class="email-guests"><br>
   <%= render partial: 'users/dinners/email_guest_form', locals: {:dinner => @dinner} %>
   </div>
+  <%= link_to "Add a Recipe!", new_recipe_path%>
 <% end %>
