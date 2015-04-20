@@ -9,7 +9,8 @@
         <!-- Display the user name if logged in -->
         <!-- <li id="displayName" class="btn disabled dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"></li>
           -->
-        <li class="myAccountButton"><%= link_to "My Account", user_account_path(current_user) %></li>
+        <li class="myAccountButton"><%= link_to "My Account", root_path %></li>
+        <li class="createDinnerButton"><%= link_to "Create Dinner", new_user_dinner_path(current_user) %></li>
         <li class="myDinnersButton"><%= link_to "My Dinners", user_dinners_path(current_user) %></li>
         <li class="logOutButton"><%= link_to "Log Out", logout_path %></li>
        
