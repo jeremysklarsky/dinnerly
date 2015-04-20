@@ -1,11 +1,10 @@
 class User < ActiveRecord::Base
- attr_accessor :random_password
-
+  attr_accessor :random_password
   validates_uniqueness_of :email
   validates_presence_of :name, :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   has_secure_password
-  validates :password, 
+  validates :password,
          # you only need presence on create
          :presence => { :on => :create },
          # allow_nil for length (presence will handle it on create)
@@ -46,10 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def self.handle_facebook_login(auth_hash)
-    # binding.pry
-    self.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) || self.create_with_omniauth(auth_hash)  
-
+    self.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) || self.create_with_omniauth(auth_hash)
   end
-
 
 end

@@ -8,6 +8,7 @@ gem "rails-erd"
 gem 'nokogiri'
 gem 'unirest'
 gem 'omniauth-facebook'
+gem 'fastimage'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'

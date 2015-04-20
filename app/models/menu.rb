@@ -1,5 +1,4 @@
 class Menu < ActiveRecord::Base
-
   belongs_to :dinner
   delegate :host, to: :dinner
   has_many :menu_recipes, dependent: :destroy
@@ -7,7 +6,7 @@ class Menu < ActiveRecord::Base
 
   def tally_votes
     @dinner = self.dinner
-    @options = self.menu_recipes.collect{|mr|mr.id}
+    @options = self.menu_recipes.collect { |mr| mr.id }
 
     @num_apps = menu_appetizers.size / 2
     @num_sides = menu_sides.size / 2
@@ -26,7 +25,6 @@ class Menu < ActiveRecord::Base
     end
     self.finalized = true
     self.save
-
   end
 
   def email_guests_with_final_menu(dinner, host)
@@ -35,7 +33,7 @@ class Menu < ActiveRecord::Base
     subject = "What do you want to bring to #{host.name}'s potluck?"
     header = "You're invited to cook!"
     link_action = "Sign Up!"
-    
+
     @dinner.guest_emails.split(",").each do |recipient|
       if recipient.length > 1
         GuestMailer.email_guests(host.email, recipient, subject, dinner_page, @dinner, header, link_action).deliver
@@ -43,7 +41,6 @@ class Menu < ActiveRecord::Base
     end
     GuestMailer.email_guests(host.email, host.email, subject, dinner_page, @dinner, header, link_action).deliver
   end
-
 
   def appetizers
     self.menu_recipes.where(course_name: "Appetizer").collect {|mr| mr.recipe}

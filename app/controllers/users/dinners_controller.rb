@@ -6,6 +6,9 @@ class Users::DinnersController < ApplicationController
     @hosted_dinners = current_user.dinners.sort_by &:date
     @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user)}.select{|dinner|dinner.date < Date.today}.sort_by &:date
     @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user)}.sort_by &:date
+
+    # @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user) && dinner.date < Date.today}.sort_by &:date
+    # @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user) && dinner.date >= Date.today}.sort_by &:date
   end
 
   def new

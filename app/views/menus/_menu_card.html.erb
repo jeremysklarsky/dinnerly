@@ -9,7 +9,7 @@
     <%if recipe.image_upload%>
     <img src='<%= recipe.image_upload.url %>' class='qtr'/>
     <%else%>
-    <img src='<%= recipe.image_url %>' class='qtr'/>
+    <img src='<%= valid_image_url(recipe) %>' class='qtr'/>
     <%end%>
     <p>Primary Ingredient: <%= recipe.primary_ingredient %></p>
     </div>

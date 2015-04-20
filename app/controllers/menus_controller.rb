@@ -24,7 +24,7 @@ class MenusController < ApplicationController
     if (@choices - [0]).length < 4
       flash.now[:notice] = "Please choose at least one dish for each course."
     else
-      @options = @menu.recipes.collect{|r|r.id}
+      @options = @menu.recipes.collect(&:id)
       (@options - @choices).each do |reject|
         @menu.menu_recipes.find_by(recipe_id: reject).destroy
       end

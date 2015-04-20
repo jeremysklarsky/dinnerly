@@ -12,7 +12,7 @@ class MenuRecipesController < ApplicationController
 
     respond_to do |f|
       f.js
-    end 
+    end
   end
 
   def unchef
@@ -25,7 +25,7 @@ class MenuRecipesController < ApplicationController
 
     respond_to do |f|
       f.js
-    end 
+    end
   end
 
   def vote
@@ -37,7 +37,7 @@ class MenuRecipesController < ApplicationController
       @vote_button = "#vote_#{@menu_recipe.id}"
     end
     respond_to do |f|
-      f.js 
+      f.js
     end
   end
 
@@ -59,7 +59,7 @@ class MenuRecipesController < ApplicationController
     user = current_user
     menu_recipe = MenuRecipe.find(params[:id])
     course_name = menu_recipe.course_name
-    menu = menu_recipe.menu 
+    menu = menu_recipe.menu
     recipes = menu.menu_recipes.where("course_name = ?", course_name)
     vote_limit = recipes.count / 2
     total_course_votes = recipes.collect {|r| r.votes}.flatten
