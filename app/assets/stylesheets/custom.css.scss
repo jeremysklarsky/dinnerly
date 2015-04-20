@@ -211,8 +211,8 @@ input#dinner_guests_no {
 input#dinner_guests_no {
   margin: 0 0 0.5em 0;
 }
-div.non-election-dinner input[type="checkbox"] {
-  /*position: absolute;*/
+/*div.non-election-dinner input[type="checkbox"] {
+  position: absolute;
   border: solid 2px #242661;
   border-radius: 50%;
   width: 20px;
@@ -223,7 +223,24 @@ div.non-election-dinner input[type="checkbox"] {
   -webkit-appearance:none;
   -o-appearance:none;
 }
+.checkbox {
+  border: solid 2px #242661;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #5bc0de;
+  border-color: #5bc0de;
 
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  -o-appearance:none;
+}
+.checkbox input[type="checkbox"]:checked + label::before {
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
+.checkbox input[type="checkbox"]:checked + label::after {
+  color: #fff;*/
 
 /* MY DINNERS STYLING
 -------------------------------------------------- */
