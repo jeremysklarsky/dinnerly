@@ -19,8 +19,12 @@
       <div class="recipe-card horizontal-scroll">
       <% @dinner.menu.menu_appetizers.each do |mr| %>
 
-        <span class="individual-recipe">
-          <img src="<%= mr.recipe.image_url %>" class="img-thumbnail"><br>
+        <div class="individual-recipe">
+          <%if mr.recipe.image_upload%>
+            <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
+          <%else%>
+            <img src="<%= valid_image_url(mr.recipe) %>" class="img-thumbnail"><br>
+          <%end%>
           <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
           <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
           <% if !mr.vote_cast?(current_user) %>
@@ -28,7 +32,7 @@
           <% else %>
           <div class="vote-button-form"><%= render :partial => 'menu_recipes/unvote', locals: { mr: mr } %></div>
           <% end  %>
-        </span>
+        </div>
 
       <% end %>
       </div>
@@ -40,7 +44,11 @@
       <% @dinner.menu.menu_sides.each do |mr| %>
       
       <div class="individual-recipe">
-        <img src="<%= valid_image_url(mr.recipe) %>" class="img-thumbnail"><br>
+        <%if mr.recipe.image_upload%>
+          <img src="<%= mr.recipe.image_upload.url %>" class="img-thumbnail"><br>
+        <%else%>
+          <img src="<%= valid_image_url(mr.recipe) %>" class="img-thumbnail"><br>
+        <%end%>
         <%= link_to mr.recipe.short_name, "/recipes/#{mr.recipe.id}"%>
         <div id="num_votes_<%= mr.id %>"><%= pluralize(mr.votes.count, "vote") %></div>
         <% if !mr.vote_cast?(current_user) %>

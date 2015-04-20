@@ -3,7 +3,7 @@
   <%if @recipe.image_upload%>
     <img src='<%= @recipe.image_upload.url %>' alt="<%= @recipe.name %>", class="img-thumbnail"/>
   <%else%>
-    <img src='<%= @recipe.image_url %>' alt="<%= @recipe.name %>", class="img-thumbnail"/>
+    <img src='<%= valid_image_url(@recipe) %>' alt="<%= @recipe.name %>", class="img-thumbnail"/>
    <%end%>
    <%if @recipe.source_url%>
   <h1><%= link_to @recipe.name, @recipe.source_url %></h1>
