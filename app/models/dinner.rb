@@ -8,7 +8,7 @@ class Dinner < ActiveRecord::Base
 
   def invited_guests
     emails = self.guest_emails.split(",")
-    invited_guests_array = []
+    invited_guests_array = [self.host.email]
     emails.each do |email|
       if User.find_by(:email => email)
         invited_guests_array << User.find_by(:email => email)
