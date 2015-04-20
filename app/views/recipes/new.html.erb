@@ -1,0 +1,53 @@
+<div class="col-lg-6 col-lg-offset-3">
+  <div class="well bs-component">
+    <h3 class="welcome-msg col-lg-offset-3">New Recipe</h3>
+      <p id="notice" class="col-lg-offset-3"><%= flash[:notice] %></p>
+      <%= form_for(@recipe) do |f| %>
+      <p>
+      <%= f.label :name, class: "col-sm-3 control-label" %>
+      <%= f.text_field :name, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :Cuisine, class: "col-sm-3 control-label" %>
+      <%= f.collection_select(:cuisine, Cuisine.all, :name, :name) %>
+      </p>
+      <p>
+      <%= f.label :description, class: "col-sm-3 control-label" %>
+      <%= f.text_area :description, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :primary_ingredient, class: "col-sm-3 control-label" %>
+      <%= f.text_field :primary_ingredient, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :cook_time, class: "col-sm-3 control-label" %>
+      <%= f.text_field :cook_time, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :servings, class: "col-sm-3 control-label" %>
+      <%= f.text_field :servings, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :ingredients, class: "col-sm-3 control-label" %>
+      <%= f.text_area :ingredients, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :instructions, class: "col-sm-3 control-label" %>
+      <%= f.text_area :instructions, class: "form-field form-control" %>
+      </p>
+      <p>
+      <%= f.label :Course, class: "col-sm-3 control-label" %>
+      <%=f.select :appetizer, options_for_select(["appetizer", "main", "side", "dessert"], ["main", "main"])%>
+      </p>
+      <p>
+      <%= f.file_field :image_upload %>
+      </p>
+      <%= f.submit "Add", class: "col-sm-offset-3 btn btn-primary" %>
+      <% end %>
+      <p></p>
+  
+  </div>
+
+
+
+</div>

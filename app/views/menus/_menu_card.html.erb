@@ -6,7 +6,11 @@
    data-content=
    "<div class='text-center'>
     <h5><%= recipe.name %></h5>
+    <%if recipe.image_upload%>
+    <img src='<%= recipe.image_upload.url %>' class='qtr'/>
+    <%else%>
     <img src='<%= recipe.image_url %>' class='qtr'/>
+    <%end%>
     <p>Primary Ingredient: <%= recipe.primary_ingredient %></p>
     </div>
     ">
