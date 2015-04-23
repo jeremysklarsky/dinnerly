@@ -1,5 +1,4 @@
 class GuestMailer < ApplicationMailer
-  default from: "approvablefeast@gmail.com"
 
   def email_guests(user_email, recipient, subject, dinner_page, dinner, header, link_action)
     @dinner_page = dinner_page

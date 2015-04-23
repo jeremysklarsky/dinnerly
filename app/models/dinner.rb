@@ -1,13 +1,13 @@
 class Dinner < ActiveRecord::Base
   has_many :dinner_guests
   has_many :guests, through: :dinner_guests
-  belongs_to :host, :class_name => "User"
+  belongs_to :host, :class_name => 'User'
   has_one :menu
   has_many :recipes, through: :menu
   validates_presence_of :host_id, :name, :date, :time, :location
 
   def invited_guests
-    emails = self.guest_emails.split(",")
+    emails = self.guest_emails.split(',')
     invited_guests_array = [self.host.email]
     emails.each do |email|
       if User.find_by(:email => email)
@@ -18,18 +18,10 @@ class Dinner < ActiveRecord::Base
   end
 
   def final_menu?
-    if self.menu.present? && self.menu.finalized
-      "Yes"
-    else
-      "Not yet"
-    end
+    (self.menu.present? && self.menu.finalized) ? 'Yes' : 'Not yet'
   end
 
   def dinner_date
-    if self.date
-      self.date.strftime("%B %d, %Y")
-    else
-      "No date"
-    end
+    self.date ? self.date.strftime('%B %d, %Y') : 'No date'
   end
 end

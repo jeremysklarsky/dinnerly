@@ -21,20 +21,16 @@ class User < ActiveRecord::Base
   has_many :votes
 
   def attending?(dinner)
-    if dinner.guests.include?(self)
-      "Yes"
-    else
-      "No"
-    end
+    dinner.guests.include?(self) ? 'Yes' : 'No'
   end
 
   def self.create_with_omniauth(auth)
     self.create do |user|
-      user.name = auth["info"]["name"]
-      user.email = auth["info"]["email"]
-      user.provider = auth["provider"]
-      user.uid = auth["uid"]
-      user.oauth_token = auth["credentials"]["token"]
+      user.name = auth['info']['name']
+      user.email = auth['info']['email']
+      user.provider = auth['provider']
+      user.uid = auth['uid']
+      user.oauth_token = auth['credentials']['token']
       user.password = User.random_password
       user.password_confirmation = user.password
     end
@@ -47,5 +43,4 @@ class User < ActiveRecord::Base
   def self.handle_facebook_login(auth_hash)
     self.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"]) || self.create_with_omniauth(auth_hash)
   end
-
 end

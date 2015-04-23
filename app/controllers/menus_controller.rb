@@ -4,7 +4,7 @@ class MenusController < ApplicationController
     @dinner = Dinner.find(params[:dinner_id])
     @dinner.menu = MenuGenerator.new(params['menu']).call
     
-    @dinner.menu.election = true if params[:menu][:election] == "Let my guests vote!" 
+    @dinner.menu.election = true if params[:menu][:election] == 'Let my guests vote!' 
     @dinner.menu.save
     if @dinner.save
       respond_to do |format|
@@ -19,10 +19,10 @@ class MenusController < ApplicationController
   def update
     @menu = Menu.find(params[:id])
     @dinner = @menu.dinner 
-    @choices = params["menu"]["recipes"].map(&:to_i)
+    @choices = params['menu']['recipes'].map(&:to_i)
 
     if (@choices - [0]).length < 4
-      flash.now[:notice] = "Please choose at least one dish for each course."
+      flash.now[:notice] = 'Please choose at least one dish for each course.'
     else
       @options = @menu.recipes.collect(&:id)
       (@options - @choices).each do |reject|

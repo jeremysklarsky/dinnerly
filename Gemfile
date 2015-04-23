@@ -4,7 +4,7 @@ ruby "2.2.0"
 gem 'yummly'
 gem 'figaro'
 gem 'pg'
-gem "rails-erd"
+gem 'rails-erd'
 gem 'nokogiri'
 gem 'unirest'
 gem 'omniauth-facebook'
@@ -31,7 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 gem 'render_anywhere', require: false
-gem "paperclip", "~> 4.2"
+gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '< 2.0'
 
 # Use Unicorn as the app server

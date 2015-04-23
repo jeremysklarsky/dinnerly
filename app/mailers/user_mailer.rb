@@ -1,7 +1,5 @@
 class UserMailer < ApplicationMailer
 
-  default from: "approvablefeast@gmail.com"
-
   def create_and_deliver_password_change(user, random_password)
     @user = user
     @user_name = user.name

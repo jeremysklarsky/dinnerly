@@ -66,7 +66,7 @@ class MenuRecipesController < ApplicationController
     total_user_votes = total_course_votes.select {|v| v.user_id == user.id}.size
 
     if total_user_votes >= vote_limit
-      session[:alert] = "raise alert"
+      session[:alert] = 'raise alert'
     else
       session[:alert] = nil
     end

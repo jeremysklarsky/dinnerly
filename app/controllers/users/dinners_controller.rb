@@ -3,12 +3,12 @@ class Users::DinnersController < ApplicationController
 
   def index
     @user = current_user
-    @hosted_dinners = current_user.dinners.sort_by &:date
-    @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user)}.select{|dinner|dinner.date < Date.today}.sort_by &:date
-    @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user)}.sort_by &:date
+    @hosted_dinners = current_user.dinners.sort_by(&:date)
+    @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user)}.select{ |dinner| dinner.date < Date.today}.sort_by(&:date)
+    @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user)}.sort_by(&:date)
 
-    # @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user) && dinner.date < Date.today}.sort_by &:date
-    # @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user) && dinner.date >= Date.today}.sort_by &:date
+    # @attended_dinners = Dinner.select{|dinner| dinner.guests.include?(current_user) && dinner.date < Date.today}.sort_by(&:date)
+    # @upcoming_dinners = Dinner.select{|dinner| dinner.invited_guests.include?(current_user) && dinner.date >= Date.today}.sort_by(&:date)
   end
 
   def new
@@ -41,15 +41,15 @@ class Users::DinnersController < ApplicationController
     subject = "#{@user.name}'s invited you to a dinner party!"
     @dinner = Dinner.find(params[:id])
     
-    recipients = EmailSanitizer.clean_emails(params["guest"]["emails"], @dinner)
+    recipients = EmailSanitizer.clean_emails(params['guest']['emails'], @dinner)
     recipients.each do |recipient|
       if @dinner.menu.election
         header = "You're invited to vote!"
-        link_action = "Vote now!"
+        link_action = 'Vote now!'
         GuestMailer.email_guests(user_email, recipient, subject, dinner_page, @dinner, header, link_action).deliver  
       else
         header = "You're invited to cook!"
-        link_action = "RSVP"
+        link_action = 'RSVP'
         GuestMailer.email_guests(user_email, recipient, subject, dinner_page, @dinner, header, link_action).deliver
       end
     end
@@ -71,7 +71,7 @@ class Users::DinnersController < ApplicationController
   def update
     @dinner = Dinner.find(params[:id])
     if @dinner.update(dinner_params)
-      if params[:dinner][:guests] == "Yes"
+      if params[:dinner][:guests] == 'Yes'
         @dinner.guests << current_user
         @dinner.save
         redirect_to user_dinner_path(@dinner.host, @dinner)

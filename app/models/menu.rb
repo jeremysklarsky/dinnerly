@@ -32,45 +32,45 @@ class Menu < ActiveRecord::Base
     dinner_page = "http://www.approvablefeast.com/users/#{host.id}/dinners/#{@dinner.id}" 
     subject = "What do you want to bring to #{host.name}'s potluck?"
     header = "You're invited to cook!"
-    link_action = "Sign Up!"
+    link_action = 'Sign Up!'
 
-    @dinner.guest_emails.split(",").each do |recipient|
+    @dinner.guest_emails << host.email
+    @dinner.guest_emails.split(',').each do |recipient|
       if recipient.length > 1
         GuestMailer.email_guests(host.email, recipient, subject, dinner_page, @dinner, header, link_action).deliver
       end
     end
-    GuestMailer.email_guests(host.email, host.email, subject, dinner_page, @dinner, header, link_action).deliver
   end
 
   def appetizers
-    self.menu_recipes.where(course_name: "Appetizer").collect {|mr| mr.recipe}
+    self.menu_recipes.where(course_name: 'Appetizer').collect(&:recipe)
   end
 
   def sides
-    self.menu_recipes.where(course_name: "Side").collect {|mr| mr.recipe}
+    self.menu_recipes.where(course_name: 'Side').collect(&:recipe)
   end
 
   def mains
-    self.menu_recipes.where(course_name: "Main").collect {|mr| mr.recipe}
+    self.menu_recipes.where(course_name: 'Main').collect(&:recipe)
   end
 
   def desserts
-    self.menu_recipes.where(course_name: "Dessert").collect {|mr| mr.recipe}
+    self.menu_recipes.where(course_name: 'Dessert').collect(&:recipe)
   end
 
   def menu_appetizers
-    self.menu_recipes.where(course_name: "Appetizer").collect {|mr| mr}
+    self.menu_recipes.where(course_name: 'Appetizer').collect {|mr| mr}
   end
 
   def menu_sides
-    self.menu_recipes.where(course_name: "Side").collect {|mr| mr}
+    self.menu_recipes.where(course_name: 'Side').collect {|mr| mr}
   end
 
   def menu_mains
-    self.menu_recipes.where(course_name: "Main").collect {|mr| mr}
+    self.menu_recipes.where(course_name: 'Main').collect {|mr| mr}
   end
 
   def menu_desserts
-    self.menu_recipes.where(course_name: "Dessert").collect {|mr| mr}
+    self.menu_recipes.where(course_name: 'Dessert').collect {|mr| mr}
   end
 end

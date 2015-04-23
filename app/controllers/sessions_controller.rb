@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         redirect_to root_path
       end
     else
-      flash.now[:notice] = "User name or password is not valid."
+      flash.now[:notice] = 'User name or password is not valid.'
       render 'new'
     end
   end

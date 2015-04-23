@@ -1,7 +1,7 @@
 class MenuRecipe < ActiveRecord::Base
   belongs_to :menu
   belongs_to :recipe
-  belongs_to :chef, :class_name => "User"
+  belongs_to :chef, :class_name => 'User'
   has_many :votes, dependent: :destroy
 
   def vote_total
@@ -13,11 +13,6 @@ class MenuRecipe < ActiveRecord::Base
   end
 
   def is_chef?(current_user)
-    if self.chef
-      self.chef.id == current_user.id
-    else
-      false
-    end
+    self.chef ? (self.chef.id == current_user.id) : false
   end
-
 end
