@@ -35,16 +35,16 @@ class UsersController < ApplicationController
         @user.password = params[:user][:new_password]
         @user.password_confirmation = params[:user][:confirm_password]
         if @user.save
-          flash[:notice] = "User details updated."
+          flash[:notice] = 'User details updated.'
         else
-          flash[:notice] = "Please confirm new password."
+          flash[:notice] = 'Please confirm new password.'
         end
       else
         @user.save
-        flash[:notice] = "User details updated."
+        flash[:notice] = 'User details updated.'
       end
     else
-      flash[:notice] = "Incorrect password. No User details updated. Click below to reset your password."
+      flash[:notice] = 'Incorrect password. No User details updated. Click below to reset your password.'
     end
     render 'edit'
   end

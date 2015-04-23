@@ -16,16 +16,16 @@ class Recipe < ActiveRecord::Base
   end
 
   def assign_course_names
-    if !(self.course_names & Course::COURSES["Appetizers"]).empty?
+    if !(self.course_names & Course::COURSES['Appetizers']).empty?
       self.appetizer = true
     end
-    if !(self.course_names & Course::COURSES["Main Dishes"]).empty?
+    if !(self.course_names & Course::COURSES['Main Dishes']).empty?
       self.main = true
     end
-    if !(self.course_names & Course::COURSES["Side Dishes"]).empty?
+    if !(self.course_names & Course::COURSES['Side Dishes']).empty?
       self.side = true
     end
-    if !(self.course_names & Course::COURSES["Desserts"]).empty?
+    if !(self.course_names & Course::COURSES['Desserts']).empty?
       self.dessert = true
     end
     self.save
@@ -33,21 +33,16 @@ class Recipe < ActiveRecord::Base
 
   def recipe_card
     if !FastImage.size(self.image_url)
-      self.image_url = "http://ctbnutrition.com/wp-content/uploads/2015/03/Vegetable-Question-Mark.jpg"
+      self.image_url = 'http://ctbnutrition.com/wp-content/uploads/2015/03/Vegetable-Question-Mark.jpg'
       self.save
     end
     ActionView::Base.new(
-      Rails.configuration.paths["app/views"]).render(
+      Rails.configuration.paths['app/views']).render(
       :partial => 'menus/recipe', :format => :txt,
       :locals => { :recipe => self })
   end
 
   def short_name
-    if self.name.length > 35
-      "#{self.name[0..32]}..."
-    else
-      self.name
-    end
+    (self.name.length > 35) ? "#{self.name[0..32]}..." : self.name
   end
-
 end
